@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScanService", "ScanService\ScanService.csproj", "{A431AC44-3419-4846-A605-B787FADC8335}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScanService", "ScanService\ScanService.csproj", "{A431AC44-3419-4846-A605-B787FADC8335}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{2233AA4B-11E3-4B15-90FC-C7838B60A290}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{A431AC44-3419-4846-A605-B787FADC8335}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A431AC44-3419-4846-A605-B787FADC8335}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A431AC44-3419-4846-A605-B787FADC8335}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2233AA4B-11E3-4B15-90FC-C7838B60A290}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2233AA4B-11E3-4B15-90FC-C7838B60A290}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2233AA4B-11E3-4B15-90FC-C7838B60A290}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2233AA4B-11E3-4B15-90FC-C7838B60A290}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

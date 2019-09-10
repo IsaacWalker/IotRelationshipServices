@@ -6,6 +6,8 @@
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
 using Web.Iot.ScanService.Models;
 
 namespace Web.Iot.ScanService.Controllers
@@ -19,6 +21,7 @@ namespace Web.Iot.ScanService.Controllers
         {
             m_logger = logger;
         }
+
 
         /// <summary>
         /// Scan endpoint
