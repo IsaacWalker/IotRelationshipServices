@@ -53,9 +53,9 @@ namespace Web.Iot.ScanService
 
         private IMongoCollection<Scan> GetScanCollection()
         {
-            IMongoClient mongoClient = new MongoClient();
-            IMongoDatabase mongoDatabase = mongoClient.GetDatabase(Configuration[Constants.MongoDatabaseName]);
-            return mongoDatabase.GetCollection<Scan>(Configuration[Constants.MongoScanCollectionName]);
+            IMongoClient mongoClient = new MongoClient("mongodb://localhost:27017");
+            IMongoDatabase mongoDatabase = mongoClient.GetDatabase("iotRelationshipDatabase");
+            return mongoDatabase.GetCollection<Scan>("scanCollection");
         }
     }
 }

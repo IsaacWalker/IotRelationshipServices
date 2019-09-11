@@ -19,9 +19,16 @@ namespace Web.Iot.ScanService.MongoDB.Data
     public sealed class Scan
     {
         /// <summary>
-        /// Device Id
+        /// Scan Id
         /// </summary>
         [BsonId]
+        public ObjectId _id { get; set; }
+
+
+        /// <summary>
+        /// Device Id
+        /// </summary>
+        [BsonElement("device_id")]
         public long DeviceId { get; set; }
 
 

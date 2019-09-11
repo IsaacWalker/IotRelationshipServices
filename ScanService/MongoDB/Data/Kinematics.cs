@@ -4,9 +4,7 @@
     Isaac Walker
 ****************************************************/
 
-using Microsoft.Spatial;
 using MongoDB.Bson.Serialization.Attributes;
-using System.Numerics;
 
 namespace Web.Iot.ScanService.MongoDB.Data
 {
@@ -19,13 +17,13 @@ namespace Web.Iot.ScanService.MongoDB.Data
         /// Device acceleration
         /// </summary>
         [BsonElement("acceleration")]
-        public Vector3 Acceleration { get; set; }
+        public LinearAcceleration Acceleration { get; set; }
 
 
         /// <summary>
         /// Device Location
         /// </summary>
         [BsonElement("location")]
-        public GeographyPoint Location { get; set; }
+        public GPSLocation Location { get; set; }
     }
 }

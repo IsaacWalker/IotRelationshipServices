@@ -25,40 +25,75 @@ namespace Web.Iot.ScanService.Controllers
 
         private readonly IProcessor<LogScanRequest, LogScanResponse> m_processor;
 
+        
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="processor"></param>
+        /// <param name="logger"></param>
         public ScanController(IProcessor<LogScanRequest, LogScanResponse> processor, ILogger<ScanController> logger)
         {
             m_processor = processor;
             m_logger = logger;
         }
 
-
-        /// <summary>
-        /// Scan endpoint
-        /// </summary>
-        /// <param name="Scan"></param>
-        [HttpPost]
-        public void Post([FromQuery] long DeviceId, [FromBody] ScanModel Scan)
+        [HttpGet]
+        public IActionResult Get()
         {
-            m_logger.LogDebug(LogEventId.ScanPostStart, string.Format("Scan Received: From {0}, On {1}, Wifi: {2}, Bluetooth: {3}, Kinematics: {4}",
-                 DeviceId, Scan.DateTime, Scan.IsWifiEnabled, Scan.IsBluetoothEnabled, Scan.IsKinematicsEnabled));
+            var mod = new ScanBatchModel()
+            {
+                DeviceId = 0,
+                Scans = new List<ScanModel>()
+                {
+                    new ScanModel()
+                    {
+                        IsBluetoothEnabled = true,
+                        IsKinematicsEnabled = true,
+                        IsWifiEnabled = true,
+                        DateTime = DateTime.Now,
+                        WifiDevices = new List<WifiDeviceModel>()
+                        {
+                            new WifiDeviceModel()
+                            {
+                                BSSID = "BSSID1",
+                                SSID = "SSID1",
+                                ChannelWidth = 123,
+                                Frequency = 12f,
+                                Level = 4,
+                                VenueName = "Dublin Airport"
+                            }
+                        },
+                        BluetoothDevices = new List<BluetoothDeviceModel>()
+                        {
+                            new BluetoothDeviceModel()
+                            {
+                                MAC = "Mac1",
+                                Name = "BluetoothName"
+                            }
+                        },
+                        Kinematics = new KinematicsModel()
+                        {
+                            Acceleration = new LinearAccelerationModel(){X=23,Y=23,Z=3 },
+                            Location = new GPSLocationModel {Latitude=23, Longitude=23}
+                        }                                         
+                    }
+                }
+            };
 
-            //TODO - Log to DB
-
-            m_logger.LogDebug(LogEventId.ScanPostEnd, "Scan processed.");
+            return new JsonResult(mod);
         }
-
 
         /// <summary>
         /// Batch Scan endpoint
         /// </summary>
         /// <param name="Scan"></param>
         [HttpPost]
-        public async Task<IActionResult> PostBatch([FromBody] ScanBatchModel Scans)
+        public async Task<IActionResult> Post([FromBody] ScanBatchModel ScanBatch)
         {
-            m_logger.LogDebug(LogEventId.ScanBatchPostStart, string.Format("Scans Received: From {0}, Number {1}", 
-                Scans.DeviceId, Scans.Scans.Count));
+            m_logger.LogDebug(LogEventId.ScanBatchPostStart, string.Format("Scans Received: From {0}, Number {1}",
+                ScanBatch.DeviceId, ScanBatch.Scans.Count));
 
-            LogScanRequest Request = new LogScanRequest(Scans.Scans.Select(S => ConvertScanModel(Scans.DeviceId, S)).ToList());
+            LogScanRequest Request = new LogScanRequest(ScanBatch.Scans.Select(S => ConvertScanModel(ScanBatch.DeviceId, S)).ToList());
             LogScanResponse Response = await m_processor.Run(Request);
 
             m_logger.LogDebug(LogEventId.ScanBatchPostEnd, "Scan Batch processed: {0}.", Response.Success ? "Success" : "fail");
@@ -71,6 +106,7 @@ namespace Web.Iot.ScanService.Controllers
             return Ok();
         }
 
+
         private Scan ConvertScanModel(long deviceId, ScanModel scanModel)
         {
             return new Scan()
@@ -82,8 +118,17 @@ namespace Web.Iot.ScanService.Controllers
                 DateTime = scanModel.DateTime,
                 Kinematics = new Kinematics()
                 {
-                    Acceleration = scanModel.Kinematics.Acceleration,
-                    Location = scanModel.Kinematics.Location
+                    Acceleration = new LinearAcceleration
+                    {
+                        X = scanModel.Kinematics.Acceleration.X,
+                        Y = scanModel.Kinematics.Acceleration.Y,
+                        Z = scanModel.Kinematics.Acceleration.Z
+                    },
+                    Location = new GPSLocation
+                    {
+                        Latitude = scanModel.Kinematics.Location.Latitude,
+                        Longitude = scanModel.Kinematics.Location.Longitude
+                    }
                 },
                 BluetoothDevices = scanModel.BluetoothDevices.Select(B =>
                 new BluetoothDevice()

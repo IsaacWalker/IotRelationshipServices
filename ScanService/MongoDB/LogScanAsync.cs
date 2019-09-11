@@ -44,7 +44,7 @@ namespace Web.Iot.ScanService.MongoDB
         /// <returns></returns>
         public async Task<LogScanResponse> Run(LogScanRequest Request)
         {
-            m_logger.LogInformation(3, string.Format("Sending {0} Scans to MongoDB.", Request.Scans.Count));
+            m_logger.LogInformation(LogEventId.LogScanStart, string.Format("Sending {0} Scans to MongoDB.", Request.Scans.Count));
 
             LogScanResponse Response = null;
 
@@ -52,11 +52,11 @@ namespace Web.Iot.ScanService.MongoDB
             {
                 await m_scanCollection.InsertManyAsync(Request.Scans);
                 Response = new LogScanResponse(true);
-                m_logger.LogInformation(3, "Scans inserted into MongoDB.");
+                m_logger.LogInformation(LogEventId.LogScanSuccess, "Scans inserted into MongoDB.");
             }
             catch(Exception e)
             {
-                m_logger.LogError(3, "Error Logging scans: {0}", e.ToString());
+                m_logger.LogError(LogEventId.LogScanError, "Error Logging scans: {0}", e.ToString());
             }
 
             return Response;         
