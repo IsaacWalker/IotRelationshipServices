@@ -4,7 +4,7 @@
     Isaac Walker
 ****************************************************/
 
-using Shared.Message;
+using Web.Iot.Shared.Message;
 using System;
 using System.Collections.Generic;
 using System.Linq;

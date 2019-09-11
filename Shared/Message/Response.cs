@@ -4,7 +4,7 @@
     Isaac Walker
 ****************************************************/
 
-namespace Shared.Message
+namespace Web.Iot.Shared.Message
 {
     /// <summary>
     /// An abstract message response

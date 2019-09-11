@@ -1,9 +1,10 @@
-﻿using Shared.Message;
-/***************************************************
+﻿/***************************************************
     LogScanResponse.cs
 
     Isaac Walker
 ****************************************************/
+
+using Web.Iot.Shared.Message;
 
 namespace Web.Iot.ScanService.MongoDB
 {

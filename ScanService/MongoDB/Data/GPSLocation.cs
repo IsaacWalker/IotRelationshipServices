@@ -1,4 +1,10 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿/***************************************************
+    GPSLocation.cs
+
+    Isaac Walker
+****************************************************/
+
+using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;

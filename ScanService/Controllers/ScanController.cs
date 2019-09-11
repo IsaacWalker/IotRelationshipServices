@@ -6,7 +6,7 @@
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Shared.Message;
+using Web.Iot.Shared.Message;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,51 +37,6 @@ namespace Web.Iot.ScanService.Controllers
             m_logger = logger;
         }
 
-        [HttpGet]
-        public IActionResult Get()
-        {
-            var mod = new ScanBatchModel()
-            {
-                DeviceId = 0,
-                Scans = new List<ScanModel>()
-                {
-                    new ScanModel()
-                    {
-                        IsBluetoothEnabled = true,
-                        IsKinematicsEnabled = true,
-                        IsWifiEnabled = true,
-                        DateTime = DateTime.Now,
-                        WifiDevices = new List<WifiDeviceModel>()
-                        {
-                            new WifiDeviceModel()
-                            {
-                                BSSID = "BSSID1",
-                                SSID = "SSID1",
-                                ChannelWidth = 123,
-                                Frequency = 12f,
-                                Level = 4,
-                                VenueName = "Dublin Airport"
-                            }
-                        },
-                        BluetoothDevices = new List<BluetoothDeviceModel>()
-                        {
-                            new BluetoothDeviceModel()
-                            {
-                                MAC = "Mac1",
-                                Name = "BluetoothName"
-                            }
-                        },
-                        Kinematics = new KinematicsModel()
-                        {
-                            Acceleration = new LinearAccelerationModel(){X=23,Y=23,Z=3 },
-                            Location = new GPSLocationModel {Latitude=23, Longitude=23}
-                        }                                         
-                    }
-                }
-            };
-
-            return new JsonResult(mod);
-        }
 
         /// <summary>
         /// Batch Scan endpoint

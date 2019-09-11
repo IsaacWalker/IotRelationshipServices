@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
-using Shared.Message;
+using Web.Iot.Shared.Message;
 using Web.Iot.ScanService.MongoDB;
 using Web.Iot.ScanService.MongoDB.Data;
 
