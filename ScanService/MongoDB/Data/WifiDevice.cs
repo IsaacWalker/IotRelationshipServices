@@ -5,10 +5,6 @@
 ****************************************************/
 
 using MongoDB.Bson.Serialization.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Web.Iot.ScanService.MongoDB.Data
 {
@@ -57,5 +53,19 @@ namespace Web.Iot.ScanService.MongoDB.Data
         /// </summary>
         [BsonElement("venue_name")]
         public string VenueName { get; set; }
+
+
+        /// <summary>
+        /// Indicates Passpoint operator name
+        /// </summary>
+        [BsonElement("operator_friendly_name")]
+        public string OperatorFriendlyName { get; set; }
+
+
+        /// <summary>
+        /// Describes the capabilites of the device
+        /// </summary>
+        [BsonElement("capabilities")]
+        public string Capabilities { get; set; }
     }
 }

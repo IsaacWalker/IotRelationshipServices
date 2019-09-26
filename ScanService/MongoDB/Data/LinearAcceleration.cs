@@ -4,10 +4,7 @@
     Isaac Walker
 ****************************************************/
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Web.Iot.ScanService.MongoDB.Data
 {
@@ -19,18 +16,21 @@ namespace Web.Iot.ScanService.MongoDB.Data
         /// <summary>
         /// Linear acceleration in X
         /// </summary>
+        [BsonElement("x")]
         public float X { get; set; }
 
 
         /// <summary>
         /// Acceleration in Y
         /// </summary>
+        [BsonElement("y")]
         public float Y { get; set; }
 
 
         /// <summary>
         /// Acceleration in Z
         /// </summary>
+        [BsonElement("z")]
         public float Z { get; set; }
     }
 }

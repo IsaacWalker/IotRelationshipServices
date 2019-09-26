@@ -14,16 +14,37 @@ namespace Web.Iot.ScanService.MongoDB.Data
     public sealed class BluetoothDevice
     {
         /// <summary>
-        /// Media Access Control
+        /// The received signal strength
         /// </summary>
-        [BsonElement("mac")]
-        public string MAC { get; set; }
+        [BsonElement("rssi")]
+        public int Rssi { get; set; }
 
 
         /// <summary>
-        /// Public Identifier
+        /// Transmit power in dBm
+        /// </summary>
+        [BsonElement("tx_power")]
+        public int TxPower { get; set; }
+
+
+        /// <summary>
+        /// Gets the Bluetooth Device type
+        /// </summary>
+        [BsonElement("type")]
+        public string Type { get; set; }
+
+
+        /// <summary>
+        /// Gets the bluetooth friendly name of the device
         /// </summary>
         [BsonElement("name")]
         public string Name { get; set; }
+
+
+        /// <summary>
+        /// Hardware address of the bluetooth device
+        /// </summary>
+        [BsonElement("hardware_address")]
+        public string HardwareAddress { get; set; }
     }
 }

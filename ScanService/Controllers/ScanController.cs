@@ -7,8 +7,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Web.Iot.Shared.Message;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Web.Iot.ScanService.Models;
@@ -88,8 +86,11 @@ namespace Web.Iot.ScanService.Controllers
                 BluetoothDevices = scanModel.BluetoothDevices.Select(B =>
                 new BluetoothDevice()
                 {
-                    MAC = B.MAC,
-                    Name = B.Name
+                    Name = B.Name,
+                    HardwareAddress = B.HardwareAddress,
+                    Rssi = B.Rssi,
+                    TxPower = B.TxPower,
+                    Type = B.Type
                 }).ToList(),
                 WifiDevices = scanModel.WifiDevices.Select(W =>
                 new WifiDevice()
@@ -99,7 +100,10 @@ namespace Web.Iot.ScanService.Controllers
                     Frequency = W.Frequency,
                     Level = W.Level,
                     SSID = W.SSID,
-                    VenueName = W.VenueName
+                    VenueName = W.VenueName,
+                    Capabilities = W.Capabilities,
+                    OperatorFriendlyName = W.OperatorFriendlyName
+                    
                 }).ToList()
             };
         }

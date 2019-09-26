@@ -26,7 +26,7 @@ namespace Web.Iot.ScanService.Models
         /// <summary>
         /// Frequency of device
         /// </summary>
-        public float Frequency { get; set; }
+        public int Frequency { get; set; }
 
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Web.Iot.ScanService.Models
 
 
         /// <summary>
-        /// Level in dBm
+        /// Level in dBm (Rssi)
         /// </summary>
         public uint Level { get; set; }
 
@@ -45,5 +45,17 @@ namespace Web.Iot.ScanService.Models
         /// The name of the Venue 
         /// </summary>
         public string VenueName { get; set; }
+
+
+        /// <summary>
+        /// Indicates Passpoint operator name
+        /// </summary>
+        public string OperatorFriendlyName { get; set; }
+
+
+        /// <summary>
+        /// Describes the capabilites of the device
+        /// </summary>
+        public string Capabilities { get; set; }
     }
 }
