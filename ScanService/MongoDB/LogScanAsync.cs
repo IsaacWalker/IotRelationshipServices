@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
-using Shared.Message;
+using Web.Iot.Shared.Message;
 using Web.Iot.ScanService.MongoDB.Data;
 
 namespace Web.Iot.ScanService.MongoDB
