@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
 
 namespace Web.Iot.ScanService.MongoDB.Data
 {
@@ -20,6 +21,7 @@ namespace Web.Iot.ScanService.MongoDB.Data
         /// Scan Id
         /// </summary>
         [BsonId]
+        [JsonIgnore]
         public ObjectId _id { get; set; }
 
 
@@ -27,41 +29,31 @@ namespace Web.Iot.ScanService.MongoDB.Data
         /// Device Id
         /// </summary>
         [BsonElement("device_id")]
+        [JsonIgnore]
         public long DeviceId { get; set; }
 
 
         /// <summary>
         /// DateTime of Scan
         /// </summary>
-        [BsonElement("date_time")]
-        public DateTime DateTime { get; set; }
+        [BsonElement("timestamp")]
+        [JsonProperty("timestamp")]
+        public long Timestamp { get; set; }
 
 
         /// <summary>
-        /// Is Wifi Enabled
+        /// The kinematics of the device
         /// </summary>
-        [BsonElement("is_wifi_enabled")]
-        public bool IsWifiEnabled { get; set; }
-
-
-        /// <summary>
-        /// Is Bluetooth Enabled
-        /// </summary>
-        [BsonElement("is_bluetooth_enabled")]
-        public bool IsBluetoothEnabled { get; set; }
-
-
-        /// <summary>
-        /// Is Kinematics Enabled
-        /// </summary>
-        [BsonElement("is_kinematics_enabled")]
-        public bool IsKinematicsEnabled { get; set; }
+        [BsonElement("kinematics")]
+        [JsonProperty("kinematics")]
+        public Kinematics Kinematics { get; set; }
 
 
         /// <summary>
         /// Wifi Devices discovered in the Scan
         /// </summary>
         [BsonElement("wifi_devices")]
+        [JsonProperty("wifi_devices")]
         public List<WifiDevice> WifiDevices{get; set;}
 
 
@@ -69,13 +61,7 @@ namespace Web.Iot.ScanService.MongoDB.Data
         /// Bluetooth devices discovered in the Scan
         /// </summary>
         [BsonElement("bluetooth_devices")]
+        [JsonProperty("bluetooth_devices")]
         public List<BluetoothDevice> BluetoothDevices { get; set; }
-
-
-        /// <summary>
-        /// The kinematics of the device
-        /// </summary>
-        [BsonElement("kinematics")]
-        public Kinematics Kinematics { get; set; }
     }
 }

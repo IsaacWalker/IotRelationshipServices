@@ -5,6 +5,7 @@
 ****************************************************/
 
 using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
 
 namespace Web.Iot.ScanService.MongoDB.Data
 {
@@ -14,37 +15,34 @@ namespace Web.Iot.ScanService.MongoDB.Data
     public sealed class BluetoothDevice
     {
         /// <summary>
-        /// The received signal strength
+        /// The timestamp of when the device was detected
         /// </summary>
-        [BsonElement("rssi")]
-        public int Rssi { get; set; }
-
-
-        /// <summary>
-        /// Transmit power in dBm
-        /// </summary>
-        [BsonElement("tx_power")]
-        public int TxPower { get; set; }
-
-
-        /// <summary>
-        /// Gets the Bluetooth Device type
-        /// </summary>
-        [BsonElement("type")]
-        public string Type { get; set; }
+        [BsonElement("timestamp")]
+        [JsonProperty("timestamp")]
+        public long Timestamp { get; set; }
 
 
         /// <summary>
         /// Gets the bluetooth friendly name of the device
         /// </summary>
         [BsonElement("name")]
+        [JsonProperty("name")]
         public string Name { get; set; }
+
+
+        /// <summary>
+        /// Gets the Bluetooth Device type
+        /// </summary>
+        [BsonElement("type")]
+        [JsonProperty("type")]
+        public string Type { get; set; }
 
 
         /// <summary>
         /// Hardware address of the bluetooth device
         /// </summary>
-        [BsonElement("hardware_address")]
-        public string HardwareAddress { get; set; }
+        [BsonElement("address")]
+        [JsonProperty("address")]
+        public string Address { get; set; }
     }
 }

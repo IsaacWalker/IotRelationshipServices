@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Web.Iot.ScanService.Models;
 using Web.Iot.ScanService.MongoDB;
 using Web.Iot.ScanService.MongoDB.Data;
+using System.Collections.Generic;
 
 namespace Web.Iot.ScanService.Controllers
 {
@@ -43,10 +44,15 @@ namespace Web.Iot.ScanService.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] ScanBatchModel ScanBatch)
         {
+            if(ScanBatch.Scans == null || ScanBatch.Scans.Count == 0)
+            {
+                return BadRequest();
+            }
+
             m_logger.LogDebug(LogEventId.ScanBatchPostStart, string.Format("Scans Received: From {0}, Number {1}",
                 ScanBatch.DeviceId, ScanBatch.Scans.Count));
 
-            LogScanRequest Request = new LogScanRequest(ScanBatch.Scans.Select(S => ConvertScanModel(ScanBatch.DeviceId, S)).ToList());
+            LogScanRequest Request = new LogScanRequest(ScanBatch.DeviceId, ScanBatch.Scans);
             LogScanResponse Response = await m_processor.Run(Request);
 
             m_logger.LogDebug(LogEventId.ScanBatchPostEnd, "Scan Batch processed: {0}.", Response.Success ? "Success" : "fail");
@@ -60,52 +66,54 @@ namespace Web.Iot.ScanService.Controllers
         }
 
 
-        private Scan ConvertScanModel(long deviceId, ScanModel scanModel)
+        [HttpGet]
+        public ScanBatchModel Get()
         {
-            return new Scan()
+            Scan s = new Scan()
             {
-                DeviceId = deviceId,
-                IsBluetoothEnabled = scanModel.IsBluetoothEnabled,
-                IsKinematicsEnabled = scanModel.IsKinematicsEnabled,
-                IsWifiEnabled = scanModel.IsWifiEnabled,
-                DateTime = scanModel.DateTime,
-                Kinematics = new Kinematics()
+                Timestamp = 101,
+                Kinematics = new Kinematics
                 {
-                    Acceleration = new LinearAcceleration
-                    {
-                        X = scanModel.Kinematics.Acceleration.X,
-                        Y = scanModel.Kinematics.Acceleration.Y,
-                        Z = scanModel.Kinematics.Acceleration.Z
-                    },
-                    Location = new GPSLocation
-                    {
-                        Latitude = scanModel.Kinematics.Location.Latitude,
-                        Longitude = scanModel.Kinematics.Location.Longitude
-                    }
+                    AccelerationX = 111,
+                    AccelerationY = 222,
+                    AccelerationZ = 333,
+                    Altitude = 444,
+                    Azimuth = 555,
+                    Latitude = 666,
+                    Longitude = 777,
+                    Pitch = 888,
+                    Roll = 999,
+                    Timestamp = 3
                 },
-                BluetoothDevices = scanModel.BluetoothDevices.Select(B =>
-                new BluetoothDevice()
+                BluetoothDevices = new List<BluetoothDevice>
+                { 
+                    new BluetoothDevice()
+                  {
+                    Address = "hw_address",
+                    Name = "bluetooth Name",
+                    Timestamp = 202,
+                    Type = "IOT"
+                  }
+                },
+                WifiDevices = new List<WifiDevice>
                 {
-                    Name = B.Name,
-                    HardwareAddress = B.HardwareAddress,
-                    Rssi = B.Rssi,
-                    TxPower = B.TxPower,
-                    Type = B.Type
-                }).ToList(),
-                WifiDevices = scanModel.WifiDevices.Select(W =>
-                new WifiDevice()
-                {
-                    BSSID = W.BSSID,
-                    ChannelWidth = W.ChannelWidth,
-                    Frequency = W.Frequency,
-                    Level = W.Level,
-                    SSID = W.SSID,
-                    VenueName = W.VenueName,
-                    Capabilities = W.Capabilities,
-                    OperatorFriendlyName = W.OperatorFriendlyName
-                    
-                }).ToList()
+                    new WifiDevice
+                    {
+                        BSSID = "bssid",
+                        SSID = "ssid",
+                        Capabilities = "caps",
+                        Level = 4,
+                        OperatorFriendlyName = "opname",
+                        Timestamp = 404,
+                        VenueName = "venue"
+                    }
+                }
+
+
             };
+
+            List<Scan> scans = new List<Scan> (){s };
+            return new ScanBatchModel { DeviceId = 4, Scans = scans};
         }
     }
 }

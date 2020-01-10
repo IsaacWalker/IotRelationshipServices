@@ -1,28 +1,23 @@
-﻿/***************************************************
-    ScanBatchModel.cs
-
-    Isaac Walker
-****************************************************/
-
+﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Collections.Generic;
+using Web.Iot.ScanService.MongoDB.Data;
 
 namespace Web.Iot.ScanService.Models
-{ 
-
-    /// <summary>
-    /// Represents a Batch of scans
-    /// </summary>
-    public sealed class ScanBatchModel
+{
+    public class ScanBatchModel
     {
         /// <summary>
-        /// Devices Id
+        /// Device Id
         /// </summary>
+        [JsonProperty("device_id")]
         public long DeviceId { get; set; }
 
 
         /// <summary>
-        /// Scans
+        /// The scans in the batch
         /// </summary>
-        public List<ScanModel> Scans { get; set; }
+        [JsonProperty("scans")]
+        public List<Scan> Scans { get; set; }
     }
 }

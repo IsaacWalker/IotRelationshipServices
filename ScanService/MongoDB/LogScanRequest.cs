@@ -28,9 +28,10 @@ namespace Web.Iot.ScanService.MongoDB
         /// Constructor
         /// </summary>
         /// <param name="scans"></param>
-        public LogScanRequest(List<Scan> scans)
+        public LogScanRequest(long deviceId, List<Scan> scans)
         {
             Scans = scans;
+            Scans.ForEach(S => S.DeviceId = deviceId);
         }
     }
 }
