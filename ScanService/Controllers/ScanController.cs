@@ -44,7 +44,7 @@ namespace Web.Iot.ScanService.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] ScanBatchModel ScanBatch)
         {
-            if(ScanBatch.Scans == null || ScanBatch.Scans.Count == 0)
+            if(ScanBatch == null || ScanBatch.Scans == null || ScanBatch.Scans.Count == 0)
             {
                 return BadRequest();
             }
@@ -63,57 +63,6 @@ namespace Web.Iot.ScanService.Controllers
             }
 
             return Ok();
-        }
-
-
-        [HttpGet]
-        public ScanBatchModel Get()
-        {
-            Scan s = new Scan()
-            {
-                Timestamp = 101,
-                Kinematics = new Kinematics
-                {
-                    AccelerationX = 111,
-                    AccelerationY = 222,
-                    AccelerationZ = 333,
-                    Altitude = 444,
-                    Azimuth = 555,
-                    Latitude = 666,
-                    Longitude = 777,
-                    Pitch = 888,
-                    Roll = 999,
-                    Timestamp = 3
-                },
-                BluetoothDevices = new List<BluetoothDevice>
-                { 
-                    new BluetoothDevice()
-                  {
-                    Address = "hw_address",
-                    Name = "bluetooth Name",
-                    Timestamp = 202,
-                    Type = "IOT"
-                  }
-                },
-                WifiDevices = new List<WifiDevice>
-                {
-                    new WifiDevice
-                    {
-                        BSSID = "bssid",
-                        SSID = "ssid",
-                        Capabilities = "caps",
-                        Level = 4,
-                        OperatorFriendlyName = "opname",
-                        Timestamp = 404,
-                        VenueName = "venue"
-                    }
-                }
-
-
-            };
-
-            List<Scan> scans = new List<Scan> (){s };
-            return new ScanBatchModel { DeviceId = 4, Scans = scans};
         }
     }
 }

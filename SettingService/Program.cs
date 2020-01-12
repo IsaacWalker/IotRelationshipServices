@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Web.Iot.ScanService
+namespace Web.Iot.SettingService
 {
     public class Program
     {
@@ -22,19 +22,17 @@ namespace Web.Iot.ScanService
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder
-                    .UseContentRoot(Directory.GetCurrentDirectory())
+                    webBuilder.UseContentRoot(Directory.GetCurrentDirectory())
                     .UseIISIntegration()
                     .UseStartup<Startup>();
-                })
-            .ConfigureLogging((hostingContext, logging) =>
-            {
-                logging.ClearProviders();
-                logging.AddEventLog((settings => 
+                }).ConfigureLogging((hostingContext, logging) =>
                 {
-                    settings.LogName = "Application";
-                    settings.SourceName = "IotRelServe";
-                }));
-            });
+                    logging.ClearProviders();
+                    logging.AddEventLog((settings =>
+                    {
+                        settings.LogName = "Application";
+                        settings.SourceName = "IotRelServe";
+                    }));
+                });
     }
 }

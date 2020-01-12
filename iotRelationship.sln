@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Iot.Shared", "Shared\Web.Iot.Shared.csproj", "{2233AA4B-11E3-4B15-90FC-C7838B60A290}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Iot.ScanService", "ScanService\Web.Iot.ScanService.csproj", "{13954F81-18DC-4254-AF65-C9A3CC962739}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Iot.ScanService", "ScanService\Web.Iot.ScanService.csproj", "{13954F81-18DC-4254-AF65-C9A3CC962739}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SettingService", "SettingService\SettingService.csproj", "{476FE742-DD64-41D1-A9F8-5236368DD1BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{13954F81-18DC-4254-AF65-C9A3CC962739}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13954F81-18DC-4254-AF65-C9A3CC962739}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13954F81-18DC-4254-AF65-C9A3CC962739}.Release|Any CPU.Build.0 = Release|Any CPU
+		{476FE742-DD64-41D1-A9F8-5236368DD1BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{476FE742-DD64-41D1-A9F8-5236368DD1BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{476FE742-DD64-41D1-A9F8-5236368DD1BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{476FE742-DD64-41D1-A9F8-5236368DD1BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
