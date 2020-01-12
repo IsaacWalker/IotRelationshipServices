@@ -18,7 +18,6 @@ namespace Web.Iot.ScanService.MongoDB.Data
         /// The timestamp of when the device was detected
         /// </summary>
         [BsonElement("timestamp")]
-        [JsonProperty("timestamp")]
         public long Timestamp { get; set; }
 
 
@@ -26,7 +25,6 @@ namespace Web.Iot.ScanService.MongoDB.Data
         /// Gets the bluetooth friendly name of the device
         /// </summary>
         [BsonElement("name")]
-        [JsonProperty("name")]
         public string Name { get; set; }
 
 
@@ -34,7 +32,6 @@ namespace Web.Iot.ScanService.MongoDB.Data
         /// Gets the Bluetooth Device type
         /// </summary>
         [BsonElement("type")]
-        [JsonProperty("type")]
         public string Type { get; set; }
 
 
@@ -42,7 +39,6 @@ namespace Web.Iot.ScanService.MongoDB.Data
         /// Hardware address of the bluetooth device
         /// </summary>
         [BsonElement("address")]
-        [JsonProperty("address")]
         public string Address { get; set; }
     }
 }

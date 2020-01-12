@@ -25,6 +25,15 @@ namespace Web.Iot.ScanService
                     .UseContentRoot(Directory.GetCurrentDirectory())
                     .UseIISIntegration()
                     .UseStartup<Startup>();
-                });
+                })
+            .ConfigureLogging((hostingContext, logging) =>
+            {
+                logging.ClearProviders();
+                logging.AddEventLog((settings => 
+                {
+                    settings.LogName = "Application";
+                    settings.SourceName = "IotRelServe";
+                }));
+            });
     }
 }

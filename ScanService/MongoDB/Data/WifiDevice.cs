@@ -18,7 +18,6 @@ namespace Web.Iot.ScanService.MongoDB.Data
         /// Timestamp of when the device was detected
         /// </summary>
         [BsonElement("timestamp")]
-        [JsonProperty("timestamp")]
         public long Timestamp { get; set; }
 
 
@@ -26,7 +25,6 @@ namespace Web.Iot.ScanService.MongoDB.Data
         /// Basic Service Set Identifier
         /// </summary>
         [BsonElement("bssid")]
-        [JsonProperty("bssid")]
         public string BSSID { get; set; }
 
 
@@ -34,7 +32,6 @@ namespace Web.Iot.ScanService.MongoDB.Data
         /// Service Set Identifierf
         /// </summary>
         [BsonElement("ssid")]
-        [JsonProperty("ssid")]
         public string SSID { get; set; }
 
 
@@ -42,7 +39,6 @@ namespace Web.Iot.ScanService.MongoDB.Data
         /// Describes the capabilites of the device
         /// </summary>
         [BsonElement("capabilities")]
-        [JsonProperty("capabilities")]
         public string Capabilities { get; set; }
 
 
@@ -50,23 +46,20 @@ namespace Web.Iot.ScanService.MongoDB.Data
         /// Level in dBm
         /// </summary>
         [BsonElement("level")]
-        [JsonProperty("level")]
-        public uint Level { get; set; }
+        public int Level { get; set; }
 
 
         /// <summary>
         /// Indicates Passpoint operator name
         /// </summary>
-        [BsonElement("operator_friendly_name")]
-        [JsonProperty("operator_friendly_name")]
+        [BsonElement("operatorFriendlyName")]
         public string OperatorFriendlyName { get; set; }
 
 
         /// <summary>
         /// The name of the Venue 
         /// </summary>
-        [BsonElement("venue_name")]
-        [JsonProperty("venue_name")]
+        [BsonElement("venueName")]
         public string VenueName { get; set; }
     }
 }

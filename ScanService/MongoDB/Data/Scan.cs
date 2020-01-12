@@ -28,7 +28,7 @@ namespace Web.Iot.ScanService.MongoDB.Data
         /// <summary>
         /// Device Id
         /// </summary>
-        [BsonElement("device_id")]
+        [BsonElement("deviceId")]
         [JsonIgnore]
         public long DeviceId { get; set; }
 
@@ -37,7 +37,6 @@ namespace Web.Iot.ScanService.MongoDB.Data
         /// DateTime of Scan
         /// </summary>
         [BsonElement("timestamp")]
-        [JsonProperty("timestamp")]
         public long Timestamp { get; set; }
 
 
@@ -45,23 +44,20 @@ namespace Web.Iot.ScanService.MongoDB.Data
         /// The kinematics of the device
         /// </summary>
         [BsonElement("kinematics")]
-        [JsonProperty("kinematics")]
         public Kinematics Kinematics { get; set; }
 
 
         /// <summary>
         /// Wifi Devices discovered in the Scan
         /// </summary>
-        [BsonElement("wifi_devices")]
-        [JsonProperty("wifi_devices")]
+        [BsonElement("wifiDevices")]
         public List<WifiDevice> WifiDevices{get; set;}
 
 
         /// <summary>
         /// Bluetooth devices discovered in the Scan
         /// </summary>
-        [BsonElement("bluetooth_devices")]
-        [JsonProperty("bluetooth_devices")]
+        [BsonElement("bluetoothDevices")]
         public List<BluetoothDevice> BluetoothDevices { get; set; }
     }
 }

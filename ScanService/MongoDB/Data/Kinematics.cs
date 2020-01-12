@@ -18,7 +18,6 @@ namespace Web.Iot.ScanService.MongoDB.Data
         /// Timestamp of when the kinematics of the device we're read
         /// </summary>
         [BsonElement("timestamp")]
-        [JsonProperty("timestamp")]
         public long Timestamp { get; set; }
 
 
@@ -26,7 +25,6 @@ namespace Web.Iot.ScanService.MongoDB.Data
         /// The altitude of the device
         /// </summary>
         [BsonElement("altitude")]
-        [JsonProperty("altitude")]
         public double Altitude { get; set; }
 
 
@@ -34,7 +32,6 @@ namespace Web.Iot.ScanService.MongoDB.Data
         /// The latitude of the device
         /// </summary>
         [BsonElement("latitude")]
-        [JsonProperty("latitude")]
         public double Latitude { get; set; }
 
 
@@ -42,7 +39,6 @@ namespace Web.Iot.ScanService.MongoDB.Data
         /// The longitude of the device
         /// </summary>
         [BsonElement("longitude")]
-        [JsonProperty("longitude")]
         public double Longitude { get; set; }
 
 
@@ -50,7 +46,6 @@ namespace Web.Iot.ScanService.MongoDB.Data
         /// The azimuth of the device
         /// </summary>
         [BsonElement("azimuth")]
-        [JsonProperty("azimuth")]
         public double Azimuth { get; set; }
 
 
@@ -58,7 +53,6 @@ namespace Web.Iot.ScanService.MongoDB.Data
         /// The pitch of the device
         /// </summary>
         [BsonElement("pitch")]
-        [JsonProperty("pitch")]
         public double Pitch { get; set; }
 
 
@@ -66,31 +60,27 @@ namespace Web.Iot.ScanService.MongoDB.Data
         /// The roll of the device
         /// </summary>
         [BsonElement("roll")]
-        [JsonProperty("roll")]
         public double Roll { get; set; }
 
 
         /// <summary>
         /// The acceleration of the device on the X axis
         /// </summary>
-        [BsonElement("acceleration_x")]
-        [JsonProperty("acceleration_x")]
+        [BsonElement("accelerationX")]
         public double AccelerationX { get; set; }
 
 
         /// <summary>
         /// THe acceleration of the device on the Y axis
         /// </summary>
-        [BsonElement("acceleration_y")]
-        [JsonProperty("acceleration_y")]
+        [BsonElement("accelerationY")]
         public double AccelerationY { get; set; }
 
 
         /// <summary>
         /// The acceleration of the device on the z axis
         /// </summary>
-        [BsonElement("acceleration_z")]
-        [JsonProperty("acceleration_z")]
+        [BsonElement("accelerationZ")]
         public double AccelerationZ { get; set; }
     }
 }
