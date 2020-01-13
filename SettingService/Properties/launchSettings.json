@@ -4,7 +4,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:50827",
+      "applicationUrl": "http://www.iotrelationshipfyp.com:80",
       "sslPort": 0
     }
   },

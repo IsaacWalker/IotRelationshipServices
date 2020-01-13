@@ -6,6 +6,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace Web.Iot.SettingService.Settings
@@ -21,19 +23,9 @@ namespace Web.Iot.SettingService.Settings
         public string Value { get; set; }
 
 
-        public SettingTypes Type { get; set; }
+        public string Type { get; set; }
 
 
-        public static ISet<string> ValidTypes => ParseTable.Keys.ToHashSet();
-
-
-        public static readonly IDictionary<string, Func<string, bool>> ParseTable =
-            new Dictionary<string, Func<string, bool>>()
-            {
-                {"System.String", new Func<string, bool>((name) => { return true; })},
-                {"System.Double", new Func<string, bool>((name) => { return double.TryParse(name,out _); })},
-                {"System.Integer", new Func<string, bool>((name) => { return int.TryParse(name,out _); })},
-                {"System.Boolean", new Func<string, bool>((name) => { return bool.TryParse(name,out _); })},
-            };
+        public virtual ICollection<SettingsEntrySetting> SettingsEntrySettings { get; set; } = new HashSet<SettingsEntrySetting>();
     }
 }

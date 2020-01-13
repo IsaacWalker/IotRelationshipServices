@@ -4,7 +4,7 @@
     Isaac Walker
 ****************************************************/
 
-using Web.Iot.SettingService.Settings;
+using System;
 using System.Collections.Generic;
 
 namespace Web.Iot.SettingService.Models
@@ -14,6 +14,18 @@ namespace Web.Iot.SettingService.Models
     /// </summary>
     public class SettingsModel
     {
-        public List<Setting> Settings { get; set; }
+        public Guid Id { get; set; }
+
+        public List<SettingModel> Settings { get; set; }
     }
+
+    public class SettingModel
+    {
+        public string Name { get; set; }
+
+        public string Value { get; set; }
+
+        public string Type { get; set; }
+    }
+
 }

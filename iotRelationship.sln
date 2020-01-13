@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Iot.Shared", "Shared\We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Iot.ScanService", "ScanService\Web.Iot.ScanService.csproj", "{13954F81-18DC-4254-AF65-C9A3CC962739}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SettingService", "SettingService\SettingService.csproj", "{476FE742-DD64-41D1-A9F8-5236368DD1BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Iot.SettingService", "SettingService\Web.Iot.SettingService.csproj", "{476FE742-DD64-41D1-A9F8-5236368DD1BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
