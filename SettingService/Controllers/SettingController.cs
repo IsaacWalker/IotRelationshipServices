@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Web.Iot.SettingService.Contracts;
 using Web.Iot.SettingService.Models;
 using Web.Iot.SettingService.Settings;
 
@@ -20,12 +22,12 @@ namespace Web.Iot.SettingService.Controllers
         private readonly ILogger m_logger;
 
 
-        private readonly SettingServiceContext m_serviceContext;
+        private readonly ISettingProcessor m_processor;
 
 
-        public SettingController(SettingServiceContext serviceContext, ILogger<SettingController> logger)
+        public SettingController(ISettingProcessor processor, ILogger<SettingController> logger)
         {
-            m_serviceContext = serviceContext;
+            m_processor = processor;
             m_logger = logger;
         }
 
@@ -36,16 +38,17 @@ namespace Web.Iot.SettingService.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("api/[controller]/current")]
-        public IActionResult GetCurrent()
+        public async Task<IActionResult> GetCurrent()
         {
-            SettingsModel model = new SettingsModel();
-            var current = m_serviceContext.SettingsEntries.First();
+            GetCurrentSettingsResponse response = await m_processor.Run(Shared.Message.Request.Empty);
 
-            var settings = m_serviceContext.Settings.Where(S => current.SettingsEntrySettings.Any(E => E.Setting == S));
-            model.Settings = settings.Select(S => new SettingModel { Name = S.Name, Type = S.Type, Value = S.Value }).ToList();
-            model.Id = current.SettingsEntryId;
+            if(response.Success)
+            {
+                return Ok(response.SettingsModel);
+            }
 
-            return Ok(model);
+            return NotFound();
+            
         }
 
 
@@ -57,7 +60,7 @@ namespace Web.Iot.SettingService.Controllers
         /// <returns>Returns 200 with the Id of the settings, which may already exist</returns>
         [HttpPost]
         [Route("api/[controller]/current")]
-        public IActionResult PostCurrent(SettingsModel settingsModel /*, [FromQuery] bool SetToCurrent = false*/)
+        public async Task<IActionResult> PostCurrent(SettingsModel settingsModel /*, [FromQuery] bool SetToCurrent = false*/)
         {
             bool is_valid = ValidateSettingsModel(settingsModel);
 
@@ -66,10 +69,17 @@ namespace Web.Iot.SettingService.Controllers
                 return BadRequest();
             }
 
-            return Ok();
+            SetCurrentSettingsResponse response = await m_processor.Run(new SetCurrentSettingsRequest(settingsModel));
+
+            return Ok(response.SettingsEntryId);
         }
 
 
+        /// <summary>
+        /// Gets the Settings Entry given an Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>The entry</returns>
         [HttpGet]
         [Route("api/[controller]")]
         public IActionResult Get([FromQuery] int id)
@@ -79,6 +89,11 @@ namespace Web.Iot.SettingService.Controllers
         }
 
 
+        /// <summary>
+        /// Creates a Setting Entry if not present
+        /// </summary>
+        /// <param name="settingModel"></param>
+        /// <returns>The Id of the entry</returns>
         [HttpPost]
         [Route("api/[controller]")]
         public IActionResult Post(SettingModel settingModel)

@@ -17,15 +17,44 @@ namespace Web.Iot.SettingService.Settings
     /// </summary>
     public class Setting
     {
+        /// <summary>
+        /// Id of Setting
+        /// </summary>
+        public int Id { get; set; }
+
+
+        /// <summary>
+        /// The name of the setting
+        /// </summary>
         public string Name { get; set; }
 
 
+        /// <summary>
+        /// The string value of the setting
+        /// </summary>
         public string Value { get; set; }
 
 
+        /// <summary>
+        /// The type of the setting
+        /// </summary>
         public string Type { get; set; }
 
 
-        public virtual ICollection<SettingsEntrySetting> SettingsEntrySettings { get; set; } = new HashSet<SettingsEntrySetting>();
+        /// <summary>
+        /// Junction table
+        /// </summary>
+        public virtual IList<SettingsEntrySetting> SettingsEntrySettings { get; set; } = new List<SettingsEntrySetting>();
+
+        
+        public bool Equivalent(Setting setting)
+        {
+        
+            return Name == setting.Name &&
+             Type == setting.Type &&
+             Value == setting.Value;
+        }
+
+
     }
 }

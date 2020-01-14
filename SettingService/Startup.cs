@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
+using Web.Iot.SettingService.Contracts;
 using Web.Iot.SettingService.Settings;
 
 namespace Web.Iot.SettingService
@@ -28,6 +28,7 @@ namespace Web.Iot.SettingService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<SettingServiceContext>(op => op.UseInMemoryDatabase("SettingServiceDB"));
+            services.AddSingleton<ISettingProcessor, SettingsProcessor>();
 
             services.AddControllers();
             services.AddMvc().AddMvcOptions(O => O.EnableEndpointRouting = false);
@@ -64,45 +65,35 @@ namespace Web.Iot.SettingService
             {
                 var context = scope.ServiceProvider.GetService<SettingServiceContext>();
 
+                var initialSettings = new SettingsEntry() { };
+                context.SettingsEntries.Add(initialSettings);
+
+                context.SaveChanges();
+
                 var ScannerSleepTimeSetting = new Setting { Name = "ScannerSleepTime", Type = SettingType.Integer, Value = "1000" };
                 var PusherSleepTimeSetting = new Setting { Name = "PusherSleepTimeSetting", Type = SettingType.Integer, Value = "16000" };
                 var PusherBatchSizeSetting = new Setting { Name = "PusherBatchSizeSetting", Type = SettingType.Integer, Value = "5" };
                 var ScanningTimeSetting = new Setting { Name = "ScanningTimeSetting", Type = SettingType.Integer, Value = "3000" };
 
-                var initialSettings = new SettingsEntry
-                {
-                    SettingsEntryId = Guid.NewGuid()
-                };
-
-                SettingsEntrySetting ScannerSleepTimeSettingEntrySetting = new SettingsEntrySetting
-                { SettingsEntry = initialSettings, Setting = ScannerSleepTimeSetting };
-                SettingsEntrySetting PusherSleepTimeEntrySetting = new SettingsEntrySetting
-                { SettingsEntry = initialSettings, Setting = PusherSleepTimeSetting };
-                SettingsEntrySetting PusherBatchSizeEntrySetting = new SettingsEntrySetting
-                { SettingsEntry = initialSettings, Setting = PusherBatchSizeSetting };
-                SettingsEntrySetting ScanningTimeEntrySetting = new SettingsEntrySetting
-                { SettingsEntry = initialSettings, Setting = ScanningTimeSetting };
-
-                initialSettings.SettingsEntrySettings.Add(ScannerSleepTimeSettingEntrySetting);
-                initialSettings.SettingsEntrySettings.Add(PusherSleepTimeEntrySetting);
-                initialSettings.SettingsEntrySettings.Add(PusherBatchSizeEntrySetting);
-                initialSettings.SettingsEntrySettings.Add(ScanningTimeEntrySetting);
-
-                ScannerSleepTimeSetting.SettingsEntrySettings.Add(ScannerSleepTimeSettingEntrySetting);
-                PusherSleepTimeSetting.SettingsEntrySettings.Add(PusherSleepTimeEntrySetting);
-                PusherBatchSizeSetting.SettingsEntrySettings.Add(PusherBatchSizeEntrySetting);
-                ScanningTimeSetting.SettingsEntrySettings.Add(ScanningTimeEntrySetting);
-
                 context.Settings.Add(ScannerSleepTimeSetting);
                 context.Settings.Add(PusherSleepTimeSetting);
                 context.Settings.Add(PusherBatchSizeSetting);
                 context.Settings.Add(ScanningTimeSetting);
-                context.SettingsEntries.Add(initialSettings);
 
-                context.CurrentSettings = initialSettings;
+                context.SaveChanges();
+
+                InsertSettingEntrySetting(context, initialSettings, ScannerSleepTimeSetting); 
+                InsertSettingEntrySetting(context, initialSettings, PusherSleepTimeSetting);
+                InsertSettingEntrySetting(context, initialSettings, PusherBatchSizeSetting);
+                InsertSettingEntrySetting(context, initialSettings, ScanningTimeSetting);
 
                 context.SaveChanges();
             }        
+        }
+
+        private void InsertSettingEntrySetting(SettingServiceContext context, SettingsEntry ses, Setting setting)
+        {
+            context.SettingsEntrySettings.Add(new SettingsEntrySetting { SettingId = setting.Id, SettingsEntryId = ses.SettingsEntryId });
         }
     }
 }

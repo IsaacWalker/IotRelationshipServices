@@ -14,11 +14,15 @@ namespace Web.Iot.SettingService.Models
     /// </summary>
     public class SettingsModel
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public List<SettingModel> Settings { get; set; }
     }
 
+
+    /// <summary>
+    /// The model of an individual setting
+    /// </summary>
     public class SettingModel
     {
         public string Name { get; set; }

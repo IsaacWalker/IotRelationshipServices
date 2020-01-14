@@ -12,6 +12,12 @@ namespace Web.Iot.Shared.Message
     public abstract class Response
     {
         /// <summary>
+        /// An empty response wehere success is ensured
+        /// </summary>
+        public static Response Empty = new EmptyResponse(true);
+
+
+        /// <summary>
         /// Was the Response Successful
         /// </summary>
         public bool Success { get; private set; }
@@ -25,5 +31,18 @@ namespace Web.Iot.Shared.Message
         {
             this.Success = Success;
         }
+
+
+        /// <summary>
+        /// Empty Response
+        /// </summary>
+        private class EmptyResponse : Response
+        { 
+            public EmptyResponse(bool Success) : base(Success)
+            {
+
+            }
+        }
+
     }
 }

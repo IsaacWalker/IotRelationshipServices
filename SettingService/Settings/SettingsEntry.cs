@@ -10,13 +10,19 @@ using System.Collections.Generic;
 namespace Web.Iot.SettingService.Settings
 {
     /// <summary>
-    /// An Set of Settings
+    /// An Set of Settings (Entry)
     /// </summary>
     public class SettingsEntry
     { 
-        public Guid SettingsEntryId { get; set; }
+        /// <summary>
+        /// Id of SettingsEntry
+        /// </summary>
+        public int SettingsEntryId { get; set; }
 
 
-        public virtual ICollection<SettingsEntrySetting> SettingsEntrySettings { get; set; } = new HashSet<SettingsEntrySetting>();
+        /// <summary>
+        /// Junction table
+        /// </summary>
+        public virtual IList<SettingsEntrySetting> SettingsEntrySettings { get; set; } = new List<SettingsEntrySetting>();
     }
 }
