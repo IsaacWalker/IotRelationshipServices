@@ -16,12 +16,12 @@ namespace Web.Iot.SettingService.Contracts
         /// <summary>
         /// Id of inserted entry
         /// </summary>
-        public readonly int SettingsEntryId;
+        public readonly int ConfigurationId;
 
 
-        public SetCurrentSettingsResponse(bool Success, int settingsEntryId) : base(Success)
+        public SetCurrentSettingsResponse(bool Success, int configurationId) : base(Success)
         {
-            SettingsEntryId = settingsEntryId;
+            ConfigurationId = configurationId;
         }
     }
 }

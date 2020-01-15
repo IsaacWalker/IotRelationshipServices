@@ -65,8 +65,8 @@ namespace Web.Iot.SettingService
             {
                 var context = scope.ServiceProvider.GetService<SettingServiceContext>();
 
-                var initialSettings = new SettingsEntry() { };
-                context.SettingsEntries.Add(initialSettings);
+                var initialSettings = new Configuration() { };
+                context.Configurations.Add(initialSettings);
 
                 context.SaveChanges();
 
@@ -91,9 +91,9 @@ namespace Web.Iot.SettingService
             }        
         }
 
-        private void InsertSettingEntrySetting(SettingServiceContext context, SettingsEntry ses, Setting setting)
+        private void InsertSettingEntrySetting(SettingServiceContext context, Configuration ses, Setting setting)
         {
-            context.SettingsEntrySettings.Add(new SettingsEntrySetting { SettingId = setting.Id, SettingsEntryId = ses.SettingsEntryId });
+            context.ConfigurationSettings.Add(new ConfigurationSetting { SettingId = setting.Id, ConfigurationId = ses.ConfigurationId });
         }
     }
 }

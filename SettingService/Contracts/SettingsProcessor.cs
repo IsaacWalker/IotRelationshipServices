@@ -4,6 +4,7 @@
     Isaac Walker
 ****************************************************/
 
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace Web.Iot.SettingService.Contracts
         private readonly IServiceProvider m_provider;
 
 
-        private SettingsModel _currentSettingsModel;
+        private ConfigurationModel _currentConfigurationModel;
 
 
         public SettingsProcessor(IServiceProvider provider)
@@ -42,35 +43,35 @@ namespace Web.Iot.SettingService.Contracts
             {
                 var context = scope.ServiceProvider.GetService<SettingServiceContext>();
 
-                if (_currentSettingsModel != null)
+                if (_currentConfigurationModel != null)
                 {
-                    return Task.FromResult(new GetCurrentSettingsResponse(true, _currentSettingsModel));
+                    return Task.FromResult(new GetCurrentSettingsResponse(true, _currentConfigurationModel));
                 }
 
-                var settingEntries = context.SettingsEntries
+                var configurations = context.Configurations
                     .FirstOrDefault();
 
-                if (settingEntries == null)
+                if (configurations == null)
                 {
                     return Task.FromResult(new GetCurrentSettingsResponse(false, null));
                 }
 
                 
-                var settings = context.SettingsEntrySettings
-                    .Where(ses => ses.SettingsEntryId == settingEntries.SettingsEntryId)
-                    .Select(ses => ses.Setting)
+                var settings = context.ConfigurationSettings
+                    .Where(cs => cs.ConfigurationId == configurations.ConfigurationId)
+                    .Select(cs => cs.Setting)
                     .Select(set => new SettingModel { Name = set.Name, Type = set.Type, Value = set.Value })
                     .ToList();
 
-                SettingsModel model = new SettingsModel()
+                ConfigurationModel model = new ConfigurationModel()
                 {
-                    Id = settingEntries.SettingsEntryId,
+                    Id = configurations.ConfigurationId,
                     Settings = settings
                 };
 
-                _currentSettingsModel = model;
+                _currentConfigurationModel = model;
 
-                return Task.FromResult(new GetCurrentSettingsResponse(true, _currentSettingsModel));
+                return Task.FromResult(new GetCurrentSettingsResponse(true, _currentConfigurationModel));
             }
         }
 
@@ -82,17 +83,18 @@ namespace Web.Iot.SettingService.Contracts
         /// <returns></returns>
         public Task<SetCurrentSettingsResponse> Run(SetCurrentSettingsRequest Request)
         {
-            return Task.FromResult(new SetCurrentSettingsResponse(true, AddSettingsModel(Request.SettingsModel)));
+            var response = new SetCurrentSettingsResponse(true, AddSettingsModel(Request.Configuration, true));         
+            return Task.FromResult(response);
         }
 
 
-        private int AddSettingsModel(SettingsModel settingsModel)
+        private int AddSettingsModel(ConfigurationModel configurationModel, bool SetToCurrent)
         {
             using (var scope = m_provider.CreateScope())
             {
                 var context = scope.ServiceProvider.GetService<SettingServiceContext>();
 
-                var settings = settingsModel.Settings
+                var settings = configurationModel.Settings
                     .Select(S => new Setting { Name = S.Name, Type = S.Type, Value = S.Value })
                     .ToList();
 
@@ -107,37 +109,87 @@ namespace Web.Iot.SettingService.Contracts
                     // Setting is not in database yet
                     if(presentSetting == default)
                     {
-                        context.Settings.Add(presentSetting);
+                        context.Settings.Add(setting);
                     }
-                       
-                    setting.Id = presentSetting.Id;
+                    else
+                    {
+                        setting.Id = presentSetting.Id;
+                    }               
                 }
 
 
                 // Is There a Settings Entry in the database where has identical settings
-                var settingEntry = context.SettingsEntries
+                var Configuration = context.Configurations
+                    .Include(C => C.ConfigurationSettings)
                     .ToList()
-                    .Where(SE => SE.SettingsEntrySettings
-                    .All(SES => settings.Any(S => SES.SettingId == S.Id)))
+                    .Where(C => C.ConfigurationSettings
+                    .All(CS => settings.Any(S => S.Id == CS.SettingId)))
+                    .Where(CS=> CS.ConfigurationSettings.Count == settings.Count())
                     .FirstOrDefault();
 
-                if(settingEntry == null)
+
+                if(Configuration == null)
                 {
-                    settingEntry = new SettingsEntry();
-                    context.Add(settingEntry);
+                    Configuration = new Configuration();
+                    context.Configurations.Add(Configuration);
 
                     foreach (var setting in settings)
                     {
-                        context.SettingsEntrySettings.Add(new SettingsEntrySetting 
+                        context.ConfigurationSettings.Add(new ConfigurationSetting 
                         { 
-                            SettingId = setting.Id, SettingsEntryId = settingEntry.SettingsEntryId 
+                            SettingId = setting.Id, ConfigurationId = Configuration.ConfigurationId
                         });
                     }
                 }
 
                 context.SaveChanges();
+                
+                if(SetToCurrent)
+                {
+                    configurationModel.Id = Configuration.ConfigurationId;
+                    _currentConfigurationModel = configurationModel;
+                }
 
-                return settingEntry.SettingsEntryId;
+                return configurationModel.Id;
+            }
+        }
+
+
+        public Task<GetSettingResponse> Run(GetSettingRequest Request)
+        {
+            //TODO - Add caching
+
+            using (var scope = m_provider.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetService<SettingServiceContext>();
+
+                var settings = context.ConfigurationSettings
+                    .Include(CS => CS.Setting)
+                    .Where(CS => CS.ConfigurationId == Request.Id)
+                    .Select(CS => new SettingModel()
+                    { 
+                        Name = CS.Setting.Name,
+                        Type = CS.Setting.Type,
+                        Value = CS.Setting.Value
+                     })
+                    .ToList();
+
+                bool Success = settings.Count() != 0;
+
+                if(Success)
+                {
+                    var configurationModel = new ConfigurationModel()
+                    {
+                        Id = Request.Id,
+                        Settings = settings
+                    };
+
+                    return Task.FromResult(new GetSettingResponse(true, configurationModel));
+                }
+                else
+                {
+                    return Task.FromResult(new GetSettingResponse(false, default));
+                }
             }
         }
     }

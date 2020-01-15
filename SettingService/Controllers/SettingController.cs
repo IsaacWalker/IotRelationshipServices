@@ -44,7 +44,7 @@ namespace Web.Iot.SettingService.Controllers
 
             if(response.Success)
             {
-                return Ok(response.SettingsModel);
+                return Ok(response.Configuration);
             }
 
             return NotFound();
@@ -60,18 +60,18 @@ namespace Web.Iot.SettingService.Controllers
         /// <returns>Returns 200 with the Id of the settings, which may already exist</returns>
         [HttpPost]
         [Route("api/[controller]/current")]
-        public async Task<IActionResult> PostCurrent(SettingsModel settingsModel /*, [FromQuery] bool SetToCurrent = false*/)
+        public async Task<IActionResult> PostCurrent(ConfigurationModel configurationModel /*, [FromQuery] bool SetToCurrent = false*/)
         {
-            bool is_valid = ValidateSettingsModel(settingsModel);
+            bool is_valid = ValidateSettingsModel(configurationModel);
 
             if (!is_valid)
             {
                 return BadRequest();
             }
 
-            SetCurrentSettingsResponse response = await m_processor.Run(new SetCurrentSettingsRequest(settingsModel));
+            SetCurrentSettingsResponse response = await m_processor.Run(new SetCurrentSettingsRequest(configurationModel));
 
-            return Ok(response.SettingsEntryId);
+            return Ok(response.ConfigurationId);
         }
 
 
@@ -82,10 +82,16 @@ namespace Web.Iot.SettingService.Controllers
         /// <returns>The entry</returns>
         [HttpGet]
         [Route("api/[controller]")]
-        public IActionResult Get([FromQuery] int id)
+        public async Task<IActionResult> Get([FromQuery] int id)
         {
-            // TODO
-            return Ok(id);
+            GetSettingResponse response = await m_processor.Run(new GetSettingRequest(id));
+
+            if(!response.Success)
+            {
+                return NotFound();
+            }
+
+            return Ok(response.Configuration);
         }
 
 
@@ -96,22 +102,24 @@ namespace Web.Iot.SettingService.Controllers
         /// <returns>The Id of the entry</returns>
         [HttpPost]
         [Route("api/[controller]")]
-        public IActionResult Post(SettingModel settingModel)
+        public IActionResult Post(SettingModel configurationModel)
         {
             // TODO
-            return Ok(settingModel);
+            return Ok(configurationModel);
         }
 
 
-        private bool ValidateSettingsModel(SettingsModel settingsModel)
+        private bool ValidateSettingsModel(ConfigurationModel configurationModel)
         {
-            return settingsModel != null &&
-                settingsModel.Settings != null &&
-                settingsModel.Settings.All(S => !string.IsNullOrWhiteSpace(S.Name) &&
+            bool valid = configurationModel != null &&
+                configurationModel.Settings != null &&
+                configurationModel.Settings.All(S => !string.IsNullOrWhiteSpace(S.Name) &&
                    !string.IsNullOrWhiteSpace(S.Type) && !string.IsNullOrWhiteSpace(S.Value) &&
                    SettingType.ValidTypes.Contains(S.Type) &&
                    SettingType.ParseTable[S.Type].Invoke(S.Value))
-                && settingsModel.Settings.All(S => settingsModel.Settings.Count(C=>C.Name == S.Name)==1);
+                && configurationModel.Settings.All(S => configurationModel.Settings.Count(C => C.Name == S.Name) == 1);
+
+            return valid;
         }
     }
 }

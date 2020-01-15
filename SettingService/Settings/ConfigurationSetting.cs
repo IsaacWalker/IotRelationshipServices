@@ -1,5 +1,5 @@
 ﻿/***************************************************
-    SettingsEntrySetting.cs
+    ConfigurationSetting.cs
 
     Isaac Walker
 ****************************************************/
@@ -9,7 +9,7 @@ namespace Web.Iot.SettingService.Settings
     /// <summary>
     /// Junction table for Setting - SettingEntry
     /// </summary>
-    public class SettingsEntrySetting
+    public class ConfigurationSetting
     {
         /// <summary>
         /// PK/FK - Id of the setting
@@ -18,14 +18,14 @@ namespace Web.Iot.SettingService.Settings
 
 
         /// <summary>
-        /// PK/FK - Id of the Entry
+        /// PK/FK - Id of the Configuration
         /// </summary>
-        public int SettingsEntryId { get; set; }
+        public int ConfigurationId { get; set; }
 
 
         public Setting Setting { get; set; }
 
 
-        public SettingsEntry SettingsEntry { get; set; }
+        public Configuration Configuration { get; set; }
     }
 }

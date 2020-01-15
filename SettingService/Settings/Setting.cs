@@ -44,7 +44,7 @@ namespace Web.Iot.SettingService.Settings
         /// <summary>
         /// Junction table
         /// </summary>
-        public virtual IList<SettingsEntrySetting> SettingsEntrySettings { get; set; } = new List<SettingsEntrySetting>();
+        public virtual IList<ConfigurationSetting> ConfigurationSettings { get; set; } = new List<ConfigurationSetting>();
 
         
         public bool Equivalent(Setting setting)

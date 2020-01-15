@@ -1,5 +1,5 @@
 ﻿/***************************************************
-    SettingsModel.cs
+    Configuration.cs
 
     Isaac Walker
 ****************************************************/
@@ -10,9 +10,9 @@ using System.Collections.Generic;
 namespace Web.Iot.SettingService.Models
 {
     /// <summary>
-    /// The model of a Settings Entry 
+    /// The model of a Configuration 
     /// </summary>
-    public class SettingsModel
+    public class ConfigurationModel
     {
         public int Id { get; set; }
 

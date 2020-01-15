@@ -17,12 +17,12 @@ namespace Web.Iot.SettingService.Contracts
         /// <summary>
         /// The settings model
         /// </summary>
-        public readonly SettingsModel SettingsModel;
+        public readonly ConfigurationModel Configuration;
 
 
-        public SetCurrentSettingsRequest(SettingsModel settingsModel)
+        public SetCurrentSettingsRequest(ConfigurationModel configuration)
         {
-            SettingsModel = settingsModel;
+            Configuration = configuration;
         }
     }
 }

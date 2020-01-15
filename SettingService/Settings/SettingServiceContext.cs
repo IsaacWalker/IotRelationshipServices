@@ -22,13 +22,13 @@ namespace Web.Iot.SettingService.Settings
         /// <summary>
         /// An set of settings
         /// </summary>
-        public DbSet<SettingsEntry> SettingsEntries { get; set; }
+        public DbSet<Configuration> Configurations { get; set; }
 
 
         /// <summary>
         /// Junction table for Settings - SettingsEntry many-to-many relationship
         /// </summary>
-        public DbSet<SettingsEntrySetting> SettingsEntrySettings { get; set; }
+        public DbSet<ConfigurationSetting> ConfigurationSettings { get; set; }
 
 
         public SettingServiceContext(DbContextOptions<SettingServiceContext> options) : base(options)
@@ -38,18 +38,18 @@ namespace Web.Iot.SettingService.Settings
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<SettingsEntrySetting>()
-                .HasKey(ses =>  new { ses.SettingId, ses.SettingsEntryId });
+            modelBuilder.Entity<ConfigurationSetting>()
+                .HasKey(cs =>  new { cs.SettingId, cs.ConfigurationId });
 
-            modelBuilder.Entity<SettingsEntrySetting>()
-                .HasOne(ses => ses.Setting)
-                .WithMany(ses => ses.SettingsEntrySettings)
-                .HasForeignKey(ses => ses.SettingId);
+            modelBuilder.Entity<ConfigurationSetting>()
+                .HasOne(cs => cs.Setting)
+                .WithMany(cs => cs.ConfigurationSettings)
+                .HasForeignKey(cs => cs.SettingId);
 
-            modelBuilder.Entity<SettingsEntrySetting>()
-                .HasOne(ses => ses.SettingsEntry)
-                .WithMany(ses => ses.SettingsEntrySettings)
-                .HasForeignKey(ses => ses.SettingsEntryId);
+            modelBuilder.Entity<ConfigurationSetting>()
+                .HasOne(cs => cs.Configuration)
+                .WithMany(cs => cs.ConfigurationSettings)
+                .HasForeignKey(cs => cs.ConfigurationId);
         }
 
     }

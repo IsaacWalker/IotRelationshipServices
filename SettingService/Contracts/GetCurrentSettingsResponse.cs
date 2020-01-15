@@ -17,13 +17,13 @@ namespace Web.Iot.SettingService.Contracts
         /// <summary>
         /// The settings
         /// </summary>
-        public readonly SettingsModel SettingsModel;
+        public readonly ConfigurationModel Configuration;
 
 
-        public GetCurrentSettingsResponse(bool Success, SettingsModel settings) 
+        public GetCurrentSettingsResponse(bool Success, ConfigurationModel configuration) 
             : base(Success)
         {
-            SettingsModel = settings;
+            Configuration = configuration;
         }
     }
 }
