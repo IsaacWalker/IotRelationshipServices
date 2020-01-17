@@ -11,8 +11,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Web.Iot.SettingService.Contracts;
-using Web.Iot.SettingService.Models;
 using Web.Iot.SettingService.Settings;
+using Web.Iot.Shared.Setting;
+using Web.Iot.Shared.Setting.Models;
 
 namespace Web.Iot.SettingService.Controllers
 {

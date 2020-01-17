@@ -1,0 +1,25 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head id="header">
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/site.css" />
+    <title>Admin Portal</title>
+</head>
+<body>
+    <h1 class="header__h1">Configuration Portal</h1>
+    <ul class="header__list">
+        <li class="header__list__item">
+        <a href="/Home?setting=current" class="header__list__item__a">Home</a></li>
+        <li class="header__list__item">
+        <a href="/About" class="header__list__item__a">About</a></li>
+    </ul>
+    @RenderBody()
+</body>
+
+</html>

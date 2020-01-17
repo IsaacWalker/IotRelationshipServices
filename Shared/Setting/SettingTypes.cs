@@ -8,12 +8,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Web.Iot.SettingService.Settings
+namespace Web.Iot.Shared.Setting
 {
     /// <summary>
     /// Represents the valid types permitted in settings
     /// </summary>
-    public class SettingType
+    public static class SettingType
     {
         /// <summary>
         /// String type
@@ -55,6 +55,6 @@ namespace Web.Iot.SettingService.Settings
         /// <summary>
         /// Enumerable valid types
         /// </summary>
-        public static ISet<string> ValidTypes = ParseTable.Keys.ToHashSet();
+        public static IList<string> ValidTypes = ParseTable.Keys.ToList();
     }
 }

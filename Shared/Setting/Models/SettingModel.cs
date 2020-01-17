@@ -1,25 +1,11 @@
 ﻿/***************************************************
-    Configuration.cs
+    SettingModel.cs
 
     Isaac Walker
 ****************************************************/
 
-using System;
-using System.Collections.Generic;
-
-namespace Web.Iot.SettingService.Models
+namespace Web.Iot.Shared.Setting
 {
-    /// <summary>
-    /// The model of a Configuration 
-    /// </summary>
-    public class ConfigurationModel
-    {
-        public int Id { get; set; }
-
-        public List<SettingModel> Settings { get; set; }
-    }
-
-
     /// <summary>
     /// The model of an individual setting
     /// </summary>
@@ -31,5 +17,4 @@ namespace Web.Iot.SettingService.Models
 
         public string Type { get; set; }
     }
-
 }

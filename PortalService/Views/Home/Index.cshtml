@@ -1,0 +1,48 @@
+﻿@model Web.Iot.PortalService.Models.ViewModels.HomeModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@{ if (Model.SettingExists)
+    {
+        <div class="setting__div"></div>
+
+        <div class="setting__div">
+            <b class="setting__id__a">Current Configuration Id: </b>
+            <a class="setting__id__a">@Model.Configuration.Id</a>
+        </div>
+        <div class="setting__div">
+            <ul class="setting__list">
+                @foreach (var setting in Model.Configuration.Settings)
+                {
+                    <li class="setting__list__item">
+                        <b class="setting__list__item__a">Name:</b>
+                        <a class="setting__list__item__a">@setting.Name</a>
+                        <b class="setting__list__item__a">Type:</b>
+                        <a class="setting__list__item__a"> @setting.Type </a>
+                        <b class="setting__list__item__a">Value:</b>
+                        <a class="setting__list__item__a"> @setting.Value </a>
+                    </li>
+                }
+            </ul>
+        </div>
+        <br />
+
+        <div class="setting__div">
+            <a class="setting__save__button">Save</a>
+        </div>
+    }
+    else
+    {
+        <div class="setting__div"></div>
+
+        <div class="setting__div">
+            <b class="setting__id__a">Current Configuration Id: </b>
+            <a class="setting__id__a">Setting Non-existent</a>
+        </div>
+    }
+}
+
+
+

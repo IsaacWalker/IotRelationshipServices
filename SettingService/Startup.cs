@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Web.Iot.SettingService.Contracts;
 using Web.Iot.SettingService.Settings;
+using Web.Iot.Shared.Setting;
 
 namespace Web.Iot.SettingService
 {

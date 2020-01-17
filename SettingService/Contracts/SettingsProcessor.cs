@@ -9,9 +9,10 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Web.Iot.SettingService.Models;
 using Web.Iot.SettingService.Settings;
 using Web.Iot.Shared.Message;
+using Web.Iot.Shared.Setting;
+using Web.Iot.Shared.Setting.Models;
 
 namespace Web.Iot.SettingService.Contracts
 {
