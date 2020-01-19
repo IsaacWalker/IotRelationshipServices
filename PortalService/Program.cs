@@ -23,6 +23,14 @@ namespace Web.Iot.PortalService
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                }).ConfigureLogging((hostingContext, logging) =>
+                {
+                    logging.ClearProviders();
+                    logging.AddEventLog((settings =>
+                    {
+                        settings.LogName = "Application";
+                        settings.SourceName = "PortalService";
+                    }));
                 });
     }
 }

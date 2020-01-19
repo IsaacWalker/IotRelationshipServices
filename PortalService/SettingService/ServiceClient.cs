@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Web.Iot.Shared.Setting.Models;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 
 namespace Web.Iot.PortalService.SettingService
 {
@@ -35,6 +36,7 @@ namespace Web.Iot.PortalService.SettingService
         /// Httpclient Factory
         /// </summary>
         private readonly IHttpClientFactory m_httpClientFactory;
+
 
 
         /// <summary>
@@ -84,15 +86,22 @@ namespace Web.Iot.PortalService.SettingService
             }
         }
 
+
+        /// <summary>
+        /// Sets the current configuration 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>Id of new, or existing </returns>
         public async Task<int> SetCurrentConfigurationAsync(ConfigurationModel model)
         {
             using (HttpClient client = m_httpClientFactory.CreateClient())
             {
                 HttpContent content = new StringContent(JsonConvert.SerializeObject(model));
+                content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
                 var response = await client.PostAsync(s_currentSettingUri, content);
 
                 var v = await response.Content.ReadAsStringAsync();
-                return 1;
+                return int.Parse(v);
             }
         }
     }

@@ -22,4 +22,8 @@
     <ProjectReference Include="..\Shared\Web.Iot.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\scripts\" />
+  </ItemGroup>
+
 </Project>

@@ -6,6 +6,7 @@
 
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Web.Iot.PortalService.Models.ViewModels;
 using Web.Iot.PortalService.SettingService;
 using Web.Iot.Shared.Setting.Models;
@@ -17,7 +18,10 @@ namespace Web.Iot.PortalService.Controllers
         private readonly IServiceClient m_serviceClient;
 
 
-        public HomeController(IServiceClient serviceClient)
+        private readonly ILogger<HomeController> m_logger;
+
+
+        public HomeController(IServiceClient serviceClient, ILogger<HomeController> logger)
         {
             m_serviceClient = serviceClient;
         }
@@ -27,31 +31,45 @@ namespace Web.Iot.PortalService.Controllers
         [Route("home")]
         public async Task<ViewResult> Index([FromQuery] string setting)
         {
+            m_logger.LogDebug(LogEventId.IndexGetStart, string.Format("Request for setting {0}", setting));
+
             ConfigurationModel configuration = null;
 
             if (setting == "current")
             {
                 configuration = await m_serviceClient.GetCurrentConfigurationAsync();
             }
-            else if(int.TryParse(setting, out int id))
+            else if (int.TryParse(setting, out int id))
             {
                 configuration = await m_serviceClient.GetConfigurationAsync(id);
             }
-            
 
-            if(configuration == default)  
+
+            m_logger.LogDebug(LogEventId.IndexGetEnd, string.Format("Request for setting {0}, found: {1}", setting, configuration != default));
+
+            if (configuration == default)
             {
-                return View(new HomeModel() { SettingExists = false }); 
+                return View(new HomeModel() { SettingExists = false });
             }
 
             return View(new HomeModel() { Configuration = configuration, SettingExists = true });
         }
 
+
+        [HttpPost]
         [Route("home/save")]
-        public async Task<RedirectResult> Save(ConfigurationModel model)
+        public async Task<RedirectResult> Save( ConfigurationModel configuration)
         {
-            int Id = await m_serviceClient.SetCurrentConfigurationAsync(model);
-            return Redirect("~/home?setting=current");
+            m_logger.LogDebug(LogEventId.SaveConfigStart, string.Format("Saving configuration with {0} settings", configuration.Settings.Count));
+
+
+            int Id = await m_serviceClient.SetCurrentConfigurationAsync(configuration);
+
+
+            m_logger.LogDebug(LogEventId.SaveConfigEnd, string.Format("Created new configuration with new Id {0}", Id));
+
+
+            return Redirect(string.Format("~/home?setting=current",Id));
         }
     }
 }
