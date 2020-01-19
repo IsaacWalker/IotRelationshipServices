@@ -27,5 +27,13 @@ namespace Web.Iot.PortalService.SettingService
         /// <param name="id"></param>
         /// <returns></returns>
         public Task<ConfigurationModel> GetConfigurationAsync(int id);
+
+
+        /// <summary>
+        /// Sets the current configuration
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public Task<int> SetCurrentConfigurationAsync(ConfigurationModel model); 
     }
 }

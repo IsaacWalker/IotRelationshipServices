@@ -1,5 +1,5 @@
 ﻿@model Web.Iot.PortalService.Models.ViewModels.HomeModel
-
+@using Web.Iot.Shared.Setting;
 @{
     ViewData["Title"] = "Index";
 }
@@ -8,30 +8,27 @@
     {
         <div class="setting__div"></div>
 
+        <script src="~/scripts/Home.js"></script>
         <div class="setting__div">
             <b class="setting__id__a">Current Configuration Id: </b>
             <a class="setting__id__a">@Model.Configuration.Id</a>
         </div>
         <div class="setting__div">
-            <ul class="setting__list">
+            <form asp-controller="Home" asp-action="Save" method="post">
                 @foreach (var setting in Model.Configuration.Settings)
                 {
-                    <li class="setting__list__item">
-                        <b class="setting__list__item__a">Name:</b>
-                        <a class="setting__list__item__a">@setting.Name</a>
-                        <b class="setting__list__item__a">Type:</b>
-                        <a class="setting__list__item__a"> @setting.Type </a>
-                        <b class="setting__list__item__a">Value:</b>
-                        <a class="setting__list__item__a"> @setting.Value </a>
-                    </li>
+                    <label  asp-for=@setting.Name></label>
+                    <input asp-for=@setting.Name />
+                    <label asp-for=@setting.Type></label>
+                    <select asp-for=@setting.Type asp-items=Model.ValidSettingTypes></select>
+                    <label asp-for=@setting.Value></label>
+                    <input asp-for=@setting.Value />
+                    <div class="setting__div"></div>
                 }
-            </ul>
-        </div>
+                <input type="submit" value="Save"/>
+            </form>
+            </div>
         <br />
-
-        <div class="setting__div">
-            <a class="setting__save__button">Save</a>
-        </div>
     }
     else
     {

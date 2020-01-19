@@ -25,7 +25,7 @@ namespace Web.Iot.PortalService.Controllers
 
         // GET: /<controller>/
         [Route("home")]
-        public async Task<IActionResult> Index([FromQuery] string setting)
+        public async Task<ViewResult> Index([FromQuery] string setting)
         {
             ConfigurationModel configuration = null;
 
@@ -45,7 +45,13 @@ namespace Web.Iot.PortalService.Controllers
             }
 
             return View(new HomeModel() { Configuration = configuration, SettingExists = true });
+        }
 
+        [Route("home/save")]
+        public async Task<RedirectResult> Save(ConfigurationModel model)
+        {
+            int Id = await m_serviceClient.SetCurrentConfigurationAsync(model);
+            return Redirect("~/home?setting=current");
         }
     }
 }

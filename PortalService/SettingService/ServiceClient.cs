@@ -83,5 +83,17 @@ namespace Web.Iot.PortalService.SettingService
                 return JsonConvert.DeserializeObject<ConfigurationModel>(await response.Content.ReadAsStringAsync());
             }
         }
+
+        public async Task<int> SetCurrentConfigurationAsync(ConfigurationModel model)
+        {
+            using (HttpClient client = m_httpClientFactory.CreateClient())
+            {
+                HttpContent content = new StringContent(JsonConvert.SerializeObject(model));
+                var response = await client.PostAsync(s_currentSettingUri, content);
+
+                var v = await response.Content.ReadAsStringAsync();
+                return 1;
+            }
+        }
     }
 }
