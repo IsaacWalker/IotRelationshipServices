@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Iot.ScanService", "Scan
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Iot.SettingService", "SettingService\Web.Iot.SettingService.csproj", "{476FE742-DD64-41D1-A9F8-5236368DD1BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Iot.PortalService", "PortalService\Web.Iot.PortalService.csproj", "{CF3DE173-2194-4164-8AE3-82C5720AD282}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Iot.PortalService", "PortalService\Web.Iot.PortalService.csproj", "{CF3DE173-2194-4164-8AE3-82C5720AD282}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceService", "DeviceService\DeviceService.csproj", "{CBCB31D0-6908-47BA-973C-8FA6A498B833}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{CF3DE173-2194-4164-8AE3-82C5720AD282}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF3DE173-2194-4164-8AE3-82C5720AD282}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF3DE173-2194-4164-8AE3-82C5720AD282}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBCB31D0-6908-47BA-973C-8FA6A498B833}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBCB31D0-6908-47BA-973C-8FA6A498B833}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBCB31D0-6908-47BA-973C-8FA6A498B833}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBCB31D0-6908-47BA-973C-8FA6A498B833}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
