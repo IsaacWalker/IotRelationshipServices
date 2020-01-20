@@ -33,7 +33,7 @@ namespace Web.Iot.ScanService
                 logging.AddEventLog((settings => 
                 {
                     settings.LogName = "Application";
-                    settings.SourceName = "IotRelServe";
+                    settings.SourceName = "ScanService";
                 }));
             });
     }

@@ -24,6 +24,7 @@ namespace Web.Iot.PortalService.Controllers
         public HomeController(IServiceClient serviceClient, ILogger<HomeController> logger)
         {
             m_serviceClient = serviceClient;
+            m_logger = logger;
         }
 
 

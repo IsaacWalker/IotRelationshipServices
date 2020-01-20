@@ -20,7 +20,7 @@ namespace Web.Iot.SettingService.Controllers
     [ApiController]
     public class SettingController : ControllerBase
     {
-        private readonly ILogger m_logger;
+        private readonly ILogger<SettingController> m_logger;
 
 
         private readonly ISettingProcessor m_processor;
@@ -41,7 +41,11 @@ namespace Web.Iot.SettingService.Controllers
         [Route("api/[controller]/current")]
         public async Task<IActionResult> GetCurrent()
         {
+            m_logger.LogDebug(LogEventId.GetCurrentSettingStart, "Starting request ot getCurrentSetting");
+
             GetCurrentSettingsResponse response = await m_processor.Run(Shared.Message.Request.Empty);
+
+            m_logger.LogDebug(LogEventId.GetCurrentSettingEnd, string.Format("Ending request to getCurrentSetting with result {0}", response.Success));
 
             if(response.Success)
             {
@@ -63,6 +67,8 @@ namespace Web.Iot.SettingService.Controllers
         [Route("api/[controller]/current")]
         public async Task<IActionResult> PostCurrent(ConfigurationModel configurationModel /*, [FromQuery] bool SetToCurrent = false*/)
         {
+            m_logger.LogDebug(LogEventId.SetCurrentSettingStart, "Starting request to postCurrentSetting");
+
             bool is_valid = ValidateSettingsModel(configurationModel);
 
             if (!is_valid)
@@ -71,6 +77,8 @@ namespace Web.Iot.SettingService.Controllers
             }
 
             SetCurrentSettingsResponse response = await m_processor.Run(new SetCurrentSettingsRequest(configurationModel));
+
+            m_logger.LogDebug(LogEventId.SetCurrentSettingEnd, string.Format("Ending request to postCurrentSetting with result {0}", response.Success));
 
             return Ok(response.ConfigurationId);
         }
@@ -85,7 +93,11 @@ namespace Web.Iot.SettingService.Controllers
         [Route("api/[controller]")]
         public async Task<IActionResult> Get([FromQuery] int id)
         {
+            m_logger.LogDebug(LogEventId.GetSettingByIdStart, string.Format("Getting setting for Id {0}", id));
+
             GetSettingResponse response = await m_processor.Run(new GetSettingRequest(id));
+
+            m_logger.LogDebug(LogEventId.GetSettingByIdEnd, string.Format("Finished getting setting for Id {0} with result {1}", id, response.Success));
 
             if(!response.Success)
             {
