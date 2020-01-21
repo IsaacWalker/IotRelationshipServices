@@ -21,9 +21,9 @@ namespace Web.Iot.DeviceService.Devices
 
 
         /// <summary>
-        /// Hardware address of the local bluetooth adapter
+        /// Bluetooth of name
         /// </summary>
-        public string BluetoothHardwareAddress { get; set; }
+        public string BluetoothName { get; set; }
 
 
         /// <summary>

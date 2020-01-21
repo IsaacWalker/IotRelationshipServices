@@ -13,7 +13,8 @@ namespace Web.Iot.DeviceService.Processor
     /// Processor for devices
     /// </summary>
     public interface IDeviceProcessor :
-        IProcessor<CreateDeviceRequest, CreateDeviceResponse>
+        IProcessor<CreateDeviceRequest, CreateDeviceResponse>,
+        IProcessor<GetDeviceRequest, GetDeviceResponse>
     {
     }
 }

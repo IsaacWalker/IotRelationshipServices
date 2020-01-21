@@ -18,9 +18,9 @@ namespace Web.Iot.DeviceService.Contracts
 
 
         /// <summary>
-        /// Bluetooth Hardware Address
+        /// Bluetooth Name
         /// </summary>
-        public string BluetoothHardwareAddress { get; private set; }
+        public string BluetoothName { get; private set; }
 
 
         /// <summary>
@@ -37,12 +37,12 @@ namespace Web.Iot.DeviceService.Contracts
 
         public CreateDeviceRequest(
             string MacAddress,
-            string BluetoothHardwareAddress,
+            string BluetoothName,
             string Manufacturer,
             string DeviceModel)
         {
             this.MacAddress = MacAddress;
-            this.BluetoothHardwareAddress = BluetoothHardwareAddress;
+            this.BluetoothName = BluetoothName;
             this.Manufacturer = Manufacturer;
             this.DeviceModel = DeviceModel;
         }

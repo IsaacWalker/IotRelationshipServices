@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Iot.SettingService", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Iot.PortalService", "PortalService\Web.Iot.PortalService.csproj", "{CF3DE173-2194-4164-8AE3-82C5720AD282}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceService", "DeviceService\DeviceService.csproj", "{CBCB31D0-6908-47BA-973C-8FA6A498B833}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Iot.DeviceService", "DeviceService\Web.Iot.DeviceService.csproj", "{CBCB31D0-6908-47BA-973C-8FA6A498B833}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
