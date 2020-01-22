@@ -7,6 +7,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Web.Iot.DeviceService.Contracts;
 using Web.Iot.DeviceService.Devices;
@@ -44,16 +45,25 @@ namespace Web.Iot.DeviceService.Processor
             {
                 var context = scope.ServiceProvider.GetService<DeviceContext>();
 
-                Device device = new Device()
-                {
-                    MacAddress = Request.MacAddress,
-                    BluetoothName = Request.BluetoothName,
-                    Manufacturer = Request.Manufacturer,
-                    Model = Request.DeviceModel
-                };
+                // Is device present?
+                var device = context.Devices
+                    .Where(D => D.MacAddress == Request.MacAddress)
+                    .FirstOrDefault();
 
-                context.Devices.Add(device);
-                context.SaveChanges();
+                if(device == default)
+                {
+
+                    device = new Device()
+                    {
+                        MacAddress = Request.MacAddress,
+                        BluetoothName = Request.BluetoothName,
+                        Manufacturer = Request.Manufacturer,
+                        Model = Request.DeviceModel
+                    };
+
+                    context.Devices.Add(device);
+                    context.SaveChanges();
+                }
 
                 return Task.FromResult(new CreateDeviceResponse(true, device.Id));
             }
