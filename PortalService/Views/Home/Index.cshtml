@@ -6,29 +6,30 @@
 
 @{ if (Model.SettingExists)
     {
-        <div class="setting__div"></div>
+    <div class="container">
         <div class="setting__div">
             <b class="setting__id__a">Current Configuration Id: </b>
             <a class="setting__id__a">@Model.Configuration.Id</a>
         </div>
         <div class="setting__div">
             <form asp-controller="Home" asp-action="Save" method="post">
-                @{ for (int i = 0; i < Model.Configuration.Settings.Count(); i++)
-                    {
-                        <div class="setting__div__entry">
-                            <label class="setting__id__a" asp-for=@Model.Configuration.Settings[i].Name></label>
-                            <input class="setting__input" asp-for=@Model.Configuration.Settings[i].Name />
-                            <label class="setting__id__a" asp-for=@Model.Configuration.Settings[i].Type></label>
-                            <select class="setting__input" asp-for=@Model.Configuration.Settings[i].Type asp-items=@Model.ValidSettingTypes></select>
-                            <label class="setting__id__a" asp-for=@Model.Configuration.Settings[i].Value></label>
-                            <input class="setting__input" asp-for=@Model.Configuration.Settings[i].Value />
-                        </div>
+                    @{ for (int i = 0; i < Model.Configuration.Settings.Count(); i++)
+                        {
+                            <div class="form-row" >
+                                <label class="form-check-label" asp-for=@Model.Configuration.Settings[i].Name></label>
+                                <input class="form-control" asp-for=@Model.Configuration.Settings[i].Name />
+                                <label class="form-check-label " asp-for=@Model.Configuration.Settings[i].Type></label>
+                                <select class="form-control " asp-for=@Model.Configuration.Settings[i].Type asp-items=@Model.ValidSettingTypes></select>
+                                <label class="form-check-label" asp-for=@Model.Configuration.Settings[i].Value></label>
+                                <input class="form-control " asp-for=@Model.Configuration.Settings[i].Value />
+                            </div>
+                        }
                     }
-                }
-                <input class="setting__input__submit" type="submit" value="Save" />
+                    <button class="btn btn-primary" type="submit">Save</button>
             </form>
-            </div>
+        </div>
         <br />
+    </div>
     }
     else
     {

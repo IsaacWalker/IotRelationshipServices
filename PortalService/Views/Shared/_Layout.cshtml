@@ -8,19 +8,23 @@
 <html>
 <head id="header">
     <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="~/site.css" />
+    <link rel="stylesheet" href="~/lib/dist/css/bootstrap.css"/>
+    <link href="~/lib/dist/js/bootstrap.js" />
     <title>Admin Portal</title>
 </head>
 <body>
-    <h1 class="header__h1">Configuration Portal</h1>
-    <ul class="header__list">
-        <li class="header__list__item">
-            <a href="/Home?setting=current" class="header__list__item__a">Home</a>
-        </li>
-        <li class="header__list__item">
-            <a href="/About" class="header__list__item__a">About</a>
-        </li>
-    </ul>
+    <nav class="navbar bg-dark navbar-dark navbar-expand-sm" >
+        <div class="container">
+            <a class="navbar-brand d-none d-sm-inline-block">
+                <img src="~/imgs/edit.png" style="width: 40px;" />
+            </a>
+            <div class="navbar-nav">
+                <!--  <a href="/Home?setting=current" class="nav-item nav-link active">Home</a>
+      <a href="/About" class="nav-item nav-link">About</a>-->
+            </div>
+            <span class="navbar-text d-none d-sm-inline-block">Dynamic Configuration Override</span>
+        </div>
+    </nav>
     @RenderBody()
 </body>
 
