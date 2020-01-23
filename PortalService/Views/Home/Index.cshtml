@@ -13,18 +13,19 @@
         </div>
         <div class="setting__div">
             <form asp-controller="Home" asp-action="Save" method="post">
-                @{ for(int i = 0; i<Model.Configuration.Settings.Count();i++)
-                {
-                    <label  asp-for=@Model.Configuration.Settings[i].Name></label>
-                    <input asp-for=@Model.Configuration.Settings[i].Name />
-                    <label asp-for=@Model.Configuration.Settings[i].Type></label>
-                    <select asp-for=@Model.Configuration.Settings[i].Type asp-items=@Model.ValidSettingTypes></select>
-                    <label asp-for=@Model.Configuration.Settings[i].Value></label>
-                    <input asp-for=@Model.Configuration.Settings[i].Value />
-                    <div class="setting__div"></div>
+                @{ for (int i = 0; i < Model.Configuration.Settings.Count(); i++)
+                    {
+                        <div class="setting__div__entry">
+                            <label class="setting__id__a" asp-for=@Model.Configuration.Settings[i].Name></label>
+                            <input class="setting__input" asp-for=@Model.Configuration.Settings[i].Name />
+                            <label class="setting__id__a" asp-for=@Model.Configuration.Settings[i].Type></label>
+                            <select class="setting__input" asp-for=@Model.Configuration.Settings[i].Type asp-items=@Model.ValidSettingTypes></select>
+                            <label class="setting__id__a" asp-for=@Model.Configuration.Settings[i].Value></label>
+                            <input class="setting__input" asp-for=@Model.Configuration.Settings[i].Value />
+                        </div>
+                    }
                 }
-                }
-                <input type="submit" value="Save"/>
+                <input class="setting__input__submit" type="submit" value="Save" />
             </form>
             </div>
         <br />
