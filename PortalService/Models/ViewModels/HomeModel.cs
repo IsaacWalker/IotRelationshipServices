@@ -8,8 +8,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.Linq;
-using Web.Iot.Shared.Setting;
-using Web.Iot.Shared.Setting.Models;
+using Web.Iot.Models.Setting;
 
 namespace Web.Iot.PortalService.Models.ViewModels
 {

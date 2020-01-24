@@ -12,6 +12,7 @@ namespace Web.Iot.SettingService.Contracts
     /// Processor for handling operations on settings
     /// </summary>
     public interface ISettingProcessor :
+        IProcessor<GetSettingCountRequest, GetSettingCountResponse>,
         IProcessor<Request, GetCurrentSettingsResponse>,
         IProcessor<SetCurrentSettingsRequest, SetCurrentSettingsResponse>,
         IProcessor<GetSettingRequest, GetSettingResponse>

@@ -4,7 +4,7 @@
     Isaac Walker
 ****************************************************/
 
-namespace Web.Iot.Shared.Setting
+namespace Web.Iot.Models.Setting
 {
     /// <summary>
     /// The model of an individual setting

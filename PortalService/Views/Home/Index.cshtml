@@ -1,35 +1,48 @@
 ﻿@model Web.Iot.PortalService.Models.ViewModels.HomeModel
-@using Web.Iot.Shared.Setting;
+@using Web.Iot.Models.Setting
 @{
     ViewData["Title"] = "Index";
 }
 
 @{ if (Model.SettingExists)
     {
-    <div class="container">
-        <div class="setting__div">
-            <b class="setting__id__a">Current Configuration Id: </b>
-            <a class="setting__id__a">@Model.Configuration.Id</a>
-        </div>
-        <div class="setting__div">
-            <form asp-controller="Home" asp-action="Save" method="post">
+        <div class="container">
+            <div class="container row">
+                <p class="font-weight-bold">Current Configuration Id:  </p>
+                <br />
+                <p class="font-weight-normal">@Model.Configuration.Id</p>
+            </div>
+            <div class="container">
+                <form asp-controller="Home" asp-action="Save" method="post">
                     @{ for (int i = 0; i < Model.Configuration.Settings.Count(); i++)
                         {
-                            <div class="form-row" >
-                                <label class="form-check-label" asp-for=@Model.Configuration.Settings[i].Name></label>
-                                <input class="form-control" asp-for=@Model.Configuration.Settings[i].Name />
-                                <label class="form-check-label " asp-for=@Model.Configuration.Settings[i].Type></label>
-                                <select class="form-control " asp-for=@Model.Configuration.Settings[i].Type asp-items=@Model.ValidSettingTypes></select>
-                                <label class="form-check-label" asp-for=@Model.Configuration.Settings[i].Value></label>
-                                <input class="form-control " asp-for=@Model.Configuration.Settings[i].Value />
+                            <div class="form-group row">
+                                <div class="col" >
+                                    <label class="form-check-label" asp-for=@Model.Configuration.Settings[i].Name></label>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-control" asp-for=@Model.Configuration.Settings[i].Name />
+                                </div>
+                                <div class="col">
+                                    <label class="form-check-label " asp-for=@Model.Configuration.Settings[i].Type></label>
+                                </div>
+                                <div class="col-3">
+                                    <select class="form-control " asp-for=@Model.Configuration.Settings[i].Type asp-items=@Model.ValidSettingTypes></select>
+                                </div>
+                                <div class="col">
+                                    <label class="form-check-label" asp-for=@Model.Configuration.Settings[i].Value></label>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-control " asp-for=@Model.Configuration.Settings[i].Value />
+                                </div>
                             </div>
                         }
                     }
                     <button class="btn btn-primary" type="submit">Save</button>
-            </form>
+                </form>
+            </div>
+            <br />
         </div>
-        <br />
-    </div>
     }
     else
     {

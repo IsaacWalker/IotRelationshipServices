@@ -4,7 +4,7 @@
     Isaac Walker
 ****************************************************/
 
-namespace Web.Iot.DeviceService.Models
+namespace Web.Iot.Models.Device
 {
     /// <summary>
     /// Model for a device

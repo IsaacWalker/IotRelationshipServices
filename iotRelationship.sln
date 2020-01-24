@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Iot.PortalService", "Po
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Iot.DeviceService", "DeviceService\Web.Iot.DeviceService.csproj", "{CBCB31D0-6908-47BA-973C-8FA6A498B833}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Iot.Client", "Client\Web.Iot.Client.csproj", "{322590C0-E2B8-41EA-9CC5-1D16D6BCB209}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Iot.Models", "Web.Iot.Models\Web.Iot.Models.csproj", "{E1343160-1C99-445F-978D-6B12D7082EB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{CBCB31D0-6908-47BA-973C-8FA6A498B833}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBCB31D0-6908-47BA-973C-8FA6A498B833}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBCB31D0-6908-47BA-973C-8FA6A498B833}.Release|Any CPU.Build.0 = Release|Any CPU
+		{322590C0-E2B8-41EA-9CC5-1D16D6BCB209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{322590C0-E2B8-41EA-9CC5-1D16D6BCB209}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{322590C0-E2B8-41EA-9CC5-1D16D6BCB209}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{322590C0-E2B8-41EA-9CC5-1D16D6BCB209}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1343160-1C99-445F-978D-6B12D7082EB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1343160-1C99-445F-978D-6B12D7082EB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1343160-1C99-445F-978D-6B12D7082EB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1343160-1C99-445F-978D-6B12D7082EB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

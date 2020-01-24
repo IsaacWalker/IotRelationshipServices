@@ -1,51 +1,81 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-/***************************************************
-    ServiceClient.cs
+﻿/***************************************************
+    SettingServiceClient.cs
 
     Isaac Walker
 ****************************************************/
 
-using System.Net.Http;
-using System.Threading.Tasks;
-using Web.Iot.Shared.Setting.Models;
-using Newtonsoft.Json;
-using System.Net.Http.Headers;
 
-namespace Web.Iot.PortalService.SettingService
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using Web.Iot.Models.Setting;
+
+namespace Web.Iot.Client.SettingService
 {
     /// <summary>
-    /// Implementation for the settings service client
+    /// Client for Setting Service
     /// </summary>
-    public class ServiceClient : IServiceClient
+    public class SettingServiceClient : ISettingServiceClient
     {
         /// <summary>
-        /// Endpoint for accessing the current setting
+        /// HttpClient Factory
         /// </summary>
-        private static readonly string s_currentSettingUri = "http://www.setting.iotrelationshipfyp.com/api/setting/current";
+        private readonly IHttpClientFactory m_httpClientFactory;
+
+
+        /// <summary>
+        /// Base URl for setting service
+        /// </summary>
+        private static readonly string s_baseUrl = "http://www.setting.iotrelationshipfyp.com";
+
+
+        /// <summary>
+        /// Get Setting Count URL
+        /// </summary>
+        private static readonly string s_getSettingCountUrl = s_baseUrl + "/api/setting/count";
+
+
+        /// <summary>
+        /// URL for Current Configuration
+        /// </summary>
+        private static readonly string s_currentConfigUrl = s_baseUrl + "/api/setting/current";
 
 
         /// <summary>
         /// Uri for settings service
         /// </summary>
-        private static readonly string s_settingUri = "http://www.setting.iotrelationshipfyp.com/api/setting";
-
-
-        /// <summary>
-        /// Httpclient Factory
-        /// </summary>
-        private readonly IHttpClientFactory m_httpClientFactory;
-
+        private static readonly string s_settingUri = s_baseUrl + "/api/setting";
 
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="httpClientFactory"></param>
-        public ServiceClient(IHttpClientFactory httpClientFactory)
+        public SettingServiceClient(IHttpClientFactory httpClientFactory)
         {
             m_httpClientFactory = httpClientFactory;
+        }
+
+
+        /// <summary>
+        /// Gets count of the settings
+        /// </summary>
+        /// <returns></returns>
+        public async Task<int> GetSettingCountAsync()
+        {
+            using (HttpClient client = m_httpClientFactory.CreateClient())
+            {
+                var response = await client.GetAsync(s_getSettingCountUrl);
+                bool parse_success = int.TryParse(await response.Content.ReadAsStringAsync(), out int result);
+
+                if (response.IsSuccessStatusCode && parse_success)
+                {
+                    return result;
+                }
+
+                return -1;
+            }
         }
 
 
@@ -61,7 +91,7 @@ namespace Web.Iot.PortalService.SettingService
                 string queryUrl = s_settingUri + string.Format("?id={0}", id);
                 var response = await client.GetAsync(queryUrl);
 
-                if(response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
 
                     return JsonConvert.DeserializeObject<ConfigurationModel>(await response.Content.ReadAsStringAsync());
@@ -80,7 +110,7 @@ namespace Web.Iot.PortalService.SettingService
         {
             using (HttpClient client = m_httpClientFactory.CreateClient())
             {
-                var response = await client.GetAsync(s_currentSettingUri);
+                var response = await client.GetAsync(s_currentConfigUrl);
 
                 return JsonConvert.DeserializeObject<ConfigurationModel>(await response.Content.ReadAsStringAsync());
             }
@@ -98,7 +128,7 @@ namespace Web.Iot.PortalService.SettingService
             {
                 HttpContent content = new StringContent(JsonConvert.SerializeObject(model));
                 content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-                var response = await client.PostAsync(s_currentSettingUri, content);
+                var response = await client.PostAsync(s_currentConfigUrl, content);
 
                 var v = await response.Content.ReadAsStringAsync();
                 return int.Parse(v);

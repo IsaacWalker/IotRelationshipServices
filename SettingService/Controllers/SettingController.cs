@@ -10,10 +10,9 @@ using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Web.Iot.Models.Setting;
 using Web.Iot.SettingService.Contracts;
 using Web.Iot.SettingService.Settings;
-using Web.Iot.Shared.Setting;
-using Web.Iot.Shared.Setting.Models;
 
 namespace Web.Iot.SettingService.Controllers
 {
@@ -122,6 +121,21 @@ namespace Web.Iot.SettingService.Controllers
         }
 
 
+        [HttpGet]
+        [Route("api/[controller]/number")]
+        public async Task<IActionResult> GetNumberOfSettings()
+        {
+            GetSettingCountResponse response = await m_processor.Run(new GetSettingCountRequest());
+
+            if(response.Success)
+            {
+                return Ok(response.Number);
+            }
+
+            return BadRequest();
+        }
+
+
         private bool ValidateSettingsModel(ConfigurationModel configurationModel)
         {
             bool valid = configurationModel != null &&
@@ -134,5 +148,7 @@ namespace Web.Iot.SettingService.Controllers
 
             return valid;
         }
+
+
     }
 }

@@ -7,7 +7,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Web.Iot.Shared.Setting.Models
+namespace Web.Iot.Models.Setting
 {
     /// <summary>
     /// The model of a Configuration 

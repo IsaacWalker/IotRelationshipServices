@@ -7,21 +7,21 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Web.Iot.Client.SettingService;
+using Web.Iot.Models.Setting;
 using Web.Iot.PortalService.Models.ViewModels;
-using Web.Iot.PortalService.SettingService;
-using Web.Iot.Shared.Setting.Models;
 
 namespace Web.Iot.PortalService.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IServiceClient m_serviceClient;
+        private readonly ISettingServiceClient m_serviceClient;
 
 
         private readonly ILogger<HomeController> m_logger;
 
 
-        public HomeController(IServiceClient serviceClient, ILogger<HomeController> logger)
+        public HomeController(ISettingServiceClient serviceClient, ILogger<HomeController> logger)
         {
             m_serviceClient = serviceClient;
             m_logger = logger;

@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿/***************************************************
+    GetSettingResponse.cs
+
+    Isaac Walker
+****************************************************/
+
+using Web.Iot.Models.Setting;
 using Web.Iot.Shared.Message;
-using Web.Iot.Shared.Setting.Models;
 
 namespace Web.Iot.SettingService.Contracts
 {
+    /// <summary>
+    /// Response for getting a setting 
+    /// </summary>
     public class GetSettingResponse : Response
     {
         public readonly ConfigurationModel Configuration;

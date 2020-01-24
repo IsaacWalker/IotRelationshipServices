@@ -1,19 +1,27 @@
 ﻿/***************************************************
-    IServiceClient.cs
+    ISettingServiceClient.cs
 
     Isaac Walker
 ****************************************************/
 
-using System.Threading.Tasks;
-using Web.Iot.Shared.Setting.Models;
 
-namespace Web.Iot.PortalService.SettingService
+using System.Threading.Tasks;
+using Web.Iot.Models.Setting;
+
+namespace Web.Iot.Client.SettingService
 {
     /// <summary>
-    /// Client of the settings service 
+    /// Client for the Setting Service
     /// </summary>
-    public interface IServiceClient
+    public interface ISettingServiceClient
     {
+        /// <summary>
+        /// Gets the count of the settings
+        /// </summary>
+        /// <returns></returns>
+        public Task<int> GetSettingCountAsync();
+
+
         /// <summary>
         /// Gets the current configuration from the settings service
         /// </summary>
@@ -34,6 +42,6 @@ namespace Web.Iot.PortalService.SettingService
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public Task<int> SetCurrentConfigurationAsync(ConfigurationModel model); 
+        public Task<int> SetCurrentConfigurationAsync(ConfigurationModel model);
     }
 }

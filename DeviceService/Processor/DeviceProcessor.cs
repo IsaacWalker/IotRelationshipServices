@@ -86,5 +86,23 @@ namespace Web.Iot.DeviceService.Processor
                 return Task.FromResult(new GetDeviceResponse(device != default, device));
             }
         }
+
+
+        /// <summary>
+        /// Gets the count of devices
+        /// </summary>
+        /// <param name="Request"></param>
+        /// <returns></returns>
+        public Task<GetDeviceCountResponse> Run(GetDeviceCountRequest Request)
+        {
+            using(var scope = m_serviceProvider.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetService<DeviceContext>();
+
+                int count = context.Devices.Count();
+
+                return Task.FromResult(new GetDeviceCountResponse(true, count));
+            }
+        }
     }
 }

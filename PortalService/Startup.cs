@@ -9,7 +9,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Web.Iot.PortalService.SettingService;
+using Web.Iot.Client.DeviceService;
+using Web.Iot.Client.SettingService;
 
 namespace Web.Iot.PortalService
 {
@@ -20,7 +21,8 @@ namespace Web.Iot.PortalService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHttpClient();
-            services.AddSingleton<IServiceClient, ServiceClient>();
+            services.AddSingleton<ISettingServiceClient, SettingServiceClient>();
+            services.AddSingleton<IDeviceServiceClient, DeviceServiceClient>();
 
             services.Configure<IISServerOptions>(options =>
             {

@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Web.Iot.DeviceService.Contracts;
-using Web.Iot.DeviceService.Models;
 using Web.Iot.DeviceService.Processor;
+using Web.Iot.Models.Device;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -93,6 +93,16 @@ namespace Web.Iot.DeviceService.Controllers
             m_logger.LogDebug(LogEventId.GetDeviceEnd, string.Format("Ending request to get device, Device found with Id {0}", id));
 
             return Ok(model);
+        }
+
+
+        [HttpGet]
+        [Route("api/[controller]/count")]
+        public async Task<IActionResult> GetDeviceCount()
+        {
+            var response = await m_processor.Run(new GetDeviceCountRequest());
+
+            return Ok(response.Count);
         }
     }
 }

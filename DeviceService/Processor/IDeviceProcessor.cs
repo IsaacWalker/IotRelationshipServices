@@ -14,7 +14,8 @@ namespace Web.Iot.DeviceService.Processor
     /// </summary>
     public interface IDeviceProcessor :
         IProcessor<CreateDeviceRequest, CreateDeviceResponse>,
-        IProcessor<GetDeviceRequest, GetDeviceResponse>
+        IProcessor<GetDeviceRequest, GetDeviceResponse>,
+        IProcessor<GetDeviceCountRequest, GetDeviceCountResponse>
     {
     }
 }

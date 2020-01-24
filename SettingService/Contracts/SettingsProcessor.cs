@@ -9,10 +9,9 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Web.Iot.Models.Setting;
 using Web.Iot.SettingService.Settings;
 using Web.Iot.Shared.Message;
-using Web.Iot.Shared.Setting;
-using Web.Iot.Shared.Setting.Models;
 
 namespace Web.Iot.SettingService.Contracts
 {
@@ -191,6 +190,15 @@ namespace Web.Iot.SettingService.Contracts
                 {
                     return Task.FromResult(new GetSettingResponse(false, default));
                 }
+            }
+        }
+
+        Task<GetSettingCountResponse> IProcessor<GetSettingCountRequest, GetSettingCountResponse>.Run(GetSettingCountRequest Request)
+        {
+            using (var scope = m_provider.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetService<SettingServiceContext>();
+                return Task.FromResult(new GetSettingCountResponse(true, context.Settings.Count()));
             }
         }
     }

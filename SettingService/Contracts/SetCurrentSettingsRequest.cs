@@ -4,8 +4,8 @@
     Isaac Walker
 ****************************************************/
 
+using Web.Iot.Models.Setting;
 using Web.Iot.Shared.Message;
-using Web.Iot.Shared.Setting.Models;
 
 namespace Web.Iot.SettingService.Contracts
 {
