@@ -104,5 +104,13 @@ namespace Web.Iot.DeviceService.Controllers
 
             return Ok(response.Count);
         }
+
+
+        [HttpGet]
+        [Route("")]
+        public IActionResult Ping()
+        {
+            return Ok();
+        }
     }
 }

@@ -6,6 +6,7 @@
 
 
 using Newtonsoft.Json;
+using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -16,45 +17,37 @@ namespace Web.Iot.Client.SettingService
     /// <summary>
     /// Client for Setting Service
     /// </summary>
-    public class SettingServiceClient : ISettingServiceClient
+    public class SettingServiceClient : ServiceClientBase, ISettingServiceClient
     {
         /// <summary>
-        /// HttpClient Factory
-        /// </summary>
-        private readonly IHttpClientFactory m_httpClientFactory;
-
-
-        /// <summary>
-        /// Base URl for setting service
-        /// </summary>
-        private static readonly string s_baseUrl = "http://www.setting.iotrelationshipfyp.com";
-
-
-        /// <summary>
         /// Get Setting Count URL
+        /// 
         /// </summary>
-        private static readonly string s_getSettingCountUrl = s_baseUrl + "/api/setting/count";
+        private readonly Uri m_getSettingCountUrl;
 
 
         /// <summary>
         /// URL for Current Configuration
         /// </summary>
-        private static readonly string s_currentConfigUrl = s_baseUrl + "/api/setting/current";
+        private readonly Uri m_currentConfigUrl;
 
 
         /// <summary>
         /// Uri for settings service
         /// </summary>
-        private static readonly string s_settingUri = s_baseUrl + "/api/setting";
+        private readonly Uri m_settingUri;
 
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="httpClientFactory"></param>
-        public SettingServiceClient(IHttpClientFactory httpClientFactory)
+        public SettingServiceClient(IHttpClientFactory httpClientFactory) : base(httpClientFactory,
+            new Uri("http://www.setting.iotrelationshipfyp.com"))
         {
-            m_httpClientFactory = httpClientFactory;
+            m_getSettingCountUrl = new Uri(m_baseURI.AbsoluteUri + "api/setting/count");
+            m_currentConfigUrl = new Uri(m_baseURI.AbsoluteUri + "api/setting/current");
+            m_settingUri = new Uri(m_baseURI.AbsoluteUri + "api/setting");
         }
 
 
@@ -66,8 +59,9 @@ namespace Web.Iot.Client.SettingService
         {
             using (HttpClient client = m_httpClientFactory.CreateClient())
             {
-                var response = await client.GetAsync(s_getSettingCountUrl);
-                bool parse_success = int.TryParse(await response.Content.ReadAsStringAsync(), out int result);
+                var response = await client.GetAsync(m_getSettingCountUrl);
+                string content = await response.Content.ReadAsStringAsync();
+                bool parse_success = int.TryParse(content, out int result);
 
                 if (response.IsSuccessStatusCode && parse_success)
                 {
@@ -88,7 +82,7 @@ namespace Web.Iot.Client.SettingService
         {
             using (HttpClient client = m_httpClientFactory.CreateClient())
             {
-                string queryUrl = s_settingUri + string.Format("?id={0}", id);
+                string queryUrl = m_settingUri + string.Format("?id={0}", id);
                 var response = await client.GetAsync(queryUrl);
 
                 if (response.IsSuccessStatusCode)
@@ -110,7 +104,7 @@ namespace Web.Iot.Client.SettingService
         {
             using (HttpClient client = m_httpClientFactory.CreateClient())
             {
-                var response = await client.GetAsync(s_currentConfigUrl);
+                var response = await client.GetAsync(m_currentConfigUrl);
 
                 return JsonConvert.DeserializeObject<ConfigurationModel>(await response.Content.ReadAsStringAsync());
             }
@@ -128,7 +122,7 @@ namespace Web.Iot.Client.SettingService
             {
                 HttpContent content = new StringContent(JsonConvert.SerializeObject(model));
                 content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-                var response = await client.PostAsync(s_currentConfigUrl, content);
+                var response = await client.PostAsync(m_currentConfigUrl, content);
 
                 var v = await response.Content.ReadAsStringAsync();
                 return int.Parse(v);

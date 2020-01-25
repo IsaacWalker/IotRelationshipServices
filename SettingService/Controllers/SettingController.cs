@@ -122,7 +122,7 @@ namespace Web.Iot.SettingService.Controllers
 
 
         [HttpGet]
-        [Route("api/[controller]/number")]
+        [Route("api/[controller]/count")]
         public async Task<IActionResult> GetNumberOfSettings()
         {
             GetSettingCountResponse response = await m_processor.Run(new GetSettingCountRequest());
@@ -150,5 +150,11 @@ namespace Web.Iot.SettingService.Controllers
         }
 
 
+        [HttpGet]
+        [Route("")]
+        public IActionResult Ping()
+        {
+            return Ok();
+        }
     }
 }

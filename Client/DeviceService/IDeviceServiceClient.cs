@@ -12,7 +12,7 @@ namespace Web.Iot.Client.DeviceService
     /// <summary>
     /// Client for the Device Service
     /// </summary>
-    public interface IDeviceServiceClient
+    public interface IDeviceServiceClient : IServiceClient
     {
         /// <summary>
         /// Gets the count of the device

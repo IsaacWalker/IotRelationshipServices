@@ -5,6 +5,7 @@
 ****************************************************/
 
 
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -13,33 +14,20 @@ namespace Web.Iot.Client.ScanService
     /// <summary>
     /// Client for the Scan Service
     /// </summary>
-    public class ScanServiceClient : IScanServiceClient
+    public class ScanServiceClient : ServiceClientBase, IScanServiceClient
     {
-        /// <summary>
-        /// HttpClient Factory
-        /// </summary>
-        private readonly IHttpClientFactory m_httpClientFactory;
 
-
-        /// <summary>
-        /// Scan Service Base Url
-        /// </summary>
-        private static readonly string s_baseUrl = "http://www.scan.iotrelationshipfyp.com";
-
-
-        /// <summary>
-        /// Get Scan Count Url
-        /// </summary>
-        private static readonly string s_getScanCountUrl = s_baseUrl + "/api/scan/count";
+        protected readonly Uri m_getScanCountUri;
 
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="httpClientFactory"></param>
-        public ScanServiceClient(IHttpClientFactory httpClientFactory)
+        public ScanServiceClient(IHttpClientFactory httpClientFactory) : base(httpClientFactory,
+            new Uri("http://www.scan.iotrelationshipfyp.com"))
         {
-            m_httpClientFactory = httpClientFactory;
+            m_getScanCountUri = new Uri(m_baseURI.AbsoluteUri + "api/scan/count");
         }
 
 
@@ -51,7 +39,7 @@ namespace Web.Iot.Client.ScanService
         {
             using (HttpClient client = m_httpClientFactory.CreateClient())
             {
-                var response = await client.GetAsync(s_getScanCountUrl);
+                var response = await client.GetAsync(m_getScanCountUri);
                 bool parse_success = int.TryParse(await response.Content.ReadAsStringAsync(), out int result);
 
                 if (response.IsSuccessStatusCode && parse_success)

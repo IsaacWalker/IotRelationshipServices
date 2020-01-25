@@ -13,7 +13,7 @@ namespace Web.Iot.Client.SettingService
     /// <summary>
     /// Client for the Setting Service
     /// </summary>
-    public interface ISettingServiceClient
+    public interface ISettingServiceClient : IServiceClient
     {
         /// <summary>
         /// Gets the count of the settings

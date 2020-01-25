@@ -64,5 +64,13 @@ namespace Web.Iot.ScanService.Controllers
 
             return Ok();
         }
+
+
+        [HttpGet]
+        [Route("")]
+        public IActionResult Ping()
+        {
+            return Ok();
+        }
     }
 }

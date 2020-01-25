@@ -5,6 +5,7 @@
 ****************************************************/
 
 
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -13,33 +14,22 @@ namespace Web.Iot.Client.DeviceService
     /// <summary>
     /// Client for the Device Service
     /// </summary>
-    public class DeviceServiceClient : IDeviceServiceClient
+    public class DeviceServiceClient : ServiceClientBase, IDeviceServiceClient
     {
-        /// <summary>
-        /// HttpClient Factory
-        /// </summary>
-        private readonly IHttpClientFactory m_httpClientFactory;
-
-
-        /// <summary>
-        /// Device Service Root Url
-        /// </summary>
-        private static readonly string s_deviceServiceRoot = "http://device.iotrelationshipfyp.com";
-
-
         /// <summary>
         /// Get Device Count Url
         /// </summary>
-        private static readonly string s_getDeviceCountUrl = s_deviceServiceRoot + "/api/device/count";
+        protected readonly Uri m_getDeviceCountUrl;
 
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="httpClientFactory"></param>
-        public DeviceServiceClient(IHttpClientFactory httpClientFactory)
+        public DeviceServiceClient(IHttpClientFactory httpClientFactory) : base(httpClientFactory,
+            new Uri("http://device.iotrelationshipfyp.com"))
         {
-            m_httpClientFactory = httpClientFactory;
+            m_getDeviceCountUrl = new Uri(m_baseURI.AbsoluteUri + "api/device/count");
         }
 
 
@@ -47,11 +37,11 @@ namespace Web.Iot.Client.DeviceService
         /// Gets the count of devices
         /// </summary>
         /// <returns></returns>
-        public async Task<int> GetDevicesCountAsync()
+        public async Task<int> GetDeviceCountAsync()
         {
             using (HttpClient client = m_httpClientFactory.CreateClient())
             {
-                var response = await client.GetAsync(s_getDeviceCountUrl);
+                var response = await client.GetAsync(m_getDeviceCountUrl);
                 bool parse_success = int.TryParse(await response.Content.ReadAsStringAsync(), out int result);
                 
                 if(response.IsSuccessStatusCode && parse_success)

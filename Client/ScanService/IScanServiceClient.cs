@@ -12,7 +12,7 @@ namespace Web.Iot.Client.ScanService
     /// <summary>
     /// Client for the Scan Service
     /// </summary>
-    public interface IScanServiceClient
+    public interface IScanServiceClient : IServiceClient
     {
         /// <summary>
         /// Gets count of scans
