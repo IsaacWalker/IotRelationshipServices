@@ -23,7 +23,7 @@ namespace Web.Iot.ScanService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IMongoCollection<Scan>>(GetScanCollection());
-            services.AddSingleton<IProcessor<LogScanRequest, LogScanResponse>, LogScanAsync>();
+            services.AddSingleton<IScanProcessor, LogScanAsync>();
             services.AddMvc().AddMvcOptions( O => O.EnableEndpointRouting = false);
             services.Configure<IISServerOptions>(options =>
             {

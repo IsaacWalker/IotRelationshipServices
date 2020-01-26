@@ -27,7 +27,7 @@ namespace Web.Iot.Client.DeviceService
         /// </summary>
         /// <param name="httpClientFactory"></param>
         public DeviceServiceClient(IHttpClientFactory httpClientFactory) : base(httpClientFactory,
-            new Uri("http://device.iotrelationshipfyp.com"))
+            new Uri("http://www.device.iotrelationshipfyp.com"))
         {
             m_getDeviceCountUrl = new Uri(m_baseURI.AbsoluteUri + "api/device/count");
         }

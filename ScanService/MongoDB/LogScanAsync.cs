@@ -17,8 +17,7 @@ namespace Web.Iot.ScanService.MongoDB
     /// <summary>
     /// Log Scan Processor
     /// </summary>
-    public sealed class LogScanAsync : IProcessor
-        <LogScanRequest, LogScanResponse>
+    public sealed class LogScanAsync : IScanProcessor
     {
         private readonly ILogger<LogScanAsync> m_logger;
 
@@ -60,6 +59,24 @@ namespace Web.Iot.ScanService.MongoDB
             }
 
             return Response;         
+        }
+
+        public async Task<GetScanCountResponse> Run(GetScanCountRequest Request)
+        {
+
+            GetScanCountResponse Response = null;
+
+           try
+            {
+                long Count = await m_scanCollection.CountDocumentsAsync(FilterDefinition<Scan>.Empty);
+                Response = new GetScanCountResponse(true, Count);
+            }
+            catch(Exception e)
+            {
+                Response = new GetScanCountResponse(false, -1);
+            }
+
+            return Response;        
         }
     }
 }

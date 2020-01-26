@@ -61,10 +61,16 @@ namespace Web.Iot.PortalService.Controllers
             MonitorModel model = new MonitorModel();
 
             bool settingPing = await m_settingClient.PingAsync();
-
             model.SettingServiceHealth = (settingPing) ? ServiceHealth.Healthy : ServiceHealth.UnHealthy;
-
             model.NumberOfSettings = await m_settingClient.GetSettingCountAsync();
+
+            bool devicePing = await m_deviceClient.PingAsync();
+            model.DeviceServiceHealth = (devicePing) ? ServiceHealth.Healthy : ServiceHealth.UnHealthy;
+            model.NumberOfDevices = await m_deviceClient.GetDeviceCountAsync();
+
+            bool scanPing = await m_scanClient.PingAsync();
+            model.ScanServiceHealth = (scanPing) ? ServiceHealth.Healthy : ServiceHealth.UnHealthy;
+            model.NumberOfScans = await m_scanClient.GetScanCountAsync();
 
             return View(model);
         }

@@ -29,8 +29,49 @@
             </div>
         }
         <h3 class="h3">Scan Service</h3>
+        <div class="container row">
+            <p class="font-weight-bold">Service Health:  </p>
+            <br />
+            <p class="font-weight-normal">@Model.ScanServiceHealth</p>
+        </div>
+        @if (Model.IsScanServiceHealthy)
+        {
+            <div class="container row">
+                <p class="font-weight-bold">Device Count:  </p>
+                <br />
+                <p class="font-weight-normal">@Model.NumberOfScans</p>
+            </div>
+        }
+        else
+        {
+            <div class="container row">
+                <p class="font-weight-bold">Service Health:  </p>
+                <br />
+                <p class="font-weight-normal">@Model.ScanServiceHealth</p>
+            </div>
+        }
 
         <h3 class="h3">Device Service</h3>
-
+        <div class="container row">
+            <p class="font-weight-bold">Service Health:  </p>
+            <br />
+            <p class="font-weight-normal">@Model.DeviceServiceHealth</p>
+        </div>
+        @if (Model.IsDeviceServiceeHealthy)
+        {
+            <div class="container row">
+                <p class="font-weight-bold">Device Count:  </p>
+                <br />
+                <p class="font-weight-normal">@Model.NumberOfDevices</p>
+            </div>
+        }
+        else
+        {
+            <div class="container row">
+                <p class="font-weight-bold">Service Health:  </p>
+                <br />
+                <p class="font-weight-normal">@Model.SettingServiceHealth</p>
+            </div>
+        }
     </div>
 

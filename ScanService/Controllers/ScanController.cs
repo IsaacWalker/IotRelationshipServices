@@ -16,13 +16,12 @@ using System.Collections.Generic;
 
 namespace Web.Iot.ScanService.Controllers
 {
-    [Route("api/[controller]")]
     public class ScanController : Controller
     {
         private readonly ILogger m_logger;
 
 
-        private readonly IProcessor<LogScanRequest, LogScanResponse> m_processor;
+        private readonly IScanProcessor m_processor;
 
         
         /// <summary>
@@ -30,7 +29,7 @@ namespace Web.Iot.ScanService.Controllers
         /// </summary>
         /// <param name="processor"></param>
         /// <param name="logger"></param>
-        public ScanController(IProcessor<LogScanRequest, LogScanResponse> processor, ILogger<ScanController> logger)
+        public ScanController(IScanProcessor processor, ILogger<ScanController> logger)
         {
             m_processor = processor;
             m_logger = logger;
@@ -42,6 +41,7 @@ namespace Web.Iot.ScanService.Controllers
         /// </summary>
         /// <param name="Scan"></param>
         [HttpPost]
+        [Route("api/[controller]")]
         public async Task<IActionResult> Post([FromBody] ScanBatchModel ScanBatch)
         {
             if(ScanBatch == null || ScanBatch.Scans == null || ScanBatch.Scans.Count == 0)
@@ -63,6 +63,20 @@ namespace Web.Iot.ScanService.Controllers
             }
 
             return Ok();
+        }
+
+
+        [Route("api/[controller]/count")]
+        public async Task<IActionResult> Count()
+        {
+            var response = await m_processor.Run(new GetScanCountRequest());
+            
+            if(!response.Success)
+            {
+                return BadRequest();
+            }
+
+            return Ok(response.Count);
         }
 
 
