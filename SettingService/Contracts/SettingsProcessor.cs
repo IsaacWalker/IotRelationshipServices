@@ -7,6 +7,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Web.Iot.Models.Setting;
@@ -83,18 +84,18 @@ namespace Web.Iot.SettingService.Contracts
         /// <returns></returns>
         public Task<SetCurrentSettingsResponse> Run(SetCurrentSettingsRequest Request)
         {
-            var response = new SetCurrentSettingsResponse(true, AddSettingsModel(Request.Configuration, true));         
+            var response = new SetCurrentSettingsResponse(true, AddSettingsModel(Request.Configuration.Settings, true));         
             return Task.FromResult(response);
         }
 
 
-        private int AddSettingsModel(ConfigurationModel configurationModel, bool SetToCurrent)
+        private int AddSettingsModel(List<SettingModel> settingsModels, bool SetToCurrent)
         {
             using (var scope = m_provider.CreateScope())
             {
                 var context = scope.ServiceProvider.GetService<SettingServiceContext>();
 
-                var settings = configurationModel.Settings
+                var settings = settingsModels
                     .Select(S => new Setting { Name = S.Name, Type = S.Type, Value = S.Value })
                     .ToList();
 
@@ -146,11 +147,11 @@ namespace Web.Iot.SettingService.Contracts
                 
                 if(SetToCurrent)
                 {
-                    configurationModel.Id = Configuration.ConfigurationId;
-                    _currentConfigurationModel = configurationModel;
+                    _currentConfigurationModel.Id = Configuration.ConfigurationId;
+                    _currentConfigurationModel.Settings = settingsModels;
                 }
 
-                return configurationModel.Id;
+                return Configuration.ConfigurationId;
             }
         }
 
@@ -200,6 +201,11 @@ namespace Web.Iot.SettingService.Contracts
                 var context = scope.ServiceProvider.GetService<SettingServiceContext>();
                 return Task.FromResult(new GetSettingCountResponse(true, context.Settings.Count()));
             }
+        }
+
+        public Task<RegisterSettingResponse> Run(RegisterSettingRequest Request)
+        {
+            return Task.FromResult(new RegisterSettingResponse(AddSettingsModel(Request.Settings, false), true));
         }
     }
 }

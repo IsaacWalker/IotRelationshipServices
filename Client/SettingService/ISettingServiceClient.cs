@@ -5,6 +5,7 @@
 ****************************************************/
 
 
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Web.Iot.Models.Setting;
 
@@ -43,5 +44,13 @@ namespace Web.Iot.Client.SettingService
         /// <param name="model"></param>
         /// <returns></returns>
         public Task<int> SetCurrentConfigurationAsync(ConfigurationModel model);
+
+
+        /// <summary>
+        /// Registers a configuration from the settings provided
+        /// </summary>
+        /// <param name="settingModels"></param>
+        /// <returns></returns>
+        public Task<int> RegisterConfigurationAsync(List<SettingModel> settingModels);
     }
 }

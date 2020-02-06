@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
+using Web.Iot.Models.Setting;
 
 namespace Web.Iot.ScanService.MongoDB.Data
 {
@@ -23,6 +24,20 @@ namespace Web.Iot.ScanService.MongoDB.Data
         [BsonId]
         [JsonIgnore]
         public ObjectId _id { get; set; }
+
+
+        /// <summary>
+        /// The configuration Id
+        /// </summary>
+        [BsonElement("globalConfigurationId")]
+        public int GlobalConfigurationId { get; set; }
+
+
+        /// <summary>
+        /// The local configuration, if it was sent
+        /// </summary>
+        [BsonIgnore]
+        public List<SettingModel> LocalConfiguration { get; set; }
 
 
         /// <summary>

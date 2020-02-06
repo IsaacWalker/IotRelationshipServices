@@ -15,7 +15,8 @@ namespace Web.Iot.SettingService.Contracts
         IProcessor<GetSettingCountRequest, GetSettingCountResponse>,
         IProcessor<Request, GetCurrentSettingsResponse>,
         IProcessor<SetCurrentSettingsRequest, SetCurrentSettingsResponse>,
-        IProcessor<GetSettingRequest, GetSettingResponse>
+        IProcessor<GetSettingRequest, GetSettingResponse>,
+        IProcessor<RegisterSettingRequest, RegisterSettingResponse>
     {
     }
 }

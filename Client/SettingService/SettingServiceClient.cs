@@ -7,6 +7,7 @@
 
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -123,6 +124,25 @@ namespace Web.Iot.Client.SettingService
                 HttpContent content = new StringContent(JsonConvert.SerializeObject(model));
                 content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
                 var response = await client.PostAsync(m_currentConfigUrl, content);
+
+                var v = await response.Content.ReadAsStringAsync();
+                return int.Parse(v);
+            }
+        }
+
+
+        /// <summary>
+        /// Posts a setting to the /setting endpoint, creating it if it doesn't exist already and returns the id
+        /// </summary>
+        /// <param name="settingModels"></param>
+        /// <returns></returns>
+        public async Task<int> RegisterConfigurationAsync(List<SettingModel> settingModels)
+        {
+            using(HttpClient client = m_httpClientFactory.CreateClient())
+            {
+                HttpContent content = new StringContent(JsonConvert.SerializeObject(settingModels));
+                content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+                var response = await client.PostAsync(m_settingUri, content);
 
                 var v = await response.Content.ReadAsStringAsync();
                 return int.Parse(v);

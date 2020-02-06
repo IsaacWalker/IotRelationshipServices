@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 using Web.Iot.Shared.Message;
 using Web.Iot.ScanService.MongoDB.Data;
+using Web.Iot.Client.SettingService;
 
 namespace Web.Iot.ScanService.MongoDB
 {
@@ -24,14 +25,17 @@ namespace Web.Iot.ScanService.MongoDB
 
         private readonly IMongoCollection<Scan> m_scanCollection;
 
+
+        private readonly ISettingServiceClient m_settingServiceClient;
       
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name=""></param>
-        public LogScanAsync(IMongoCollection<Scan> scanCollection, ILogger<LogScanAsync> logger)
+        public LogScanAsync(IMongoCollection<Scan> scanCollection, ILogger<LogScanAsync> logger, ISettingServiceClient settingServiceClient)
         {
             m_scanCollection = scanCollection;
+            m_settingServiceClient = settingServiceClient;
             m_logger = logger;
         }
 
@@ -46,6 +50,16 @@ namespace Web.Iot.ScanService.MongoDB
             m_logger.LogInformation(LogEventId.LogScanStart, string.Format("Sending {0} Scans to MongoDB.", Request.Scans.Count));
 
             LogScanResponse Response = null;
+
+            foreach(Scan scan in Request.Scans)
+            {
+                /// Was a local configuraiton used in this scan?
+                if (scan.LocalConfiguration != null && scan.LocalConfiguration.Count != 0)
+                {
+                    // if so, then register that configuration and set the global Id to it
+                    scan.GlobalConfigurationId = await m_settingServiceClient.RegisterConfigurationAsync(scan.LocalConfiguration);
+                }
+            }
 
             try
             {
