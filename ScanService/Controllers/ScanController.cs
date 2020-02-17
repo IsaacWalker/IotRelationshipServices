@@ -44,6 +44,7 @@ namespace Web.Iot.ScanService.Controllers
         [Route("api/[controller]")]
         public async Task<IActionResult> Post([FromBody] ScanBatchModel ScanBatch)
         {
+
             if(ScanBatch == null || ScanBatch.Scans == null || ScanBatch.Scans.Count == 0)
             {
                 return BadRequest();

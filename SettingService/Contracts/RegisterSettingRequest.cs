@@ -9,6 +9,12 @@ namespace Web.Iot.SettingService.Contracts
 {
     public class RegisterSettingRequest : Request
     {
-        public List<SettingModel> Settings { get; set; }
+        public readonly List<SettingModel> Settings;
+
+
+        public RegisterSettingRequest(List<SettingModel> Settings)
+        {
+            this.Settings = Settings;
+        }
     }
 }

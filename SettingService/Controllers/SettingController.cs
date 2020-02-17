@@ -114,10 +114,13 @@ namespace Web.Iot.SettingService.Controllers
         /// <returns>The Id of the entry</returns>
         [HttpPost]
         [Route("api/[controller]")]
-        public IActionResult Post(SettingModel configurationModel)
+        public async Task<IActionResult> Post(List<SettingModel> configurationModel)
         {
-            // TODO
-            return Ok(configurationModel);
+            RegisterSettingRequest request = new RegisterSettingRequest(configurationModel);
+
+            var response = await m_processor.Run(request);
+
+            return Ok(response.Id);
         }
 
 

@@ -37,7 +37,7 @@ namespace Web.Iot.ScanService.MongoDB.Data
         /// The local configuration, if it was sent
         /// </summary>
         [BsonIgnore]
-        public List<SettingModel> LocalConfiguration { get; set; }
+        public List<SettingModel> Configuration { get; set; }
 
 
         /// <summary>

@@ -32,7 +32,7 @@ namespace Web.Iot.ScanService
                 logging.ClearProviders();
                 logging.AddEventLog((settings => 
                 {
-                    settings.LogName = "Application";
+                    settings.LogName = "ScanService";
                     settings.SourceName = "ScanService";
                 }));
             });

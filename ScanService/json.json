@@ -1,0 +1,1747 @@
+{
+  "deviceId": 0,
+  "scans": [
+    {
+      "globalConfigurationId": 0,
+      "configuration": [
+        {
+          "name": "PusherSleepTimeSetting",
+          "type": "System.Integer",
+          "value": "30000"
+        },
+        {
+          "name": "ScanningTimeSetting",
+          "type": "System.Integer",
+          "value": "3000"
+        },
+        {
+          "name": "MeetingFrequency",
+          "type": "System.Integer",
+          "value": "3"
+        },
+        {
+          "name": "ScannerSleepTime",
+          "type": "System.Integer",
+          "value": "1000"
+        },
+        {
+          "name": "PusherBatchSizeSetting",
+          "type": "System.Integer",
+          "value": "5"
+        },
+        {
+          "name": "SettingSleepTime",
+          "type": "System.Integer",
+          "value": "20000"
+        }
+      ],
+      "timestamp": 1581943837289,
+      "bluetoothDevices": [
+        {
+          "address": "48:AC:88:39:1F:D4",
+          "timestamp": 1581943837374,
+          "type": "Type"
+        },
+        {
+          "address": "4B:2B:EB:FF:9F:00",
+          "timestamp": 1581943837398,
+          "type": "Type"
+        },
+        {
+          "address": "5A:C8:FE:4A:DF:10",
+          "timestamp": 1581943837414,
+          "type": "Type"
+        },
+        {
+          "address": "5E:1A:CE:8C:20:29",
+          "timestamp": 1581943837500,
+          "type": "Type"
+        },
+        {
+          "address": "47:15:2B:FC:63:72",
+          "timestamp": 1581943837508,
+          "type": "Type"
+        },
+        {
+          "address": "90:F0:52:75:7A:75",
+          "name": "Shengyuan",
+          "timestamp": 1581943837847,
+          "type": "Type"
+        },
+        {
+          "address": "C8:FF:28:47:7B:E8",
+          "name": "DTD14",
+          "timestamp": 1581943838053,
+          "type": "Type"
+        },
+        {
+          "address": "14:BB:6E:CE:DA:C4",
+          "name": "[TV] Samsung 5 Series (32)",
+          "timestamp": 1581943838704,
+          "type": "Type"
+        },
+        {
+          "address": "C8:21:58:84:DF:27",
+          "name": "DESKTOP-0PMS980",
+          "timestamp": 1581943838891,
+          "type": "Type"
+        },
+        {
+          "address": "14:BB:6E:CE:DA:C4",
+          "name": "[TV] Samsung 5 Series (32)",
+          "timestamp": 1581943840035,
+          "type": "Type"
+        },
+        {
+          "address": "EC:8C:9A:DF:C8:44",
+          "name": "HUAWEI P20 lite",
+          "timestamp": 1581943840272,
+          "type": "Type"
+        }
+      ],
+      "kinematics": {
+        "accelerationX": -0.6069488525390625,
+        "accelerationY": 7.766387939453125,
+        "accelerationZ": 6.0836334228515625,
+        "altitude": 61.89999771118164,
+        "azimuth": 0.0,
+        "latitude": 53.3435398,
+        "longitude": -6.250225,
+        "pitch": 0.0,
+        "roll": 0.0,
+        "timestamp": 1581943817196
+      },
+      "wifiDevices": [
+        {
+          "bssid": "e0:5f:b9:36:a7:02",
+          "ssid": "SCSSopen",
+          "timestamp": 217387485098,
+          "capabilities": "[ESS]",
+          "level": -41,
+          "operatorFriendlyName": "",
+          "venueName": ""
+        },
+        {
+          "bssid": "84:b8:02:1c:6e:02",
+          "ssid": "TCDguest",
+          "timestamp": 217388123648,
+          "capabilities": "[ESS]",
+          "level": -43,
+          "operatorFriendlyName": "",
+          "venueName": ""
+        },
+        {
+          "bssid": "84:b8:02:1c:6e:01",
+          "ssid": "TCDwifi",
+          "timestamp": 217388124012,
+          "capabilities": "[WPA2-EAP-CCMP][ESS]",
+          "level": -43,
+          "operatorFriendlyName": "",
+          "venueName": ""
+        },
+        {
+          "bssid": "84:b8:02:1c:6e:04",
+          "ssid": "eduroam",
+          "timestamp": 217388123401,
+          "capabilities": "[WPA2-EAP-CCMP][WPA-EAP-TKIP][ESS]",
+          "level": -46,
+          "operatorFriendlyName": "",
+          "venueName": ""
+        },
+        {
+          "bssid": "e0:5f:b9:0f:4d:c0",
+          "ssid": "COMPSCIwireless",
+          "timestamp": 217389142463,
+          "capabilities": "[WPA2-EAP-CCMP][WPA-EAP-TKIP][ESS]",
+          "level": -47,
+          "operatorFriendlyName": "",
+          "venueName": ""
+        },
+        {
+          "bssid": "e0:5f:b9:0f:4d:c2",
+          "ssid": "SCSSopen",
+          "timestamp": 217389143457,
+          "capabilities": "[ESS]",
+          "level": -47,
+          "operatorFriendlyName": "",
+          "venueName": ""
+        },
+        {
+          "bssid": "e0:5f:b9:0f:4d:c1",
+          "ssid": "CSopen",
+          "timestamp": 217389146940,
+          "capabilities": "[ESS]",
+          "level": -47,
+          "operatorFriendlyName": "",
+          "venueName": ""
+        },
+        {
+          "bssid": "84:b8:02:1c:6e:0b",
+          "ssid": "eduroam",
+          "timestamp": 217389268190,
+          "capabilities": "[WPA2-EAP-CCMP][WPA-EAP-TKIP][ESS]",
+          "level": -47,
+          "operatorFriendlyName": "",
+          "venueName": ""
+        },
+        {
+          "bssid": "84:b8:02:1c:6e:0e",
+          "ssid": "TCDwifi",
+          "timestamp": 217392679832,
+          "capabilities": "[WPA2-EAP-CCMP][ESS]",
+          "level": -48,
+          "operatorFriendlyName": "",
+          "venueName": ""
+        },
+        {
+          "bssid": "84:b8:02:1c:6e:0d",
+          "ssid": "TCDguest",
+          "timestamp": 217389268399,
+          "capabilities": "[ESS]",
+          "level": -48,
+          "operatorFriendlyName": "",
+          "venueName": ""
+        },
+        {
+          "bssid": "54:a2:74:d3:d5:51",
+          "ssid": "TCDwifi",
+          "timestamp": 217388764403,
+          "capabilities": "[WPA2-EAP-CCMP][ESS]",
+          "level": -68,
+          "operatorFriendlyName": "",
+          "venueName": ""
+        },
+        {
+          "bssid": "54:a2:74:d3:d5:54",
+          "ssid": "eduroam",
+          "timestamp": 217388764071,
+          "capabilities": "[WPA2-EAP-CCMP][WPA-EAP-TKIP][ESS]",
+          "level": -68,
+          "operatorFriendlyName": "",
+          "venueName": ""
+        },
+        {
+          "bssid": "54:a2:74:d3:d5:52",
+          "ssid": "TCDguest",
+          "timestamp": 217388764274,
+          "capabilities": "[ESS]",
+          "level": -68,
+          "operatorFriendlyName": "",
+          "venueName": ""
+        },
+        {
+          "bssid": "e0:5f:b9:0f:4e:50",
+          "ssid": "COMPSCIwireless",
+          "timestamp": 217389210142,
+          "capabilities": "[WPA2-EAP-CCMP][WPA-EAP-TKIP][ESS]",
+          "level": -69,
+          "\"operatorFrie": null,
+          "ndlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"e0": "5f"
+          null,
+          : "b9"
+          null,
+          : "0f"
+          null,
+          : "4e"
+          null,
+          : 52
+          "\",\"ssid\":\"SCSSopen\",\"timestamp\":217389209570,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-69,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : "0f"
+          null,
+          : "4e"
+          null,
+          : 51
+          "\",\"ssid\":\"CSopen\",\"timestamp\":217389209845,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-69,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d3"
+          null,
+          : "d5"
+          null,
+          : "5b\",\"ssid\":\"eduroam\",\"timestamp\":217389350731,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-72,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d3"
+          null,
+          : "d5"
+          null,
+          : "5d\",\"ssid\":\"TCDguest\",\"timestamp\":217389351156,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-73,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d3"
+          null,
+          : "d5"
+          null,
+          : "5e\",\"ssid\":\"TCDwifi\",\"timestamp\":217389351326,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "ESS" ]
+          "\",\"level\":-73,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"84",
+          : "b8"
+          null,
+          : "02"
+          null,
+          : "04"
+          null,
+          : null,
+          63: "c2\",\"ssid\":\"TCDguest\",\"timestamp\":217387480896,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-74,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d5"
+          null,
+          : null,
+          62: 54
+          "\",\"ssid\":\"eduroam\",\"timestamp\":217388123232,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-74,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"84",
+          : "b8"
+          null,
+          : "02"
+          null,
+          : "1c"
+          null,
+          : null,
+          68: "1b\",\"ssid\":\"eduroam\",\"timestamp\":217390630868,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-76,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d5"
+          null,
+          : null,
+          62: "5e\",\"ssid\":\"TCDwifi\",\"timestamp\":217390118736,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "ESS" ]
+          "\",\"level\":-77,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d5"
+          null,
+          : null,
+          62: "5b\",\"ssid\":\"eduroam\",\"timestamp\":217390117798,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-78,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d5"
+          null,
+          : null,
+          62: "5d\",\"ssid\":\"TCDguest\",\"timestamp\":217390118588,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-78,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"06",
+          : null,
+          81: null,
+          67: "3d"
+          null,
+          : null,
+          21: 76
+          "\",\"ssid\":\"Harry\",\"timestamp\":217390118164,\"capabilities\":\"",
+          [ "WPA2-PSK-CCMP" ],
+          [ "ESS" ]
+          "\",\"level\":-81,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"58",
+          : null,
+          97: "bd"
+          null,
+          : "bc"
+          null,
+          : "00"
+          null,
+          : "0d\",\"ssid\":\"TCDguest\",\"timestamp\":217391395299,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-81,\"operatorFriendlyName\":\"\",\"venueName\":\"\"}]},{\"globalConfigurationId\":0,\"configuration\":[{\"name\":\"PusherSleepTimeSetting\",\"type\":\"System.Integer\",\"value\":\"30000\"},{\"name\":\"ScanningTimeSetting\",\"type\":\"System.Integer\",\"value\":\"3000\"},{\"name\":\"MeetingFrequency\",\"type\":\"System.Integer\",\"value\":\"3\"},{\"name\":\"ScannerSleepTime\",\"type\":\"System.Integer\",\"value\":\"1000\"},{\"name\":\"PusherBatchSizeSetting\",\"type\":\"System.Integer\",\"value\":\"5\"},{\"name\":\"SettingSleepTime\",\"type\":\"System.Integer\",\"value\":\"20000\"}],\"timestamp\":1581943830540,\"bluetoothDevices\":[{\"address\":\"47",
+          : null,
+          15: "2B"
+          null,
+          : "FC"
+          null,
+          : null,
+          63: 72
+          "\",\"timestamp\":1581943830592,\"type\":\"Type\"},{\"address\":\"5A",
+          : "C8"
+          null,
+          : "FE"
+          null,
+          : "4A"
+          null,
+          : "DF"
+          null,
+          : 10
+          "\",\"timestamp\":1581943830641,\"type\":\"Type\"},{\"address\":\"5D",
+          : "BC"
+          null,
+          : null,
+          92: "2C"
+          null,
+          : null,
+          52: "B8\",\"timestamp\":1581943830669,\"type\":\"Type\"},{\"address\":\"73"
+          null,
+          : null,
+          29: null,
+          86: "FD"
+          null,
+          : null,
+          87: "0D\",\"timestamp\":1581943830677,\"type\":\"Type\"},{\"address\":\"60"
+          null,
+          : null,
+          30: "D4"
+          null,
+          : null,
+          61: null,
+          61: "9F\",\"timestamp\":1581943830690,\"type\":\"Type\"},{\"address\":\"5B"
+          null,
+          : null,
+          18: "C0"
+          null,
+          : "BA"
+          null,
+          : null,
+          50: "CD\",\"timestamp\":1581943830706,\"type\":\"Type\"},{\"address\":\"4D"
+          null,
+          : "A2"
+          null,
+          : null,
+          38: "8A"
+          null,
+          : null,
+          20: 73
+          "\",\"timestamp\":1581943830748,\"type\":\"Type\"},{\"address\":\"14",
+          : "BB"
+          null,
+          : "6E"
+          null,
+          : "CE"
+          null,
+          : "DA"
+          null,
+          : "C4\",\"name\":\"",
+          [ "TV" ],
+          "Samsung" 5,
+          "Series": null,
+          "(32)\",\"timestamp\":1581943830771,\"type\":\"Type\"},{\"address\":\"68": "C2"
+          null,
+          : "9E"
+          null,
+          : null,
+          25: null,
+          42: 90
+          "\",\"timestamp\":1581943830782,\"type\":\"Type\"},{\"address\":\"5F",
+          : null,
+          67: "A6"
+          null,
+          : null,
+          89: null,
+          72: "3B\",\"timestamp\":1581943830827,\"type\":\"Type\"},{\"address\":\"48"
+          null,
+          : "AC"
+          null,
+          : null,
+          88: null,
+          39: "1F"
+          null,
+          : "D4\",\"timestamp\":1581943830856,\"type\":\"Type\"},{\"address\":\"C8"
+          null,
+          : null,
+          21: null,
+          58: null,
+          84: "DF"
+          null,
+          : 27
+          "\",\"name\":\"DESKTOP-0PMS980\",\"timestamp\":1581943831099,\"type\":\"Type\"},{\"address\":\"90",
+          : "F0"
+          null,
+          : null,
+          52: null,
+          75: "7A"
+          null,
+          : 75
+          "\",\"name\":\"Shengyuan\",\"timestamp\":1581943831450,\"type\":\"Type\"},{\"address\":\"C8",
+          : "FF"
+          null,
+          : null,
+          28: null,
+          47: "7B"
+          null,
+          : "E8\",\"name\":\"DTD14\",\"timestamp\":1581943831655,\"type\":\"Type\"},{\"address\":\"14"
+          null,
+          : "BB"
+          null,
+          : "6E"
+          null,
+          : "CE"
+          null,
+          : "DA"
+          null,
+          : "C4\",\"name\":\"",
+          [ "TV" ],
+          "Samsung" 5,
+          "Series": null,
+          "(32)\",\"timestamp\":1581943832078,\"type\":\"Type\"},{\"address\":\"4C": null,
+          80: "B8"
+          null,
+          : null,
+          66: null,
+          99: "6E\",\"timestamp\":1581943832376,\"type\":\"Type\"},{\"address\":\"4B"
+          null,
+          : "2B"
+          null,
+          : "EB"
+          null,
+          : "FF"
+          null,
+          : "9F"
+          null,
+          : "00\",\"timestamp\":1581943832466,\"type\":\"Type\"},{\"address\":\"69"
+          null,
+          : null,
+          97: "DF"
+          null,
+          : "B3"
+          null,
+          : "7A"
+          null,
+          : "DD\",\"timestamp\":1581943832504,\"type\":\"Type\"}],\"kinematics\":{\"accelerationX\":-0.20074462890625,\"accelerationY\":7.6051788330078125,\"accelerationZ\":6.0636749267578125,\"altitude\":61.89999771118164,\"azimuth\":0.0,\"latitude\":53.3435398,\"longitude\":-6.250225,\"pitch\":0.0,\"roll\":0.0,\"timestamp\":1581943817196},\"wifiDevices\":[{\"bssid\":\"e0"
+          null,
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : null,
+          36: "a7"
+          null,
+          : "02\",\"ssid\":\"SCSSopen\",\"timestamp\":217380709082,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-37,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"84",
+          : "b8"
+          null,
+          : "02"
+          null,
+          : "1c"
+          null,
+          : "6e"
+          null,
+          : "04\",\"ssid\":\"eduroam\",\"timestamp\":217381337886,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-43,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : null,
+          36: "a7"
+          null,
+          : "00\",\"ssid\":\"COMPSCIwireless\",\"timestamp\":217380706900,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-44,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : null,
+          36: "a7"
+          null,
+          : "01\",\"ssid\":\"CSopen\",\"timestamp\":217380713183,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-44,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"84",
+          : "b8"
+          null,
+          : "02"
+          null,
+          : "1c"
+          null,
+          : "6e"
+          null,
+          : "0e\",\"ssid\":\"TCDwifi\",\"timestamp\":217386204358,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "ESS" ]
+          "\",\"level\":-45,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"84",
+          : "b8"
+          null,
+          : "02"
+          null,
+          : "1c"
+          null,
+          : "6e"
+          null,
+          : "02\",\"ssid\":\"TCDguest\",\"timestamp\":217381338085,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-45,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"84",
+          : "b8"
+          null,
+          : "02"
+          null,
+          : "1c"
+          null,
+          : "6e"
+          null,
+          : "01\",\"ssid\":\"TCDwifi\",\"timestamp\":217381338731,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "ESS" ]
+          "\",\"level\":-46,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : "0f"
+          null,
+          : "4d"
+          null,
+          : "c0\",\"ssid\":\"COMPSCIwireless\",\"timestamp\":217382386943,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-47,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : "0f"
+          null,
+          : "4d"
+          null,
+          : "c2\",\"ssid\":\"SCSSopen\",\"timestamp\":217382387603,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-47,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : "0f"
+          null,
+          : "4d"
+          null,
+          : "c1\",\"ssid\":\"CSopen\",\"timestamp\":217382388376,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-47,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"84",
+          : "b8"
+          null,
+          : "02"
+          null,
+          : "1c"
+          null,
+          : "6e"
+          null,
+          : "0b\",\"ssid\":\"eduroam\",\"timestamp\":217382518589,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-47,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"84",
+          : "b8"
+          null,
+          : "02"
+          null,
+          : "1c"
+          null,
+          : "6e"
+          null,
+          : "0d\",\"ssid\":\"TCDguest\",\"timestamp\":217382522727,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-47,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : "0f"
+          null,
+          : "4e"
+          null,
+          : 50
+          "\",\"ssid\":\"COMPSCIwireless\",\"timestamp\":217382458503,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-70,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : "0f"
+          null,
+          : "4e"
+          null,
+          : 52
+          "\",\"ssid\":\"SCSSopen\",\"timestamp\":217382459165,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-70,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : "0f"
+          null,
+          : "4e"
+          null,
+          : 51
+          "\",\"ssid\":\"CSopen\",\"timestamp\":217382460492,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-70,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d3"
+          null,
+          : "d5"
+          null,
+          : "5b\",\"ssid\":\"eduroam\",\"timestamp\":217382584282,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-72,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d3"
+          null,
+          : "d5"
+          null,
+          : "5d\",\"ssid\":\"TCDguest\",\"timestamp\":217382584487,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-72,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d3"
+          null,
+          : "d5"
+          null,
+          : "5e\",\"ssid\":\"TCDwifi\",\"timestamp\":217382584629,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "ESS" ]
+          "\",\"level\":-72,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"84",
+          : "b8"
+          null,
+          : "02"
+          null,
+          : "1c"
+          null,
+          : null,
+          68: "1e\",\"ssid\":\"TCDwifi\",\"timestamp\":217383983254,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "ESS" ]
+          "\",\"level\":-74,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d5"
+          null,
+          : null,
+          62: "5d\",\"ssid\":\"TCDguest\",\"timestamp\":217383405433,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-75,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d5"
+          null,
+          : null,
+          62: "5f\",\"ssid\":\"\",\"timestamp\":217383380514,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "ESS" ]
+          "\",\"level\":-76,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d5"
+          null,
+          : null,
+          62: "5e\",\"ssid\":\"TCDwifi\",\"timestamp\":217383387575,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "ESS" ]
+          "\",\"level\":-76,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d5"
+          null,
+          : null,
+          62: "5b\",\"ssid\":\"eduroam\",\"timestamp\":217383385590,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-77,\"ope",
+          : null,
+          "ratorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"58": null,
+          97: "bd"
+          null,
+          : "bc"
+          null,
+          : "00"
+          null,
+          : "0f\",\"ssid\":\"\",\"timestamp\":217384791445,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "ESS" ]
+          "\",\"level\":-79,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"06",
+          : null,
+          81: null,
+          67: "3d"
+          null,
+          : null,
+          21: 76
+          "\",\"ssid\":\"Harry\",\"timestamp\":217383385807,\"capabilities\":\"",
+          [ "WPA2-PSK-CCMP" ],
+          [ "ESS" ]
+          "\",\"level\":-81,\"operatorFriendlyName\":\"\",\"venueName\":\"\"}]},{\"globalConfigurationId\":0,\"configuration\":[{\"name\":\"PusherSleepTimeSetting\",\"type\":\"System.Integer\",\"value\":\"30000\"},{\"name\":\"ScanningTimeSetting\",\"type\":\"System.Integer\",\"value\":\"3000\"},{\"name\":\"MeetingFrequency\",\"type\":\"System.Integer\",\"value\":\"3\"},{\"name\":\"ScannerSleepTime\",\"type\":\"System.Integer\",\"value\":\"1000\"},{\"name\":\"PusherBatchSizeSetting\",\"type\":\"System.Integer\",\"value\":\"5\"},{\"name\":\"SettingSleepTime\",\"type\":\"System.Integer\",\"value\":\"20000\"}],\"timestamp\":1581943823934,\"bluetoothDevices\":[{\"address\":\"71",
+          : "D9"
+          null,
+          : "FE"
+          null,
+          : "9D"
+          null,
+          : "B6"
+          null,
+          : 12
+          "\",\"timestamp\":1581943823986,\"type\":\"Type\"},{\"address\":\"68",
+          : "C2"
+          null,
+          : "9E"
+          null,
+          : null,
+          25: null,
+          42: 90
+          "\",\"timestamp\":1581943823992,\"type\":\"Type\"},{\"address\":\"5F",
+          : null,
+          67: "A6"
+          null,
+          : null,
+          89: null,
+          72: "3B\",\"timestamp\":1581943824028,\"type\":\"Type\"},{\"address\":\"48"
+          null,
+          : "AC"
+          null,
+          : null,
+          88: null,
+          39: "1F"
+          null,
+          : "D4\",\"timestamp\":1581943824060,\"type\":\"Type\"},{\"address\":\"47"
+          null,
+          : null,
+          15: "2B"
+          null,
+          : "FC"
+          null,
+          : null,
+          63: 72
+          "\",\"timestamp\":1581943824124,\"type\":\"Type\"},{\"address\":\"5A",
+          : "C8"
+          null,
+          : "FE"
+          null,
+          : "4A"
+          null,
+          : "DF"
+          null,
+          : 10
+          "\",\"timestamp\":1581943824138,\"type\":\"Type\"},{\"address\":\"5D",
+          : "BC"
+          null,
+          : null,
+          92: "2C"
+          null,
+          : null,
+          52: "B8\",\"timestamp\":1581943824151,\"type\":\"Type\"},{\"address\":\"08"
+          null,
+          : "DF"
+          null,
+          : "1F"
+          null,
+          : "C3"
+          null,
+          : "E8"
+          null,
+          : "E5\",\"name\":\"LE-Bose",
+          "AE2": null,
+          "SoundLink\",\"timestamp\":1581943824158,\"type\":\"Type\"},{\"address\":\"5B": null,
+          18: "C0"
+          null,
+          : "BA"
+          null,
+          : null,
+          50: "CD\",\"timestamp\":1581943824171,\"type\":\"Type\"},{\"address\":\"4B"
+          null,
+          : "2B"
+          null,
+          : "EB"
+          null,
+          : "FF"
+          null,
+          : "9F"
+          null,
+          : "00\",\"timestamp\":1581943824196,\"type\":\"Type\"},{\"address\":\"69"
+          null,
+          : null,
+          97: "DF"
+          null,
+          : "B3"
+          null,
+          : "7A"
+          null,
+          : "DD\",\"timestamp\":1581943824268,\"type\":\"Type\"},{\"address\":\"C8"
+          null,
+          : null,
+          21: null,
+          58: null,
+          84: "DF"
+          null,
+          : 27
+          "\",\"name\":\"DESKTOP-0PMS980\",\"timestamp\":1581943824709,\"type\":\"Type\"},{\"address\":\"C8",
+          : "FF"
+          null,
+          : null,
+          28: null,
+          47: "7B"
+          null,
+          : "E8\",\"name\":\"DTD14\",\"timestamp\":1581943825252,\"type\":\"Type\"},{\"address\":\"4D"
+          null,
+          : "A2"
+          null,
+          : null,
+          38: "8A"
+          null,
+          : null,
+          20: 73
+          "\",\"timestamp\":1581943825875,\"type\":\"Type\"},{\"address\":\"14",
+          : "BB"
+          null,
+          : "6E"
+          null,
+          : "CE"
+          null,
+          : "DA"
+          null,
+          : "C4\",\"name\":\"",
+          [ "TV" ],
+          "Samsung" 5,
+          "Series": null,
+          "(32)\",\"timestamp\":1581943825889,\"type\":\"Type\"},{\"address\":\"14": "BB"
+          null,
+          : "6E"
+          null,
+          : "CE"
+          null,
+          : "DA"
+          null,
+          : "C4\",\"name\":\"",
+          [ "TV" ],
+          "Samsung" 5,
+          "Series": null,
+          "(32)\",\"timestamp\":1581943826117,\"type\":\"Type\"},{\"address\":\"90": "F0"
+          null,
+          : null,
+          52: null,
+          75: "7A"
+          null,
+          : 75
+          "\",\"name\":\"Shengyuan\",\"timestamp\":1581943826274,\"type\":\"Type\"}],\"kinematics\":{\"accelerationX\":0.0394744873046875,\"accelerationY\":7.52935791015625,\"accelerationZ\":6.246429443359375,\"altitude\":61.89999771118164,\"azimuth\":0.0,\"latitude\":53.3435398,\"longitude\":-6.250225,\"pitch\":0.0,\"roll\":0.0,\"timestamp\":1581943817196},\"wifiDevices\":[{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : null,
+          36: "a7"
+          null,
+          : "01\",\"ssid\":\"CSopen\",\"timestamp\":217374142410,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-35,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : null,
+          36: "a7"
+          null,
+          : "00\",\"ssid\":\"COMPSCIwireless\",\"timestamp\":217374130673,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-38,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : null,
+          36: "a7"
+          null,
+          : "02\",\"ssid\":\"SCSSopen\",\"timestamp\":217374134516,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-41,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"84",
+          : "b8"
+          null,
+          : "02"
+          null,
+          : "1c"
+          null,
+          : "6e"
+          null,
+          : "0e\",\"ssid\":\"TCDwifi\",\"timestamp\":217379414415,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "ESS" ]
+          "\",\"level\":-45,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"84",
+          : "b8"
+          null,
+          : "02"
+          null,
+          : "1c"
+          null,
+          : "6e"
+          null,
+          : "0b\",\"ssid\":\"eduroam\",\"timestamp\":217375977376,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-45,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"84",
+          : "b8"
+          null,
+          : "02"
+          null,
+          : "1c"
+          null,
+          : "6e"
+          null,
+          : "0d\",\"ssid\":\"TCDguest\",\"timestamp\":217375977563,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-46,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : "0f"
+          null,
+          : "4d"
+          null,
+          : "c0\",\"ssid\":\"COMPSCIwireless\",\"timestamp\":217375839132,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-47,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : "0f"
+          null,
+          : "4d"
+          null,
+          : "c2\",\"ssid\":\"SCSSopen\",\"timestamp\":217375839805,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-47,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : "0f"
+          null,
+          : "4d"
+          null,
+          : "c1\",\"ssid\":\"CSopen\",\"timestamp\":217375840110,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-47,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d3"
+          null,
+          : "d5"
+          null,
+          : 51
+          "\",\"ssi",
+          "d\":\"TCDwifi\",\"timestamp\":217375465059,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "ESS" ]
+          "\",\"level\":-68,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d3"
+          null,
+          : "d5"
+          null,
+          : 54
+          "\",\"ssid\":\"eduroam\",\"timestamp\":217375461217,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-69,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d3"
+          null,
+          : "d5"
+          null,
+          : 52
+          "\",\"ssid\":\"TCDguest\",\"timestamp\":217375462688,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-69,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"10",
+          : "be"
+          null,
+          : "f5"
+          null,
+          : null,
+          82: "7b"
+          null,
+          : "9d\",\"ssid\":\"DWR-921-7B9C\",\"timestamp\":217375465212,\"capabilities\":\"",
+          [ "WPA2-PSK-CCMP" ],
+          [ "ESS" ],
+          [ "WPS" ]
+          "\",\"level\":-71,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : "0f"
+          null,
+          : "4e"
+          null,
+          : 50
+          "\",\"ssid\":\"COMPSCIwireless\",\"timestamp\":217375904743,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-72,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : "0f"
+          null,
+          : "4e"
+          null,
+          : 52
+          "\",\"ssid\":\"SCSSopen\",\"timestamp\":217375905152,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-72,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : "0f"
+          null,
+          : "4e"
+          null,
+          : 51
+          "\",\"ssid\":\"CSopen\",\"timestamp\":217375906241,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-72,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d3"
+          null,
+          : "d5"
+          null,
+          : "5b\",\"ssid\":\"eduroam\",\"timestamp\":217376056642,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-72,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d3"
+          null,
+          : "d5"
+          null,
+          : "5e\",\"ssid\":\"TCDwifi\",\"timestamp\":217376043097,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "ESS" ]
+          "\",\"level\":-72,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d3"
+          null,
+          : "d5"
+          null,
+          : "5d\",\"ssid\":\"TCDguest\",\"timestamp\":217376042947,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-73,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"84",
+          : "b8"
+          null,
+          : "02"
+          null,
+          : "1c"
+          null,
+          : null,
+          68: "1b\",\"ssid\":\"eduroam\",\"timestamp\":217377366103,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-74,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"84",
+          : "b8"
+          null,
+          : "02"
+          null,
+          : "1c"
+          null,
+          : null,
+          68: "1f\",\"ssid\":\"\",\"timestamp\":217377353615,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "ESS" ]
+          "\",\"level\":-74,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"06",
+          : null,
+          81: null,
+          67: "3d"
+          null,
+          : null,
+          21: 76
+          "\",\"ssid\":\"Harry\",\"timestamp\":217376826377,\"capabilities\":\"",
+          [ "WPA2-PSK-CCMP" ],
+          [ "ESS" ]
+          "\",\"level\":-79,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"58",
+          : null,
+          97: "bd"
+          null,
+          : "bc"
+          null,
+          : "00"
+          null,
+          : "0b\",\"ssid\":\"eduroam\",\"timestamp\":217378119170,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-79,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d5"
+          null,
+          : null,
+          62: "5b\",\"ssid\":\"eduroam\",\"timestamp\":217376820451,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-80,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d5"
+          null,
+          : null,
+          62: "5d\",\"ssid\":\"TCDguest\",\"timestamp\":217376823024,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-81,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d5"
+          null,
+          : null,
+          62: "5e\",\"ssid\":\"TCDwifi\",\"timestamp\":217376821002,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "ESS" ]
+          "\",\"level\":-81,\"operatorFriendlyName\":\"\",\"venueName\":\"\"}]},{\"globalConfigurationId\":0,\"configuration\":[{\"name\":\"PusherSleepTimeSetting\",\"type\":\"System.Integer\",\"value\":\"30000\"},{\"name\":\"ScanningTimeSetting\",\"type\":\"System.Integer\",\"value\":\"3000\"},{\"name\":\"MeetingFrequency\",\"type\":\"System.Integer\",\"value\":\"3\"},{\"name\":\"ScannerSleepTime\",\"type\":\"System.Integer\",\"value\":\"1000\"},{\"name\":\"PusherBatchSizeSetting\",\"type\":\"System.Integer\",\"value\":\"5\"},{\"name\":\"SettingSleepTime\",\"type\":\"System.Integer\",\"value\":\"20000\"}],\"timestamp\":1581943817374,\"bluetoothDevices\":[{\"address\":\"68",
+          : "C2"
+          null,
+          : "9E"
+          null,
+          : null,
+          25: null,
+          42: 90
+          "\",\"timestamp\":1581943817475,\"type\":\"Type\"},{\"address\":\"71",
+          : "D9"
+          null,
+          : "FE"
+          null,
+          : "9D"
+          null,
+          : "B6"
+          null,
+          : 12
+          "\",\"timestamp\":1581943817485,\"type\":\"Type\"},{\"address\":\"4C",
+          : null,
+          80: "B8"
+          null,
+          : null,
+          66: null,
+          99: "6E\",\"timestamp\":1581943817523,\"type\":\"Type\"},{\"address\":\"48"
+          null,
+          : "AC"
+          null,
+          : null,
+          88: null,
+          39: "1F"
+          null,
+          : "D4\",\"timestamp\":1581943817549,\"type\":\"Type\"},{\"address\":\"4B"
+          null,
+          : "2B"
+          null,
+          : "EB"
+          null,
+          : "FF"
+          null,
+          : "9F"
+          null,
+          : "00\",\"timestamp\":1581943817577,\"type\":\"Type\"},{\"address\":\"5D"
+          null,
+          : "BC"
+          null,
+          : null,
+          92: "2C"
+          null,
+          : null,
+          52: "B8\",\"timestamp\":1581943817619,\"type\":\"Type\"},{\"address\":\"5A"
+          null,
+          : "C8"
+          null,
+          : "FE"
+          null,
+          : "4A"
+          null,
+          : "DF"
+          null,
+          : 10
+          "\",\"timestamp\":1581943817630,\"type\":\"Type\"},{\"address\":\"69",
+          : null,
+          97: "DF"
+          null,
+          : "B3"
+          null,
+          : "7A"
+          null,
+          : "DD\",\"timestamp\":1581943817657,\"type\":\"Type\"},{\"address\":\"5B"
+          null,
+          : null,
+          18: "C0"
+          null,
+          : "BA"
+          null,
+          : null,
+          50: "CD\",\"timestamp\":1581943817665,\"type\":\"Type\"},{\"address\":\"73"
+          null,
+          : null,
+          29: null,
+          86: "FD"
+          null,
+          : null,
+          87: "0D\",\"timestamp\":1581943817678,\"type\":\"Type\"},{\"address\":\"71"
+          null,
+          : null,
+          "9F": null,
+          30: null,
+          57: null,
+          24: "4D\",\"timestamp\":1581943817680,\"type\":\"Type\"},{\"address\":\"C8"
+          null,
+          : null,
+          21: null,
+          58: null,
+          84: "DF"
+          null,
+          : 27
+          "\",\"name\":\"DESKTOP-0PMS980\",\"timestamp\":1581943818147,\"type\":\"Type\"},{\"address\":\"90",
+          : "F0"
+          null,
+          : null,
+          52: null,
+          75: "7A"
+          null,
+          : 75
+          "\",\"name\":\"Shengyuan\",\"timestamp\":1581943818591,\"type\":\"Type\"},{\"address\":\"C8",
+          : "FF"
+          null,
+          : null,
+          28: null,
+          47: "7B"
+          null,
+          : "E8\",\"name\":\"DTD14\",\"timestamp\":1581943818856,\"type\":\"Type\"},{\"address\":\"47"
+          null,
+          : null,
+          15: "2B"
+          null,
+          : "FC"
+          null,
+          : null,
+          63: 72
+          "\",\"timestamp\":1581943819190,\"type\":\"Type\"},{\"address\":\"08",
+          : "DF"
+          null,
+          : "1F"
+          null,
+          : "C3"
+          null,
+          : "E8"
+          null,
+          : "E5\",\"name\":\"LE-Bose",
+          "AE2": null,
+          "SoundLink\",\"timestamp\":1581943819205,\"type\":\"Type\"},{\"address\":\"38": null,
+          18: "4C"
+          null,
+          : "03"
+          null,
+          : "C6"
+          null,
+          : 44
+          "\",\"name\":\"LE_WH-CH700N\",\"timestamp\":1581943819319,\"type\":\"Type\"}],\"kinematics\":{\"accelerationX\":0.3754730224609375,\"accelerationY\":7.69854736328125,\"accelerationZ\":6.1099700927734375,\"altitude\":61.89999771118164,\"azimuth\":0.0,\"latitude\":53.3435398,\"longitude\":-6.250225,\"pitch\":0.0,\"roll\":0.0,\"timestamp\":1581943817196},\"wifiDevices\":[{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : null,
+          36: "a7"
+          null,
+          : "01\",\"ssid\":\"CSopen\",\"timestamp\":217367548559,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-36,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : null,
+          36: "a7"
+          null,
+          : "00\",\"ssid\":\"COMPSCIwireless\",\"timestamp\":217367544192,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-37,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : null,
+          36: "a7"
+          null,
+          : "02\",\"ssid\":\"SCSSopen\",\"timestamp\":217367546572,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-42,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"84",
+          : "b8"
+          null,
+          : "02"
+          null,
+          : "1c"
+          null,
+          : "6e"
+          null,
+          : "04\",\"ssid\":\"eduroam\",\"timestamp\":217368175675,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-43,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"84",
+          : "b8"
+          null,
+          : "02"
+          null,
+          : "1c"
+          null,
+          : "6e"
+          null,
+          : "02\",\"ssid\":\"TCDguest\",\"timestamp\":217368177422,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-43,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"84",
+          : "b8"
+          null,
+          : "02"
+          null,
+          : "1c"
+          null,
+          : "6e"
+          null,
+          : "01\",\"ssid\":\"TCDwifi\",\"timestamp\":217368177594,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "ESS" ]
+          "\",\"level\":-43,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"84",
+          : "b8"
+          null,
+          : "02"
+          null,
+          : "1c"
+          null,
+          : "6e"
+          null,
+          : "0e\",\"ssid\":\"TCDwifi\",\"timestamp\":217372833432,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "ESS" ]
+          "\",\"level\":-44,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"84",
+          : "b8"
+          null,
+          : "02"
+          null,
+          : "1c"
+          null,
+          : "6e"
+          null,
+          : "0b\",\"ssid\":\"eduroam\",\"timestamp\":217369276154,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-46,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"84",
+          : "b8"
+          null,
+          : "02"
+          null,
+          : "1c"
+          null,
+          : "6e"
+          null,
+          : "0d\",\"ssid\":\"TCDguest\",\"timestamp\":217369276589,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-46,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : "0f"
+          null,
+          : "4d"
+          null,
+          : "c2\",\"ssid\":\"SCSSopen\",\"timestamp\":217369154110,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-48,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : "0f"
+          null,
+          : "4d"
+          null,
+          : "c1\",\"ssid\":\"CSopen\",\"timestamp\":217369154722,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-48,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : "0f"
+          null,
+          : "4d"
+          null,
+          : "c0\",\"ssid\":\"COMPSCIwireless\",\"timestamp\":217369153663,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-49,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : null,
+          36: "b3"
+          null,
+          : "d0\",\"ssid\":\"COMPSCIwireless\",\"timestamp\":217367911266,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-57,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d3"
+          null,
+          : "d5"
+          null,
+          : 54
+          "\",\"ssid\":\"eduroam\",\"timestamp\":217368793641,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-70,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d3"
+          null,
+          : "d5"
+          null,
+          : 52
+          "\",\"ssid\":\"TCDguest\",\"timestamp\":217368793817,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-70,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d3"
+          null,
+          : "d5"
+          null,
+          : "5b\",\"ssid\":\"eduroam\",\"timestamp\":217369347076,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-72,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d3"
+          null,
+          : "d5"
+          null,
+          : "5d\",\"ssid\":\"TCDguest\",\"timestamp\":217369347183,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-72,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d3"
+          null,
+          : "d5"
+          null,
+          : "5e\",\"ssid\":\"TCDwifi\",\"timestamp\":217369347249,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "ESS" ]
+          "\",\"level\":-72,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d3"
+          null,
+          : "d5"
+          null,
+          : "5f\",\"ssid\":\"\",\"timestamp\":217369357013,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "ESS" ]
+          "\",\"level\":-72,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : "0f"
+          null,
+          : "4e"
+          null,
+          : 50
+          "\",\"ssi",
+          "d\":\"COMPSCIwireless\",\"timestamp\":217369216982,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-73,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : "0f"
+          null,
+          : "4e"
+          null,
+          : 52
+          "\",\"ssid\":\"SCSSopen\",\"timestamp\":217369217613,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-73,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"e0",
+          : "5f"
+          null,
+          : "b9"
+          null,
+          : "0f"
+          null,
+          : "4e"
+          null,
+          : 51
+          "\",\"ssid\":\"CSopen\",\"timestamp\":217369218408,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-73,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"84",
+          : "b8"
+          null,
+          : "02"
+          null,
+          : "1c"
+          null,
+          : null,
+          68: "1b\",\"ssid\":\"eduroam\",\"timestamp\":217370680960,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-74,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"84",
+          : "b8"
+          null,
+          : "02"
+          null,
+          : "1c"
+          null,
+          : null,
+          68: "1f\",\"ssid\":\"\",\"timestamp\":217370668705,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "ESS" ]
+          "\",\"level\":-74,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d5"
+          null,
+          : null,
+          62: "5f\",\"ssid\":\"\",\"timestamp\":217370115698,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "ESS" ]
+          "\",\"level\":-78,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d5"
+          null,
+          : null,
+          62: "5b\",\"ssid\":\"eduroam\",\"timestamp\":217370125647,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "WPA-EAP-TKIP" ],
+          [ "ESS" ]
+          "\",\"level\":-78,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d5"
+          null,
+          : null,
+          62: "5e\",\"ssid\":\"TCDwifi\",\"timestamp\":217370124766,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "ESS" ]
+          "\",\"level\":-78,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"58",
+          : null,
+          97: "bd"
+          null,
+          : "bc"
+          null,
+          : "00"
+          null,
+          : "0e\",\"ssid\":\"TCDwifi\",\"timestamp\":217371471147,\"capabilities\":\"",
+          [ "WPA2-EAP-CCMP" ],
+          [ "ESS" ]
+          "\",\"level\":-78,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"54",
+          : "a2"
+          null,
+          : null,
+          74: "d5"
+          null,
+          : null,
+          62: "5d\",\"ssid\":\"TCDguest\",\"timestamp\":217370124311,\"capabilities\":\"",
+          [ "ESS" ]
+          "\",\"level\":-79,\"operatorFriendlyName\":\"\",\"venueName\":\"\"},{\"bssid\":\"06",
+          : null,
+          81: null,
+          67: "3d"
+          null,
+          : null,
+          21: 76
+          "\",\"ssid\":\"Harry\",\"timestamp\":217370124426,\"capabilities\":\"",
+          [ "WPA2-PSK-CCMP" ],
+          [ "ESS" ]
+          "\",\"level\":-84,\"operatorFriendlyName\":\"\",\"venueName\":\"\"}]}]}",
+    

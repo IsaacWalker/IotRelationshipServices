@@ -71,22 +71,28 @@ namespace Web.Iot.SettingService
 
                 context.SaveChanges();
 
-                var ScannerSleepTimeSetting = new Setting { Name = "ScannerSleepTime", Type = SettingType.Integer, Value = "1000" };
-                var PusherSleepTimeSetting = new Setting { Name = "PusherSleepTimeSetting", Type = SettingType.Integer, Value = "16000" };
-                var PusherBatchSizeSetting = new Setting { Name = "PusherBatchSizeSetting", Type = SettingType.Integer, Value = "5" };
-                var ScanningTimeSetting = new Setting { Name = "ScanningTimeSetting", Type = SettingType.Integer, Value = "3000" };
-
-                context.Settings.Add(ScannerSleepTimeSetting);
-                context.Settings.Add(PusherSleepTimeSetting);
-                context.Settings.Add(PusherBatchSizeSetting);
-                context.Settings.Add(ScanningTimeSetting);
+                var ScannerSleepTime = new Setting { Name = "ScannerSleepTime", Type = SettingType.Integer, Value = "4000" };
+                var PusherSleepTime = new Setting { Name = "PusherSleepTime", Type = SettingType.Integer, Value = "10000" };
+                var PusherBatchSize = new Setting { Name = "PusherBatchSize", Type = SettingType.Integer, Value = "5" };
+                var ScanningTime = new Setting { Name = "ScanningTime", Type = SettingType.Integer, Value = "3000" };
+                var SettingSleepTime = new Setting { Name = "SettingSleepTime", Type = SettingType.Integer, Value = "20000" };
+                var MeetingFrequency = new Setting { Name = "MeetingFrequency", Type = SettingType.Integer, Value = "3" };
+                
+                context.Settings.Add(ScannerSleepTime);
+                context.Settings.Add(PusherSleepTime);
+                context.Settings.Add(PusherBatchSize);
+                context.Settings.Add(ScanningTime);
+                context.Settings.Add(SettingSleepTime);
+                context.Settings.Add(MeetingFrequency);
 
                 context.SaveChanges();
 
-                InsertSettingEntrySetting(context, initialSettings, ScannerSleepTimeSetting); 
-                InsertSettingEntrySetting(context, initialSettings, PusherSleepTimeSetting);
-                InsertSettingEntrySetting(context, initialSettings, PusherBatchSizeSetting);
-                InsertSettingEntrySetting(context, initialSettings, ScanningTimeSetting);
+                InsertSettingEntrySetting(context, initialSettings, ScannerSleepTime); 
+                InsertSettingEntrySetting(context, initialSettings, PusherSleepTime);
+                InsertSettingEntrySetting(context, initialSettings, PusherBatchSize);
+                InsertSettingEntrySetting(context, initialSettings, ScanningTime);
+                InsertSettingEntrySetting(context, initialSettings, SettingSleepTime);
+                InsertSettingEntrySetting(context, initialSettings, MeetingFrequency);
 
                 context.SaveChanges();
             }        

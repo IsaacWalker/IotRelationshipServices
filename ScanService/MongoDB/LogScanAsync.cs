@@ -54,10 +54,10 @@ namespace Web.Iot.ScanService.MongoDB
             foreach(Scan scan in Request.Scans)
             {
                 /// Was a local configuraiton used in this scan?
-                if (scan.LocalConfiguration != null && scan.LocalConfiguration.Count != 0)
+                if (scan.Configuration != null && scan.Configuration.Count != 0)
                 {
                     // if so, then register that configuration and set the global Id to it
-                    scan.GlobalConfigurationId = await m_settingServiceClient.RegisterConfigurationAsync(scan.LocalConfiguration);
+                    scan.GlobalConfigurationId = await m_settingServiceClient.RegisterConfigurationAsync(scan.Configuration);
                 }
             }
 

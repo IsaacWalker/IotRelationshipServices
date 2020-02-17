@@ -8,10 +8,12 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Web.Iot.Models.Setting;
+using Web.Iot.Shared.Cache;
 
 namespace Web.Iot.Client.SettingService
 {
@@ -39,6 +41,7 @@ namespace Web.Iot.Client.SettingService
         private readonly Uri m_settingUri;
 
 
+        private readonly ICache<List<SettingModel>, int> m_cache;
         /// <summary>
         /// Constructor
         /// </summary>
@@ -49,6 +52,13 @@ namespace Web.Iot.Client.SettingService
             m_getSettingCountUrl = new Uri(m_baseURI.AbsoluteUri + "api/setting/count");
             m_currentConfigUrl = new Uri(m_baseURI.AbsoluteUri + "api/setting/current");
             m_settingUri = new Uri(m_baseURI.AbsoluteUri + "api/setting");
+
+            m_cache = new DataCache<List<SettingModel>, string, int>((SM) =>
+            {
+                string code = string.Empty;
+                SM.ForEach(M => code = code + M.Name + M.Type + M.Value);
+                return code;
+            });
         }
 
 
@@ -103,6 +113,7 @@ namespace Web.Iot.Client.SettingService
         /// <returns></returns>
         public async Task<ConfigurationModel> GetCurrentConfigurationAsync()
         {
+
             using (HttpClient client = m_httpClientFactory.CreateClient())
             {
                 var response = await client.GetAsync(m_currentConfigUrl);
@@ -138,6 +149,11 @@ namespace Web.Iot.Client.SettingService
         /// <returns></returns>
         public async Task<int> RegisterConfigurationAsync(List<SettingModel> settingModels)
         {
+            if(m_cache.TryGet(settingModels, out int Id))
+            {
+                return Id;
+            }
+
             using(HttpClient client = m_httpClientFactory.CreateClient())
             {
                 HttpContent content = new StringContent(JsonConvert.SerializeObject(settingModels));
@@ -145,7 +161,11 @@ namespace Web.Iot.Client.SettingService
                 var response = await client.PostAsync(m_settingUri, content);
 
                 var v = await response.Content.ReadAsStringAsync();
-                return int.Parse(v);
+
+                int newId = int.Parse(v);
+                m_cache.InsertOrUpdate(settingModels, newId);
+
+                return newId;
             }
         }
     }

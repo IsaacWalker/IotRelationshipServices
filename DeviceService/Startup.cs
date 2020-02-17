@@ -27,6 +27,7 @@ namespace Web.Iot.DeviceService
                 options.AutomaticAuthentication = false;
             });
 
+
             services.AddMvc().AddMvcOptions(options => options.EnableEndpointRouting = false);
         }
 
@@ -41,6 +42,7 @@ namespace Web.Iot.DeviceService
             {
                 app.UseHsts();
             }
+
 
             app.UseMvc();
         }

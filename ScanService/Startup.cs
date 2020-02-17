@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MongoDB.Driver;
+using Web.Iot.Client.SettingService;
 using Web.Iot.ScanService.MongoDB;
 using Web.Iot.ScanService.MongoDB.Data;
 using Web.Iot.Shared.Message;
@@ -22,8 +23,11 @@ namespace Web.Iot.ScanService
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpClient();
+
             services.AddSingleton<IMongoCollection<Scan>>(GetScanCollection());
             services.AddSingleton<IScanProcessor, LogScanAsync>();
+            services.AddSingleton<ISettingServiceClient, SettingServiceClient>();
             services.AddMvc().AddMvcOptions( O => O.EnableEndpointRouting = false);
             services.Configure<IISServerOptions>(options =>
             {
