@@ -11,7 +11,7 @@ using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
 using Web.Iot.Models.Setting;
 
-namespace Web.Iot.ScanService.MongoDB.Data
+namespace Web.Iot.Shared.MongoDB
 {
     /// <summary>
     /// Scan serialization Model

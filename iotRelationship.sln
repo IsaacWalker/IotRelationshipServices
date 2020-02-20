@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Iot.PortalService", "Po
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Iot.DeviceService", "DeviceService\Web.Iot.DeviceService.csproj", "{CBCB31D0-6908-47BA-973C-8FA6A498B833}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Iot.Client", "Client\Web.Iot.Client.csproj", "{322590C0-E2B8-41EA-9CC5-1D16D6BCB209}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Iot.Client", "Client\Web.Iot.Client.csproj", "{322590C0-E2B8-41EA-9CC5-1D16D6BCB209}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Iot.Models", "Web.Iot.Models\Web.Iot.Models.csproj", "{E1343160-1C99-445F-978D-6B12D7082EB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Iot.Models", "Web.Iot.Models\Web.Iot.Models.csproj", "{E1343160-1C99-445F-978D-6B12D7082EB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisplayService", "DisplayService\DisplayService.csproj", "{947A9E14-42C2-4C2F-95B4-CC26B68F8DB0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{E1343160-1C99-445F-978D-6B12D7082EB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1343160-1C99-445F-978D-6B12D7082EB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1343160-1C99-445F-978D-6B12D7082EB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{947A9E14-42C2-4C2F-95B4-CC26B68F8DB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{947A9E14-42C2-4C2F-95B4-CC26B68F8DB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{947A9E14-42C2-4C2F-95B4-CC26B68F8DB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{947A9E14-42C2-4C2F-95B4-CC26B68F8DB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

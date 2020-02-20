@@ -1,21 +1,16 @@
-/***************************************************
-    Startup.cs
-
-    Isaac Walker
-****************************************************/
-
-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MongoDB.Driver;
-using Web.Iot.Client.SettingService;
-using Web.Iot.ScanService.MongoDB;
-using Web.Iot.Shared.Message;
 using Web.Iot.Shared.MongoDB;
 
-namespace Web.Iot.ScanService
+namespace DisplayService
 {
     public class Startup
     {
@@ -23,18 +18,10 @@ namespace Web.Iot.ScanService
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHttpClient();
-
             services.AddSingleton<IMongoCollection<Scan>>(GetScanCollection());
-            services.AddSingleton<IScanProcessor, LogScanAsync>();
-            services.AddSingleton<ISettingServiceClient, SettingServiceClient>();
-            services.AddMvc().AddMvcOptions( O => O.EnableEndpointRouting = false);
-            services.Configure<IISServerOptions>(options =>
-            {
-                options.AutomaticAuthentication = false;
-            });
-        }
 
+            services.AddMvc((A) => A.EnableEndpointRouting = false);
+        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -43,12 +30,7 @@ namespace Web.Iot.ScanService
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseHsts();
-            }
 
-            app.UseHttpsRedirection();
             app.UseMvc();
         }
 

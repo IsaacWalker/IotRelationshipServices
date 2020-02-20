@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using Web.Iot.ScanService.MongoDB.Data;
+using Web.Iot.Shared.MongoDB;
 
 namespace Web.Iot.ScanService.Models
 {

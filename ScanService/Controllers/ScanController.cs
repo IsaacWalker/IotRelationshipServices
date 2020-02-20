@@ -11,7 +11,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Web.Iot.ScanService.Models;
 using Web.Iot.ScanService.MongoDB;
-using Web.Iot.ScanService.MongoDB.Data;
 using System.Collections.Generic;
 
 namespace Web.Iot.ScanService.Controllers

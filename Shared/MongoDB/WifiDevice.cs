@@ -7,7 +7,7 @@
 using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
 
-namespace Web.Iot.ScanService.MongoDB.Data
+namespace Web.Iot.Shared.MongoDB
 {
     /// <summary>
     /// Serialized Discovered WifiDevice

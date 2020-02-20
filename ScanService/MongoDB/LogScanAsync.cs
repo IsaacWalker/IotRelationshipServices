@@ -10,8 +10,8 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 using Web.Iot.Shared.Message;
-using Web.Iot.ScanService.MongoDB.Data;
 using Web.Iot.Client.SettingService;
+using Web.Iot.Shared.MongoDB;
 
 namespace Web.Iot.ScanService.MongoDB
 {
