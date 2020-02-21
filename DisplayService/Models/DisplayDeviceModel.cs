@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DisplayService.Models
+namespace Web.Iot.DisplayService.Models
 {
     public sealed class DisplayDeviceModel
     {

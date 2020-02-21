@@ -10,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 using MongoDB.Driver;
 using Web.Iot.Shared.MongoDB;
 
-namespace DisplayService
+namespace Web.Iot.DisplayService
 {
     public class Startup
     {

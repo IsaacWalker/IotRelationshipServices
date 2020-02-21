@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Iot.Client", "Client\We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Iot.Models", "Web.Iot.Models\Web.Iot.Models.csproj", "{E1343160-1C99-445F-978D-6B12D7082EB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisplayService", "DisplayService\DisplayService.csproj", "{947A9E14-42C2-4C2F-95B4-CC26B68F8DB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Iot.DisplayService", "DisplayService\Web.Iot.DisplayService.csproj", "{947A9E14-42C2-4C2F-95B4-CC26B68F8DB0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
