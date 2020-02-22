@@ -7,12 +7,12 @@
 using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
 
-namespace Web.Iot.Shared.MongoDB
+namespace Web.Iot.Models.MongoDB
 {
     /// <summary>
     /// Serialized Discovered WifiDevice
     /// </summary>
-    public sealed class WifiDevice
+    public sealed class WifiDeviceModel
     {
         /// <summary>
         /// Timestamp of when the device was detected

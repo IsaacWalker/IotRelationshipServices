@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MongoDB.Driver;
-using Web.Iot.Shared.MongoDB;
+using Web.Iot.Models.MongoDB;
 
 namespace Web.Iot.DisplayService
 {
@@ -18,7 +18,7 @@ namespace Web.Iot.DisplayService
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IMongoCollection<Scan>>(GetScanCollection());
+            services.AddSingleton<IMongoCollection<ScanModel>>(GetScanCollection());
 
             services.AddMvc((A) => A.EnableEndpointRouting = false);
         }
@@ -35,11 +35,11 @@ namespace Web.Iot.DisplayService
         }
 
 
-        private IMongoCollection<Scan> GetScanCollection()
+        private IMongoCollection<ScanModel> GetScanCollection()
         {
             IMongoClient mongoClient = new MongoClient("mongodb://localhost:27017");
             IMongoDatabase mongoDatabase = mongoClient.GetDatabase("iot_database");
-            return mongoDatabase.GetCollection<Scan>("scan_collection");
+            return mongoDatabase.GetCollection<ScanModel>("scan_collection");
         }
     }
 }

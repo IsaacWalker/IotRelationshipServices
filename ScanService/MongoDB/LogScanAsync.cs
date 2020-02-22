@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 using Web.Iot.Shared.Message;
 using Web.Iot.Client.SettingService;
-using Web.Iot.Shared.MongoDB;
+using Web.Iot.Models.MongoDB;
 
 namespace Web.Iot.ScanService.MongoDB
 {
@@ -23,7 +23,7 @@ namespace Web.Iot.ScanService.MongoDB
         private readonly ILogger<LogScanAsync> m_logger;
 
 
-        private readonly IMongoCollection<Scan> m_scanCollection;
+        private readonly IMongoCollection<ScanModel> m_scanCollection;
 
 
         private readonly ISettingServiceClient m_settingServiceClient;
@@ -32,7 +32,7 @@ namespace Web.Iot.ScanService.MongoDB
         /// Constructor
         /// </summary>
         /// <param name=""></param>
-        public LogScanAsync(IMongoCollection<Scan> scanCollection, ILogger<LogScanAsync> logger, ISettingServiceClient settingServiceClient)
+        public LogScanAsync(IMongoCollection<ScanModel> scanCollection, ILogger<LogScanAsync> logger, ISettingServiceClient settingServiceClient)
         {
             m_scanCollection = scanCollection;
             m_settingServiceClient = settingServiceClient;
@@ -51,7 +51,7 @@ namespace Web.Iot.ScanService.MongoDB
 
             LogScanResponse Response = null;
 
-            foreach(Scan scan in Request.Scans)
+            foreach(ScanModel scan in Request.Scans)
             {
                 /// Was a local configuraiton used in this scan?
                 if (scan.Configuration != null && scan.Configuration.Count != 0)
@@ -82,10 +82,10 @@ namespace Web.Iot.ScanService.MongoDB
 
            try
             {
-                long Count = await m_scanCollection.CountDocumentsAsync(FilterDefinition<Scan>.Empty);
+                long Count = await m_scanCollection.CountDocumentsAsync(FilterDefinition<ScanModel>.Empty);
                 Response = new GetScanCountResponse(true, Count);
             }
-            catch(Exception e)
+            catch (Exception)
             {
                 Response = new GetScanCountResponse(false, -1);
             }

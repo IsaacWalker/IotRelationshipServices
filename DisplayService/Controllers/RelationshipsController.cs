@@ -6,14 +6,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using Web.Iot.DisplayService.Models;
-using Web.Iot.Shared.MongoDB;
+using Web.Iot.Models.MongoDB;
 
 namespace Web.Iot.DisplayService.Controllers
 {
     [ApiController]
     public class RelationshipsController : ControllerBase
     {
-        private readonly IMongoCollection<Scan> m_scanCollection;
+        private readonly IMongoCollection<ScanModel> m_scanCollection;
 
 
         private static readonly float DistanceThreshold = 5.0f;
@@ -22,7 +22,7 @@ namespace Web.Iot.DisplayService.Controllers
         private static DateTime now = DateTime.Now; 
 
 
-        public RelationshipsController(IMongoCollection<Scan> scanCollection)
+        public RelationshipsController(IMongoCollection<ScanModel> scanCollection)
         {
             m_scanCollection = scanCollection;
         }
@@ -32,9 +32,9 @@ namespace Web.Iot.DisplayService.Controllers
         [Route("api/[controller]/getStaticDisplay")]
         public IActionResult GetStaticDisplay([FromQuery] int DeviceId)
         {
-            var builder = new FilterDefinitionBuilder<Scan>();
+            var builder = new FilterDefinitionBuilder<ScanModel>();
             var devicefilter = builder.Where(S => S.DeviceId == DeviceId);
-            Scan scan = m_scanCollection.Find(devicefilter).FirstOrDefault();
+            ScanModel scan = m_scanCollection.Find(devicefilter).FirstOrDefault();
             long hourAgo = now.AddHours(-1).Ticks;
 
             /*

@@ -7,12 +7,12 @@
 using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
 
-namespace Web.Iot.Shared.MongoDB
+namespace Web.Iot.Models.MongoDB
 {
     /// <summary>
     /// Serialized device kinematics
     /// </summary>
-    public sealed class Kinematics
+    public sealed class KinematicsModel
     {
         /// <summary>
         /// Timestamp of when the kinematics of the device we're read

@@ -7,12 +7,12 @@
 using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
 
-namespace Web.Iot.Shared.MongoDB
+namespace Web.Iot.Models.MongoDB
 {
     /// <summary>
     /// Serialized discovered bluetooth device
     /// </summary>
-    public sealed class BluetoothDevice
+    public sealed class BluetoothDeviceModel
     {
         /// <summary>
         /// The timestamp of when the device was detected

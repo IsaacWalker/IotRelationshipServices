@@ -11,12 +11,12 @@ using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
 using Web.Iot.Models.Setting;
 
-namespace Web.Iot.Shared.MongoDB
+namespace Web.Iot.Models.MongoDB
 {
     /// <summary>
     /// Scan serialization Model
     /// </summary>
-    public sealed class Scan
+    public sealed class ScanModel
     {
         /// <summary>
         /// Scan Id
@@ -59,20 +59,20 @@ namespace Web.Iot.Shared.MongoDB
         /// The kinematics of the device
         /// </summary>
         [BsonElement("kinematics")]
-        public Kinematics Kinematics { get; set; }
+        public KinematicsModel Kinematics { get; set; }
 
 
         /// <summary>
         /// Wifi Devices discovered in the Scan
         /// </summary>
         [BsonElement("wifiDevices")]
-        public List<WifiDevice> WifiDevices{get; set;}
+        public List<WifiDeviceModel> WifiDevices{get; set;}
 
 
         /// <summary>
         /// Bluetooth devices discovered in the Scan
         /// </summary>
         [BsonElement("bluetoothDevices")]
-        public List<BluetoothDevice> BluetoothDevices { get; set; }
+        public List<BluetoothDeviceModel> BluetoothDevices { get; set; }
     }
 }

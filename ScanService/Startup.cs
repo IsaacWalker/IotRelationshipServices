@@ -11,9 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MongoDB.Driver;
 using Web.Iot.Client.SettingService;
+using Web.Iot.Models.MongoDB;
 using Web.Iot.ScanService.MongoDB;
 using Web.Iot.Shared.Message;
-using Web.Iot.Shared.MongoDB;
 
 namespace Web.Iot.ScanService
 {
@@ -25,7 +25,7 @@ namespace Web.Iot.ScanService
         {
             services.AddHttpClient();
 
-            services.AddSingleton<IMongoCollection<Scan>>(GetScanCollection());
+            services.AddSingleton<IMongoCollection<ScanModel>>(GetScanCollection());
             services.AddSingleton<IScanProcessor, LogScanAsync>();
             services.AddSingleton<ISettingServiceClient, SettingServiceClient>();
             services.AddMvc().AddMvcOptions( O => O.EnableEndpointRouting = false);
@@ -53,11 +53,11 @@ namespace Web.Iot.ScanService
         }
 
 
-        private IMongoCollection<Scan> GetScanCollection()
+        private IMongoCollection<ScanModel> GetScanCollection()
         {
             IMongoClient mongoClient = new MongoClient("mongodb://localhost:27017");
             IMongoDatabase mongoDatabase = mongoClient.GetDatabase("iot_database");
-            return mongoDatabase.GetCollection<Scan>("scan_collection");
+            return mongoDatabase.GetCollection<ScanModel>("scan_collection");
         }
     }
 }

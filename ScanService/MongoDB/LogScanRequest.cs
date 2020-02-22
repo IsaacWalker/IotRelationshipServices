@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Web.Iot.Shared.MongoDB;
+using Web.Iot.Models.MongoDB;
 
 namespace Web.Iot.ScanService.MongoDB
 {
@@ -21,14 +21,14 @@ namespace Web.Iot.ScanService.MongoDB
         /// <summary>
         /// Scans
         /// </summary>
-        public List<Scan> Scans { get; private set; }
+        public List<ScanModel> Scans { get; private set; }
 
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="scans"></param>
-        public LogScanRequest(long deviceId, List<Scan> scans)
+        public LogScanRequest(long deviceId, List<ScanModel> scans)
         {
             Scans = scans;
             Scans.ForEach(S => S.DeviceId = deviceId);
