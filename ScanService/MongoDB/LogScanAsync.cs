@@ -12,6 +12,7 @@ using MongoDB.Driver;
 using Web.Iot.Shared.Message;
 using Web.Iot.Client.SettingService;
 using Web.Iot.Models.MongoDB;
+using MongoDB.Driver.GeoJsonObjectModel;
 
 namespace Web.Iot.ScanService.MongoDB
 {
@@ -56,6 +57,8 @@ namespace Web.Iot.ScanService.MongoDB
                 /// Was a local configuraiton used in this scan?
                 if (scan.Configuration != null && scan.Configuration.Count != 0)
                 {
+                    var coords = new GeoJson2DCoordinates(scan.Kinematics.Latitude, scan.Kinematics.Longitude);
+                    scan.Kinematics.Location = GeoJson.Point<GeoJson2DCoordinates>(coords);
                     // if so, then register that configuration and set the global Id to it
                     scan.GlobalConfigurationId = await m_settingServiceClient.RegisterConfigurationAsync(scan.Configuration);
                 }

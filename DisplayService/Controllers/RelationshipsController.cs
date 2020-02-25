@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
+using MongoDB.Driver.GeoJsonObjectModel;
 using Web.Iot.DisplayService.Models;
 using Web.Iot.Models.MongoDB;
 
@@ -16,10 +17,10 @@ namespace Web.Iot.DisplayService.Controllers
         private readonly IMongoCollection<ScanModel> m_scanCollection;
 
 
-        private static readonly float DistanceThreshold = 5.0f;
+        private static readonly double DistanceThreshold = 5.0;
 
 
-        private static DateTime now = DateTime.Now; 
+        private static DateTime now = DateTime.Now;
 
 
         public RelationshipsController(IMongoCollection<ScanModel> scanCollection)
@@ -30,58 +31,36 @@ namespace Web.Iot.DisplayService.Controllers
 
         [HttpGet]
         [Route("api/[controller]/getStaticDisplay")]
-        public IActionResult GetStaticDisplay([FromQuery] int DeviceId)
+        public IActionResult GetStaticDisplay([FromQuery] int deviceId)
         {
             var builder = new FilterDefinitionBuilder<ScanModel>();
-            var devicefilter = builder.Where(S => S.DeviceId == DeviceId);
+            var devicefilter = builder.Where(S => S.DeviceId == deviceId);
             ScanModel scan = m_scanCollection.Find(devicefilter).FirstOrDefault();
-            long hourAgo = now.AddHours(-1).Ticks;
-
-            /*
-
-                        var filter = builder.Where(S => Math.Abs(S.Kinematics.Latitude - scan.Kinematics.Latitude) < DistanceThreshold &&
-                         Math.Abs(S.Kinematics.Longitude - scan.Kinematics.Longitude) < DistanceThreshold && S.DeviceId != DeviceId);
-
-                        if (m_scanCollection.Find(filter).ToList() != null)
-                        {
-                            var nearby_scans = m_scanCollection.Find(filter).ToList();
-                            var time_filter = builder.Where(S => S.Timestamp > hourAgo);
-                            var recent_scans = m_scanCollection.Find(time_filter).ToList();
-                        }
-                        */
 
 
-            /*
-                        foreach(var nearbyScan in nearby_scans)
-                        {
-                            deviceModels.Add(
-                                new DisplayDeviceModel()
-                                {
-                                    Name = nearbyScan.DeviceId.ToString(),
-                                    Latitude = nearbyScan.Kinematics.Latitude,
-                                    Longitude = nearbyScan.Kinematics.Longitude,
-                                    Rotation = nearbyScan.Kinematics.Azimuth
-                                }
-                                );
-                        }
-                        */
+            // var filter = builder.Where(S => Math.Abs(S.Kinematics.Latitude - scan.Kinematics.Latitude) < DistanceThreshold &&
+            //Math.Abs(S.Kinematics.Longitude - scan.Kinematics.Longitude) < DistanceThreshold && S.DeviceId != deviceId);
 
+           
+            var filter = builder.Near(S => S.Kinematics.Location, scan.Kinematics.Location, minDistance: 0.0, maxDistance: DistanceThreshold);
+
+            var nearby_scans = m_scanCollection.Find(filter).ToList();
+            List<DisplayDeviceModel> deviceModels = new List<DisplayDeviceModel>();
+
+
+            foreach (var nearbyScan in nearby_scans)
+            {
+                deviceModels.Add(
+                    new DisplayDeviceModel()
+                    {
+                        Name = nearbyScan.DeviceId.ToString(),
+                        Latitude = nearbyScan.Kinematics.Location.Coordinates.X,
+                        Longitude = nearbyScan.Kinematics.Location.Coordinates.Y,
+                        Rotation = nearbyScan.Kinematics.Azimuth
+                    }
+                    );
+            }
             
-            var device1 = new DisplayDeviceModel()
-            {
-                Latitude = 53.343,
-                Longitude = -6.250,
-                Rotation = 0,
-                Name = "Isaac"
-            };
-            var device2 = new DisplayDeviceModel()
-            {
-                Latitude = 53.346,
-                Longitude = -6.254,
-                Rotation = 0,
-                Name = "Anna"
-            };
-            List<DisplayDeviceModel> deviceModels = new List<DisplayDeviceModel>() { device1, device2 };
             StaticDisplayModel model = new StaticDisplayModel()
             {
                 Devices = deviceModels
@@ -95,5 +74,7 @@ namespace Web.Iot.DisplayService.Controllers
         {
             return Ok("Working");
         }
+
+
     }
 }

@@ -6,6 +6,7 @@
 
 using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
+using MongoDB.Driver.GeoJsonObjectModel;
 
 namespace Web.Iot.Models.MongoDB
 {
@@ -31,15 +32,21 @@ namespace Web.Iot.Models.MongoDB
         /// <summary>
         /// The latitude of the device
         /// </summary>
-        [BsonElement("latitude")]
+        [BsonIgnore]
         public double Latitude { get; set; }
 
 
         /// <summary>
         /// The longitude of the device
         /// </summary>
-        [BsonElement("longitude")]
+        [BsonIgnore]
         public double Longitude { get; set; }
+
+
+        /// <summary>
+        /// The GeoJson Coord of the device
+        /// </summary>
+        public GeoJsonPoint<GeoJson2DCoordinates> Location { get; set; }
 
 
         /// <summary>

@@ -40,5 +40,19 @@ namespace Web.Iot.Models.MongoDB
         /// </summary>
         [BsonElement("address")]
         public string Address { get; set; }
+
+
+        /// <summary>
+        /// Received signal Strength Indicator
+        /// </summary>
+        [BsonElement("rssi")]
+        public int RSSI { get; set; }
+
+
+        /// <summary>
+        /// TX Power
+        /// </summary>
+        [BsonElement("powerLevel")]
+        public int PowerLevel { get; set; }
     }
 }
