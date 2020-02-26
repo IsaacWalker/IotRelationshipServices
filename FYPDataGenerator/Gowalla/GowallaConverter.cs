@@ -12,44 +12,30 @@ namespace FYPDataGenerator.Gowalla
         private static readonly int DATA_SIZE = 100000;
 
 
-        private readonly AndroidModel[] _AndroidModelData;
+        private readonly List<AndroidModel> _AndroidModelData;
 
 
         private readonly Random _random;
 
-        public GowallaConverter(string[] androidModelLines)
+        public GowallaConverter()
         {
-            _AndroidModelData = CreateAndroidModelData(androidModelLines);
+            _AndroidModelData = FileParser.ReadAndroidModelData();
             _random = new Random();
         }
 
 
-        public void Run(string[] Lines, string deviceFileName, string scanFileName)
+        public void Run()
         {
-            List<GowallaCheckIn> CheckIns = new List<GowallaCheckIn>();
-
             IDictionary<int, DeviceModel> _currentDeviceModels = new Dictionary<int, DeviceModel>();
             IList<ScanModel> _scanModels = new List<ScanModel>();
 
-            for (int i = 0; i < DATA_SIZE; i++)
+            List<GowallaCheckIn> CheckIns = FileParser.ReadGowallaCheckIns(DATA_SIZE);
+            foreach (GowallaCheckIn CheckIn in CheckIns)
             {
-                string line = Lines[i];
-                string[] items = line.Split("\t", StringSplitOptions.RemoveEmptyEntries);
 
-                int id = int.Parse(items[0]);
-
-                GowallaCheckIn CheckIn = new GowallaCheckIn()
+                if (!_currentDeviceModels.ContainsKey(CheckIn.Id))
                 {
-                    Id = id,
-                    DateTime = DateTime.Parse(items[1]),
-                    Latitude = double.Parse(items[2]),
-                    Longitude = double.Parse(items[3]),
-                    LocationId = int.Parse(items[4])
-                };
-
-                if (!_currentDeviceModels.ContainsKey(id))
-                {
-                    CheckIns.Add(CheckIn);
+                    
                     DeviceModel model = new DeviceModel()
                     {
                         Id = CheckIn.Id,
@@ -59,7 +45,7 @@ namespace FYPDataGenerator.Gowalla
                         Manufacturer = GetFakeManufacturer()
                     };
 
-                    _currentDeviceModels.Add(id, model);
+                    _currentDeviceModels.Add(CheckIn.Id, model);
                 }
 
                 ScanModel scanModel = new ScanModel()
@@ -80,36 +66,19 @@ namespace FYPDataGenerator.Gowalla
                 
             }
 
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(deviceFileName))
-            {
-                foreach (var device in _currentDeviceModels.Values)
-                {
-                    string line = string.Format("{0}\t{1}\t{2}\t{3}\t{4}",
-                        device.Id, device.Model, device.MacAddress, device.Manufacturer, device.BluetoothName);
+            FileParser.WriteDevices(_currentDeviceModels.Values);
 
-                    file.WriteLine(line);
-                }
-            }
-
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(scanFileName))
-            {
-                foreach (var scan in _scanModels)
-                {
-                    string line = string.Format("{0}\t{1}\t{2}\t{3}\t{4}",
-                        scan.DeviceId, scan.Timestamp, scan.Kinematics.Latitude, scan.Kinematics.Longitude,scan.GlobalConfigurationId);
-
-                    file.WriteLine(line);
-                }
-            }
+            FileParser.WriteScans(_scanModels);
 
             Console.WriteLine("Found {0} devices", _currentDeviceModels.Count);
+            Console.WriteLine("Found {0} scans", _scanModels.Count);
         }
 
 
         private string GetFakeModel()
         {
 
-            int rand_indx = _random.Next(0, _AndroidModelData.Length);
+            int rand_indx = _random.Next(0, _AndroidModelData.Count);
             return _AndroidModelData[rand_indx].Model;
         }
 
@@ -130,7 +99,7 @@ namespace FYPDataGenerator.Gowalla
 
         private string GetFakeManufacturer()
         {
-            int rand_indx = _random.Next(0, _AndroidModelData.Length);
+            int rand_indx = _random.Next(0, _AndroidModelData.Count);
             return _AndroidModelData[rand_indx].Manufacturer;
         }
 

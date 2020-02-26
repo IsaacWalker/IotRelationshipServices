@@ -6,6 +6,7 @@
 
 
 using System.Threading.Tasks;
+using Web.Iot.ScanService.Models;
 
 namespace Web.Iot.Client.ScanService
 {
@@ -19,5 +20,13 @@ namespace Web.Iot.Client.ScanService
         /// </summary>
         /// <returns></returns>
         public Task<int> GetScanCountAsync();
+
+
+        /// <summary>
+        /// Inserts a batch of scans
+        /// </summary>
+        /// <param name="scanBatch"></param>
+        /// <returns></returns>
+        public Task<bool> InsertScanBatchAsync(ScanBatchModel scanBatch);
     }
 }

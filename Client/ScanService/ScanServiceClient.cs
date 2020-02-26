@@ -5,9 +5,12 @@
 ****************************************************/
 
 
+using Newtonsoft.Json;
 using System;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Web.Iot.ScanService.Models;
 
 namespace Web.Iot.Client.ScanService
 {
@@ -20,6 +23,9 @@ namespace Web.Iot.Client.ScanService
         protected readonly Uri m_getScanCountUri;
 
 
+        protected readonly Uri m_scanUrl;
+
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -28,6 +34,7 @@ namespace Web.Iot.Client.ScanService
             new Uri("http://www.scan.iotrelationshipfyp.com"))
         {
             m_getScanCountUri = new Uri(m_baseURI.AbsoluteUri + "api/scan/count");
+            m_scanUrl = new Uri(m_baseURI.AbsoluteUri + "api/scan");
         }
 
 
@@ -48,6 +55,25 @@ namespace Web.Iot.Client.ScanService
                 }
 
                 return -1;
+            }
+        }
+
+
+        /// <summary>
+        /// Inserts a Scan batch
+        /// </summary>
+        /// <param name="scanBatch"></param>
+        /// <returns></returns>
+        public async Task<bool> InsertScanBatchAsync(ScanBatchModel scanBatch)
+        {
+            using (HttpClient client = m_httpClientFactory.CreateClient())
+            {
+                HttpContent content = new StringContent(JsonConvert.SerializeObject(scanBatch));
+                content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+                var response = await client.PostAsync(m_scanUrl, content);
+                bool parse_success = int.TryParse(await response.Content.ReadAsStringAsync(), out int result);
+
+                return response.IsSuccessStatusCode;
             }
         }
     }
