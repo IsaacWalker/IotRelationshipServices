@@ -5,11 +5,8 @@ using System.Threading.Tasks;
 
 namespace Web.Iot.DisplayService.Models
 {
-    public class StaticDisplayModel
+    public class HistoricalDisplayModel
     {
-        public long Timestamp { get; set; }
-
-
-        public List<DisplayDeviceModel> Devices { get; set; }
+        public List<StaticDisplayModel> DisplayModels { get; set; }
     }
 }

@@ -33,20 +33,61 @@ namespace Web.Iot.DisplayService.Controllers
         [Route("api/[controller]/getStaticDisplay")]
         public IActionResult GetStaticDisplay([FromQuery] int deviceId)
         {
+            var recentScans = GetRecentScans(deviceId);
+            var mostRecentScan = recentScans.FirstOrDefault();
+            var nearbyScans = GetNearbyScans(mostRecentScan);
+            var model = CreateStaticDisplayModel(nearbyScans, mostRecentScan);
+            
+            return Ok(model);
+        }
+
+        [HttpGet]
+        [Route("api/[controller]/getHistoricalDisplay")]
+        public IActionResult GetHistoricalDisplay([FromQuery] int deviceId)
+        {
+            var recentScans = GetRecentScans(deviceId);
+            List<StaticDisplayModel> staticModels = new List<StaticDisplayModel>();
+            foreach(var scan in recentScans)
+            {
+                var nearbyScans = GetNearbyScans(scan);
+                var model = CreateStaticDisplayModel(nearbyScans, scan);
+                staticModels.Add(model);
+            }
+            var historicModel = new HistoricalDisplayModel() 
+            { 
+                DisplayModels = staticModels 
+            };
+
+
+            return Ok(historicModel);
+        }
+
+
+        private List<ScanModel> GetRecentScans(int deviceId)
+        {
             var builder = new FilterDefinitionBuilder<ScanModel>();
             var devicefilter = builder.Where(S => S.DeviceId == deviceId);
-            ScanModel scan = m_scanCollection.Find(devicefilter).FirstOrDefault();
+            var scans = m_scanCollection
+                .Find(devicefilter)
+                .SortBy(S => S.Timestamp)
+                .ToList();
 
+            return scans;
+        }
 
-            // var filter = builder.Where(S => Math.Abs(S.Kinematics.Latitude - scan.Kinematics.Latitude) < DistanceThreshold &&
-            //Math.Abs(S.Kinematics.Longitude - scan.Kinematics.Longitude) < DistanceThreshold && S.DeviceId != deviceId);
-
-           
+        private List<ScanModel> GetNearbyScans(ScanModel scan)
+        {
+            var builder = new FilterDefinitionBuilder<ScanModel>();
             var filter = builder.Near(S => S.Kinematics.Location, scan.Kinematics.Location, minDistance: 0.0, maxDistance: DistanceThreshold);
 
             var nearby_scans = m_scanCollection.Find(filter).ToList();
-            List<DisplayDeviceModel> deviceModels = new List<DisplayDeviceModel>();
+            return nearby_scans;
+        }
 
+
+        private StaticDisplayModel CreateStaticDisplayModel(List<ScanModel> nearby_scans, ScanModel scan)
+        {
+            List<DisplayDeviceModel> deviceModels = new List<DisplayDeviceModel>();
 
             foreach (var nearbyScan in nearby_scans)
             {
@@ -60,14 +101,15 @@ namespace Web.Iot.DisplayService.Controllers
                     }
                     );
             }
-            
+
             StaticDisplayModel model = new StaticDisplayModel()
             {
-                Devices = deviceModels
+                Devices = deviceModels,
+                Timestamp = scan.Timestamp,
             };
-
-            return Ok(model);
+            return model;
         }
+
         [HttpGet]
         [Route("api/[controller]")]
         public IActionResult Get()
