@@ -6,6 +6,7 @@
 
 using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
+using System;
 
 namespace Web.Iot.Models.MongoDB
 {
@@ -15,10 +16,10 @@ namespace Web.Iot.Models.MongoDB
     public sealed class BluetoothDeviceModel
     {
         /// <summary>
-        /// The timestamp of when the device was detected
+        /// The datetime of when the device was detected
         /// </summary>
-        [BsonElement("timestamp")]
-        public long Timestamp { get; set; }
+        [BsonElement("datetime")]
+        public DateTime DateTime { get; set; }
 
 
         /// <summary>

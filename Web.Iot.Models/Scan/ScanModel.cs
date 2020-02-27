@@ -51,8 +51,8 @@ namespace Web.Iot.Models.MongoDB
         /// <summary>
         /// DateTime of Scan
         /// </summary>
-        [BsonElement("timestamp")]
-        public long Timestamp { get; set; }
+        [BsonElement("datetime")]
+        public DateTime DateTime { get; set; }
 
 
         /// <summary>

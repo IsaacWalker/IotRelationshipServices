@@ -7,7 +7,7 @@ namespace Web.Iot.DisplayService.Models
 {
     public class StaticDisplayModel
     {
-        public long Timestamp { get; set; }
+        public DateTime DateTime { get; set; }
 
 
         public List<DisplayDeviceModel> Devices { get; set; }

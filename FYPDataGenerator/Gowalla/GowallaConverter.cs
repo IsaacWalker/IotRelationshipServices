@@ -53,7 +53,7 @@ namespace FYPDataGenerator.Gowalla
                     BluetoothDevices = new List<BluetoothDeviceModel>(),
                     WifiDevices = new List<WifiDeviceModel>(),
                     GlobalConfigurationId = 1,
-                    Timestamp = CheckIn.DateTime.Ticks,
+                    DateTime = CheckIn.DateTime,
                     DeviceId = CheckIn.Id,
                     Kinematics = new KinematicsModel
                     {

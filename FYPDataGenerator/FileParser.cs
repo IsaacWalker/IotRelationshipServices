@@ -22,7 +22,7 @@ namespace FYPDataGenerator
                 foreach (var scan in models)
                 {
                     string line = string.Format("{0}\t{1}\t{2}\t{3}\t{4}",
-                        scan.DeviceId, scan.Timestamp, scan.Kinematics.Latitude, scan.Kinematics.Longitude, scan.GlobalConfigurationId);
+                        scan.DeviceId, scan.DateTime, scan.Kinematics.Latitude, scan.Kinematics.Longitude, scan.GlobalConfigurationId);
 
                     file.WriteLine(line);
                 }
@@ -129,7 +129,7 @@ namespace FYPDataGenerator
                     Configuration = null,
                     WifiDevices = new List<WifiDeviceModel>(),
                     DeviceId = int.Parse(data[0]),
-                    Timestamp = long.Parse(data[1]),
+                    DateTime = DateTime.Parse(data[1]),
                     Kinematics = new KinematicsModel()
                     {
                         Latitude  = double.Parse(data[2]),

@@ -69,7 +69,7 @@ namespace Web.Iot.DisplayService.Controllers
             var devicefilter = builder.Where(S => S.DeviceId == deviceId);
             var scans = m_scanCollection
                 .Find(devicefilter)
-                .SortBy(S => S.Timestamp)
+                .SortBy(S => S.DateTime)
                 .ToList();
 
             return scans;
@@ -105,7 +105,7 @@ namespace Web.Iot.DisplayService.Controllers
             StaticDisplayModel model = new StaticDisplayModel()
             {
                 Devices = deviceModels,
-                Timestamp = scan.Timestamp,
+                DateTime = scan.DateTime,
             };
             return model;
         }

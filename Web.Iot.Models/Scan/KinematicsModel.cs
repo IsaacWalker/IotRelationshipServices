@@ -7,6 +7,7 @@
 using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
 using MongoDB.Driver.GeoJsonObjectModel;
+using System;
 
 namespace Web.Iot.Models.MongoDB
 {
@@ -16,10 +17,10 @@ namespace Web.Iot.Models.MongoDB
     public sealed class KinematicsModel
     {
         /// <summary>
-        /// Timestamp of when the kinematics of the device we're read
+        /// DateTime of when the kinematics of the device we're read
         /// </summary>
-        [BsonElement("timestamp")]
-        public long Timestamp { get; set; }
+        [BsonElement("datetime")]
+        public DateTime DateTime { get; set; }
 
 
         /// <summary>

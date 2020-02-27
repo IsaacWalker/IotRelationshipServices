@@ -20,11 +20,11 @@ namespace FYPDataGenerator
 
         static void Main(string[] args)
         {
-            //Console.WriteLine("Reading Data");
-            // new GowallaConverter().Run();
+            Console.WriteLine("Reading Data");
+             new GowallaConverter().Run();
 
-            Console.WriteLine("Running Loadtest");
-            RunLoadtestSimulation();
+           // Console.WriteLine("Running Loadtest");
+          //  RunLoadtestSimulation();
             Console.ReadKey();
         }
 
