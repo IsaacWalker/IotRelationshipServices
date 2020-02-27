@@ -20,11 +20,11 @@ namespace FYPDataGenerator
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Reading Data");
-             new GowallaConverter().Run();
+            // Console.WriteLine("Reading Data");
+           //  new GowallaConverter().Run();
 
-           // Console.WriteLine("Running Loadtest");
-          //  RunLoadtestSimulation();
+            Console.WriteLine("Running Loadtest");
+            RunLoadtestSimulation();
             Console.ReadKey();
         }
 
@@ -42,7 +42,7 @@ namespace FYPDataGenerator
             ISettingServiceClient settingServiceClient = new SettingServiceClient(httpClientFactory);
 
             IList<DeviceModel> TestDevices = FileParser.ReadTestDevices();
-            IList<ScanBatchModel> scanBatchModels = CreateScanBatchModels(FileParser.ReadScanModel().GetRange(0, 10000),5).ToList();
+            IList<ScanBatchModel> scanBatchModels = CreateScanBatchModels(FileParser.ReadScanModel().GetRange(0, 10),5).ToList();
                 
             ISimulation<SimulationResult> loadTest = new LoadTestSimulation(
                 deviceServiceClient,

@@ -35,7 +35,6 @@ namespace FYPDataGenerator.Simulation
             foreach(T Item in Load)
             {
                 bool success = await EndpointAction.Invoke(Item);
-
                 if (success)
                     successes++;
             }

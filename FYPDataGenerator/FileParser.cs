@@ -13,7 +13,7 @@ namespace FYPDataGenerator
         private static readonly string ScanFileName = "scans.txt";
         private static readonly string GowallaFileName = "Gowalla_totalCheckins.txt";
         private static readonly string AndroidModelsFileName = "androidModels.csv";
-
+        private static readonly string DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss";
 
         public static void WriteScans(IList<ScanModel> models)
         {
@@ -22,7 +22,7 @@ namespace FYPDataGenerator
                 foreach (var scan in models)
                 {
                     string line = string.Format("{0}\t{1}\t{2}\t{3}\t{4}",
-                        scan.DeviceId, scan.DateTime, scan.Kinematics.Latitude, scan.Kinematics.Longitude, scan.GlobalConfigurationId);
+                        scan.DeviceId, scan.DateTime.ToString(DateTimeFormat), scan.Kinematics.Latitude, scan.Kinematics.Longitude, scan.GlobalConfigurationId);
 
                     file.WriteLine(line);
                 }
