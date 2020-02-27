@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -14,7 +15,7 @@ namespace FYPDataGenerator
         private static readonly string GowallaFileName = "Gowalla_totalCheckins.txt";
         private static readonly string AndroidModelsFileName = "androidModels.csv";
         private static readonly string DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss";
-
+        private static readonly string ClusterFileName = "test_scan_collection.json";
         public static void WriteScans(IList<ScanModel> models)
         {
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(ScanFileName))
@@ -144,5 +145,12 @@ namespace FYPDataGenerator
             return scans;
         }
 
+
+        public static Tuple<List<WifiDeviceModel>, List<BluetoothDeviceModel>> ReadClusterDevices()
+        {
+            string JsonString = File.ReadAllText(ClusterFileName);
+            ScanModel model = JsonConvert.DeserializeObject<ScanModel>(JsonString);
+            return new Tuple<List<WifiDeviceModel>, List<BluetoothDeviceModel>>(model.WifiDevices, model.BluetoothDevices);
+        }
     }
 }

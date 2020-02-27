@@ -1,4 +1,5 @@
-﻿using FYPDataGenerator.Gowalla;
+﻿using FYPDataGenerator.ClusterGraph;
+using FYPDataGenerator.Gowalla;
 using FYPDataGenerator.Simulation;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -41,37 +42,32 @@ namespace FYPDataGenerator
             IScanServiceClient scanServiceClient = new ScanServiceClient(httpClientFactory);
             ISettingServiceClient settingServiceClient = new SettingServiceClient(httpClientFactory);
 
-            IList<DeviceModel> TestDevices = FileParser.ReadTestDevices();
-            IList<ScanBatchModel> scanBatchModels = CreateScanBatchModels(FileParser.ReadScanModel().GetRange(0, 10),5).ToList();
-                
-            ISimulation<SimulationResult> loadTest = new LoadTestSimulation(
+            // IList<DeviceModel> TestDevices = FileParser.ReadTestDevices();         
+            // IList<ScanBatchModel> scanBatchModels = CreateScanBatchModels(FileParser.ReadScanModel().GetRange(0, 10),5).ToList();
+            DeviceModel device = new DeviceModel() { Id = 1 };
+
+            var wifiBleDevices = FileParser.ReadClusterDevices();
+            IClusterGraphScanGenerator scanGenerator = new ClusterGraphScanGenerator();
+            scanGenerator.Run(device, wifiBleDevices.Item1, wifiBleDevices.Item2);
+
+            /* ISimulation<SimulationResult> loadTest = new LoadTestSimulation(
+                 deviceServiceClient,
+                 settingServiceClient,
+                 scanServiceClient,
+                 TestDevices,
+                 scanBatchModels);*/
+
+            ISimulation<SimulationResult> clusterInsertSimulation = new ClusterInsertSimulation(
                 deviceServiceClient,
                 settingServiceClient,
                 scanServiceClient,
-                TestDevices,
-                scanBatchModels);
-            loadTest.Run();
-            Console.WriteLine("Found {0} batches", scanBatchModels.Count);
+                scanGenerator,
+                wifiBleDevices.Item1,
+                wifiBleDevices.Item2);
+
+            clusterInsertSimulation.Run();
+            //Console.WriteLine("Found {0} batches", scanBatchModels.Count);
         }
 
-
-        private static IEnumerable<ScanBatchModel> CreateScanBatchModels(List<ScanModel> scanModels, int batchSize)
-        {
-            List<ScanBatchModel> scanBatchModels = new List<ScanBatchModel>();
-            var groups = scanModels.GroupBy(S => S.DeviceId);
-            
-            foreach(var g in groups)
-            {
-                for(int i =0; i< g.Count(); i+=batchSize)
-                {
-                    yield return new ScanBatchModel()
-                    {
-                        DeviceId = g.Key,
-                        Scans = g.ToList().GetRange(i, Math.Min(batchSize, g.Count() - i))
-                    };
-                }
-            }
-
-        }
     }
 }

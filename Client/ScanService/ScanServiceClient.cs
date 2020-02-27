@@ -7,9 +7,12 @@
 
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Web.Iot.Models.MongoDB;
 using Web.Iot.ScanService.Models;
 
 namespace Web.Iot.Client.ScanService
@@ -75,6 +78,28 @@ namespace Web.Iot.Client.ScanService
 
                 return response.IsSuccessStatusCode;
             }
+        }
+
+
+        public static IList<ScanBatchModel> CreateScanBatchModels(IList<ScanModel> scanModels, int batchSize)
+        {
+            List<ScanBatchModel> scanBatchModels = new List<ScanBatchModel>();
+            var groups = scanModels.GroupBy(S => S.DeviceId);
+
+            foreach (var g in groups)
+            {
+                for (int i = 0; i < g.Count(); i += batchSize)
+                {
+                    scanBatchModels.Add(new ScanBatchModel()
+                    {
+                        DeviceId = g.Key,
+                        Scans = g.ToList().GetRange(i, Math.Min(batchSize, g.Count() - i))
+                    });              
+                }
+            }
+
+            return scanBatchModels;
+            
         }
     }
 }
