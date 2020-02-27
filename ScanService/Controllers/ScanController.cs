@@ -46,7 +46,7 @@ namespace Web.Iot.ScanService.Controllers
 
             if(ScanBatch == null || ScanBatch.Scans == null || ScanBatch.Scans.Count == 0)
             {
-                return BadRequest();
+                return BadRequest("Request is null");
             }
 
             m_logger.LogDebug(LogEventId.ScanBatchPostStart, string.Format("Scans Received: From {0}, Number {1}",
@@ -59,7 +59,7 @@ namespace Web.Iot.ScanService.Controllers
 
             if (!Response.Success)
             {
-                return BadRequest();
+                return BadRequest("Failed to insert into Database");
             }
 
             return Ok();

@@ -18,7 +18,7 @@ namespace Web.Iot.Models.MongoDB
         /// <summary>
         /// The datetime of when the device was detected
         /// </summary>
-        [BsonElement("datetime")]
+        [BsonElement("dateTime")]
         public DateTime DateTime { get; set; }
 
 

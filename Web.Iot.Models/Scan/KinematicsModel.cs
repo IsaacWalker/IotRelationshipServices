@@ -19,7 +19,7 @@ namespace Web.Iot.Models.MongoDB
         /// <summary>
         /// DateTime of when the kinematics of the device we're read
         /// </summary>
-        [BsonElement("datetime")]
+        [BsonElement("dateTime")]
         public DateTime DateTime { get; set; }
 
 
