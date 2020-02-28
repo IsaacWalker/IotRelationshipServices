@@ -45,7 +45,7 @@ namespace FYPDataGenerator.ClusterGraph
             foreach(var wifiDevice in wifiDevices)
             {
                 int Cluster = 1;
-                MACClusterMap.Add(wifiDevice.SSID, Cluster);
+                MACClusterMap.Add(wifiDevice.BSSID, Cluster);
             }
 
             foreach(var bluetoothDevice in bluetoothDevices)
@@ -76,7 +76,7 @@ namespace FYPDataGenerator.ClusterGraph
                             BluetoothDevices = bluetoothDevices.Where(B =>
                                  IsInCluster(settings.Clusters[MACClusterMap[B.Address]], currentDateTime)).ToList(),
                             WifiDevices = wifiDevices.Where(W =>
-                             IsInCluster(settings.Clusters[MACClusterMap[W.SSID]], currentDateTime)).ToList(),
+                             IsInCluster(settings.Clusters[MACClusterMap[W.BSSID]], currentDateTime)).ToList(),
                             Configuration = null,
                             GlobalConfigurationId = 1,
                             Kinematics = new KinematicsModel()
@@ -84,6 +84,8 @@ namespace FYPDataGenerator.ClusterGraph
                                 
                             }
                         };
+
+                        scanModels.Add(scanModel);
                     }               
                 }
             }

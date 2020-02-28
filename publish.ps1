@@ -1,5 +1,5 @@
 ﻿
-$services = "Setting", "Scan", "Portal", "Device"
+$services = "Setting", "Scan", "Portal", "Device", "Display"
 
 Foreach($service in $services)
 {
@@ -13,10 +13,11 @@ Foreach($service in $services)
 
     Remove-Website -Name $siteName
     Remove-WebAppPool $servicePoolName
-    Remove-Item $websitePath
+    Remove-Item -Force -Recurse $websitePath
 
     dotnet publish $publishProject -o Website\$serviceName
     New-WebAppPool $servicePoolName
+    Set-ItemProperty IIS:\AppPools\$servicePoolName managedRuntimeVersion ""
     New-Website -Name $siteName -Port 80 -HostHeader $hostName -PhysicalPath $websitePath -ApplicationPool $servicePoolName
 }
 

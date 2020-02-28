@@ -15,7 +15,6 @@ namespace FYPDataGenerator
         private static readonly string GowallaFileName = "Gowalla_totalCheckins.txt";
         private static readonly string AndroidModelsFileName = "androidModels.csv";
         private static readonly string DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss";
-        private static readonly string ClusterFileName = "test_scan_collection.json";
         private static readonly string WifiDevicesFileName = "cluster_wifi_devices.txt";
         private static readonly string BluetoothDeviceFileName = "cluster_bluetooth_devices.txt";
 

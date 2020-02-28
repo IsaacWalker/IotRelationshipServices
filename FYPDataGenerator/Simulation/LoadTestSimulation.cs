@@ -35,14 +35,12 @@ namespace FYPDataGenerator.Simulation
 
         protected async override Task RunTest()
         {
-            Console.WriteLine("Testing Service: Scan Service with {0} requests", ScanBatches.Count);
-
             var deviceEndpointTest = new ServiceEndpointLoad<DeviceModel>("Register Device", TestDevices, async (D) =>
             {
                 return await m_deviceServiceClient.RegisterDeviceAsync(D) != -1;
             });
 
-            //  await deviceEndpointTest.Run();
+            await deviceEndpointTest.Run();
 
             var scanEndpointTest = new ServiceEndpointLoad<ScanBatchModel>("Insert Scan", ScanBatches, async S =>
             {

@@ -40,7 +40,7 @@ namespace FYPDataGenerator.Simulation
         }
 
 
-        protected override Task RunTest()
+        protected async override Task RunTest()
         {
             DeviceModel device = new DeviceModel() { Id = 1 };
             var scanModels = m_scanGenerator.Run(device, m_wifiDevices, m_bluetoothDevices);
@@ -51,7 +51,7 @@ namespace FYPDataGenerator.Simulation
             ServiceEndpointLoad<ScanBatchModel> load = new ServiceEndpointLoad<ScanBatchModel>("Cluster Data", batchModels,SB =>
                 m_scanServiceClient.InsertScanBatchAsync(SB));
 
-            return Task.CompletedTask;
+            await load.Run();
         }
     }
 }

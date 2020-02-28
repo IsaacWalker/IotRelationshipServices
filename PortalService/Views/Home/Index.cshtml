@@ -6,6 +6,8 @@
 
 @{ if (Model.SettingExists)
     {
+        <script src="~/scripts/settingTypeCheck.js"></script>
+
         <div class="container">
             <div class="container row">
                 <p class="font-weight-bold">Current Configuration Id:  </p>
@@ -21,13 +23,13 @@
                                     <label class="form-check-label" asp-for=@Model.Configuration.Settings[i].Name></label>
                                 </div>
                                 <div class="col-3">
-                                    <input class="form-control" asp-for=@Model.Configuration.Settings[i].Name />
+                                    <input class="form-control" readonly asp-for=@Model.Configuration.Settings[i].Name />
                                 </div>
                                 <div class="col">
                                     <label class="form-check-label " asp-for=@Model.Configuration.Settings[i].Type></label>
                                 </div>
                                 <div class="col-3">
-                                    <select class="form-control " asp-for=@Model.Configuration.Settings[i].Type asp-items=@Model.ValidSettingTypes></select>
+                                    <input class="form-control " readonly asp-for=@Model.Configuration.Settings[i].Type/>
                                 </div>
                                 <div class="col">
                                     <label class="form-check-label" asp-for=@Model.Configuration.Settings[i].Value></label>

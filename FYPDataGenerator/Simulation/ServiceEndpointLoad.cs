@@ -42,7 +42,7 @@ namespace FYPDataGenerator.Simulation
             watch.Stop();
 
             Console.WriteLine("Endpoint {0} finished with {1}/{2} {3}% and time {4} miliseconds.",
-                Name, successes, Load.Count, (float)(successes / Load.Count), watch.ElapsedMilliseconds);
+                Name, successes, Load.Count, (float)(successes / Load.Count) * 100, watch.ElapsedMilliseconds);
         }
     }
 }
