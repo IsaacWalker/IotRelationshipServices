@@ -2,6 +2,7 @@
 using FYPDataGenerator.Gowalla;
 using FYPDataGenerator.Simulation;
 using Microsoft.Extensions.DependencyInjection;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,7 +23,7 @@ namespace FYPDataGenerator
         static void Main(string[] args)
         {
             // Console.WriteLine("Reading Data");
-           //  new GowallaConverter().Run();
+            //  new GowallaConverter().Run();
 
             Console.WriteLine("Running Loadtest");
             RunLoadtestSimulation();
