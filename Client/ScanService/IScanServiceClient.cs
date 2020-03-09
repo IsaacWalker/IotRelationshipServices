@@ -5,7 +5,9 @@
 ****************************************************/
 
 
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Web.Iot.Models.GDPR;
 using Web.Iot.ScanService.Models;
 
 namespace Web.Iot.Client.ScanService
@@ -28,5 +30,13 @@ namespace Web.Iot.Client.ScanService
         /// <param name="scanBatch"></param>
         /// <returns></returns>
         public Task<bool> InsertScanBatchAsync(ScanBatchModel scanBatch);
+
+
+        /// <summary>
+        /// Gets the personal data of the scan service
+        /// </summary>
+        /// <param name="deviceId"></param>
+        /// <returns></returns>
+        public Task<PersonalDataModel<List<ScanSAData>>> GetScanPersonalData(int deviceId);
     }
 }

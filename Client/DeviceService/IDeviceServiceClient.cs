@@ -7,6 +7,7 @@
 
 using System.Threading.Tasks;
 using Web.Iot.Models.Device;
+using Web.Iot.Models.GDPR;
 
 namespace Web.Iot.Client.DeviceService
 {
@@ -27,5 +28,13 @@ namespace Web.Iot.Client.DeviceService
         /// </summary>
         /// <returns></returns>
         public Task<int> RegisterDeviceAsync(DeviceModel device);
+
+
+        /// <summary>
+        /// Gets the device personal data for a SAR
+        /// </summary>
+        /// <param name="deviceId"></param>
+        /// <returns></returns>
+        public Task<PersonalDataModel<DeviceModel>> GetDevicePersonalData(int deviceId);
     }
 }

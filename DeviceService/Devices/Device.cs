@@ -4,6 +4,8 @@
     Isaac Walker
 ****************************************************/
 
+using System;
+
 namespace Web.Iot.DeviceService.Devices
 {
     public class Device
@@ -33,8 +35,14 @@ namespace Web.Iot.DeviceService.Devices
 
 
         /// <summary>
-        /// THe model of the device
+        /// The model of the device
         /// </summary>
         public string Model { get; set; }
+
+
+        /// <summary>
+        /// Date of creation of this device
+        /// </summary>
+        public DateTime DateOfCreation { get; set; }
     }
 }

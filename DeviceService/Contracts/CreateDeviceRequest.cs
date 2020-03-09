@@ -6,6 +6,7 @@
 
 using Web.Iot.Shared.Message;
 using Web.Iot.DeviceService.Devices;
+using System;
 
 namespace Web.Iot.DeviceService.Contracts
 {
@@ -35,16 +36,24 @@ namespace Web.Iot.DeviceService.Contracts
         public string DeviceModel { get; private set; }
 
 
+        /// <summary>
+        /// Date of creation
+        /// </summary>
+        public DateTime DateOfCreation { get; private set; }
+
+
         public CreateDeviceRequest(
             string MacAddress,
             string BluetoothName,
             string Manufacturer,
-            string DeviceModel)
+            string DeviceModel,
+            DateTime dateOfCreation)
         {
             this.MacAddress = MacAddress;
             this.BluetoothName = BluetoothName;
             this.Manufacturer = Manufacturer;
             this.DeviceModel = DeviceModel;
+            DateOfCreation = dateOfCreation;
         }
     }
 }

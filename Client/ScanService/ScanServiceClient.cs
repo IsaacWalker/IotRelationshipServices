@@ -12,6 +12,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Web.Iot.Models.GDPR;
 using Web.Iot.Models.MongoDB;
 using Web.Iot.ScanService.Models;
 
@@ -29,6 +30,9 @@ namespace Web.Iot.Client.ScanService
         protected readonly Uri m_scanUrl;
 
 
+        protected readonly Uri m_getPersonalDataUrl;
+
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -38,6 +42,7 @@ namespace Web.Iot.Client.ScanService
         {
             m_getScanCountUri = new Uri(m_baseURI.AbsoluteUri + "api/scan/count");
             m_scanUrl = new Uri(m_baseURI.AbsoluteUri + "api/scan");
+            m_getPersonalDataUrl = new Uri(m_baseURI.AbsoluteUri + "api/scan/sar");
         }
 
 
@@ -80,6 +85,24 @@ namespace Web.Iot.Client.ScanService
             }
         }
 
+        public async Task<PersonalDataModel<List<ScanSAData>>> GetScanPersonalData(int deviceId)
+        {
+            UriBuilder builder = new UriBuilder(m_getPersonalDataUrl);
+            builder.Query = string.Format("{0}={1}", nameof(deviceId), deviceId);
+
+            using (var client = m_httpClientFactory.CreateClient())
+            {
+                var response = await client.GetAsync(builder.Uri);
+
+                if(response.IsSuccessStatusCode)
+                {
+                    return JsonConvert.DeserializeObject<PersonalDataModel<List<ScanSAData>>>(await response.Content.ReadAsStringAsync());
+                }
+            }
+
+            return default;
+        }
+
 
         public static IList<ScanBatchModel> CreateScanBatchModels(IList<ScanModel> scanModels, int batchSize)
         {
@@ -101,5 +124,6 @@ namespace Web.Iot.Client.ScanService
             return scanBatchModels;
             
         }
+
     }
 }

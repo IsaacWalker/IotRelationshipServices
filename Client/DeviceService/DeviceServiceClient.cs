@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Web.Iot.Models.Device;
+using Web.Iot.Models.GDPR;
 
 namespace Web.Iot.Client.DeviceService
 {
@@ -32,6 +33,12 @@ namespace Web.Iot.Client.DeviceService
 
 
         /// <summary>
+        /// Gets the personal data
+        /// </summary>
+        protected readonly Uri m_getPersonalDataUrl;
+
+
+        /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="httpClientFactory"></param>
@@ -40,6 +47,7 @@ namespace Web.Iot.Client.DeviceService
         {
             m_getDeviceCountUrl = new Uri(m_baseURI.AbsoluteUri + "api/device/count");
             m_deviceUrl = new Uri(m_baseURI.AbsoluteUri + "api/device");
+            m_getPersonalDataUrl = new Uri(m_getPersonalDataUrl.AbsoluteUri + "api/device/sar");
         }
 
 
@@ -61,6 +69,31 @@ namespace Web.Iot.Client.DeviceService
 
                 return -1;
             }
+        }
+
+
+        /// <summary>
+        /// Gets the personal data of an individual related to a device
+        /// </summary>
+        /// <param name="deviceId"></param>
+        /// <returns></returns>
+        public async Task<PersonalDataModel<DeviceModel>> GetDevicePersonalData(int deviceId)
+        {
+            UriBuilder builder = new UriBuilder(m_getPersonalDataUrl);
+            builder.Query = string.Format("{0}={1}", nameof(deviceId), deviceId);
+
+            using(var client = m_httpClientFactory.CreateClient())
+            {
+                var response = await client.GetAsync(builder.Uri);
+
+                if(response.IsSuccessStatusCode)
+                {
+                    var personalDataModel = JsonConvert.DeserializeObject<PersonalDataModel<DeviceModel>>(await response.Content.ReadAsStringAsync());
+                    return personalDataModel;
+                }
+            }
+
+            return default;
         }
 
 

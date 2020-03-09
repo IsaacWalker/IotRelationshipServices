@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Web.Iot.DeviceService.Contracts;
 using Web.Iot.DeviceService.Devices;
+using Web.Iot.Models.Device;
 
 namespace Web.Iot.DeviceService.Processor
 {
@@ -103,6 +104,31 @@ namespace Web.Iot.DeviceService.Processor
 
                 return Task.FromResult(new GetDeviceCountResponse(true, count));
             }
+        }
+
+
+        /// <summary>
+        /// Gets the Subject Access Request of the device
+        /// </summary>
+        /// <param name="Request"></param>
+        /// <returns></returns>
+        public async Task<GetDeviceSAResponse> Run(GetDeviceSARequest Request)
+        {
+            using(var scope = m_serviceProvider.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetService<DeviceContext>();
+
+                var device = await context.Devices.FindAsync(Request.DeviceId);
+
+                if (device != default)
+                {
+                    var response = new GetDeviceSAResponse(device, true);
+
+                    return response;
+                }            
+            }
+            
+            return new GetDeviceSAResponse(default, false);
         }
     }
 }

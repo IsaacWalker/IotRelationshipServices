@@ -4,12 +4,15 @@
     Isaac Walker
 ****************************************************/
 
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Web.Iot.DeviceService.Contracts;
 using Web.Iot.DeviceService.Processor;
 using Web.Iot.Models.Device;
+using Web.Iot.Models.GDPR;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -47,7 +50,8 @@ namespace Web.Iot.DeviceService.Controllers
                 deviceModel.MacAddress,
                 deviceModel.BluetoothName,
                 deviceModel.Manufacturer,
-                deviceModel.Model);
+                deviceModel.Model,
+                DateTime.Now);
 
             var response = await m_processor.Run(request);
 
@@ -107,10 +111,47 @@ namespace Web.Iot.DeviceService.Controllers
 
 
         [HttpGet]
+        [Route("api/[controller]/sar")]
+        public async Task<IActionResult> GetPersonalData(int deviceId)
+        {
+            var response = await m_processor.Run(new GetDeviceSARequest(deviceId));
+
+            if(response.Success)
+            {
+                var deviceModel = new DeviceModel()
+                {
+                    BluetoothName = response.DeviceModel.BluetoothName,
+                    Id = deviceId,
+                    MacAddress = response.DeviceModel.MacAddress,
+                    Manufacturer = response.DeviceModel.Manufacturer
+                };
+
+                PersonalDataModel<DeviceModel> dataModel = new PersonalDataModel<DeviceModel>()
+                {
+                    PersonalDataName = "Device Data",
+                    Data = deviceModel,
+                    DateOfCollection = response.DeviceModel.DateOfCreation,
+                    DateOfDeletion = response.DeviceModel.DateOfCreation + TimeSpan.FromDays(30.0),
+                    Categories = s_devicePersonalDataCategories
+                };
+
+                return Ok(dataModel);
+            }
+
+            return NotFound();
+        }
+
+        [HttpGet]
         [Route("")]
         public IActionResult Ping()
         {
             return Ok();
         }
+
+
+        private static readonly IList<string> s_devicePersonalDataCategories = new List<string> 
+        { 
+            "Personally Identifiable Information"
+        };
     }
 }
