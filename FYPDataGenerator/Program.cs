@@ -2,6 +2,7 @@
 using FYPDataGenerator.Gowalla;
 using FYPDataGenerator.Simulation;
 using Microsoft.Extensions.DependencyInjection;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,7 +23,7 @@ namespace FYPDataGenerator
         static void Main(string[] args)
         {
             // Console.WriteLine("Reading Data");
-           //  new GowallaConverter().Run();
+            //  new GowallaConverter().Run();
 
             Console.WriteLine("Running Loadtest");
             RunLoadtestSimulation();
@@ -42,20 +43,20 @@ namespace FYPDataGenerator
             IScanServiceClient scanServiceClient = new ScanServiceClient(httpClientFactory);
             ISettingServiceClient settingServiceClient = new SettingServiceClient(httpClientFactory);
 
-            // IList<DeviceModel> TestDevices = FileParser.ReadTestDevices();         
-            // IList<ScanBatchModel> scanBatchModels = CreateScanBatchModels(FileParser.ReadScanModel().GetRange(0, 10),5).ToList();
+             IList<DeviceModel> TestDevices = FileParser.ReadTestDevices();         
+             IList<ScanBatchModel> scanBatchModels = ScanServiceClient.CreateScanBatchModels(FileParser.ReadScanModel().GetRange(0, 10000),5).ToList();
             DeviceModel device = new DeviceModel() { Id = 1 };
 
             var wifiBleDevices = FileParser.ReadClusterDevices();
             IClusterGraphScanGenerator scanGenerator = new ClusterGraphScanGenerator();
             scanGenerator.Run(device, wifiBleDevices.Item1, wifiBleDevices.Item2);
 
-            /* ISimulation<SimulationResult> loadTest = new LoadTestSimulation(
+             ISimulation<SimulationResult> loadTestSimulation = new LoadTestSimulation(
                  deviceServiceClient,
                  settingServiceClient,
                  scanServiceClient,
                  TestDevices,
-                 scanBatchModels);*/
+                 scanBatchModels);
 
             ISimulation<SimulationResult> clusterInsertSimulation = new ClusterInsertSimulation(
                 deviceServiceClient,
@@ -65,8 +66,7 @@ namespace FYPDataGenerator
                 wifiBleDevices.Item1,
                 wifiBleDevices.Item2);
 
-            clusterInsertSimulation.Run();
-            //Console.WriteLine("Found {0} batches", scanBatchModels.Count);
+            loadTestSimulation.Run();
         }
 
     }

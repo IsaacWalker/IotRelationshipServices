@@ -46,7 +46,7 @@ namespace Web.Iot.ScanService.Controllers
 
             if(ScanBatch == null || ScanBatch.Scans == null || ScanBatch.Scans.Count == 0)
             {
-                return BadRequest("Request is null");
+                return BadRequest(string.Format("Request is null {0}", ScanBatch == null));
             }
 
             m_logger.LogDebug(LogEventId.ScanBatchPostStart, string.Format("Scans Received: From {0}, Number {1}",

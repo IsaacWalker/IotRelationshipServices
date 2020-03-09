@@ -15,7 +15,9 @@ namespace FYPDataGenerator
         private static readonly string GowallaFileName = "Gowalla_totalCheckins.txt";
         private static readonly string AndroidModelsFileName = "androidModels.csv";
         private static readonly string DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss";
-        private static readonly string ClusterFileName = "test_scan_collection.json";
+        private static readonly string WifiDevicesFileName = "cluster_wifi_devices.txt";
+        private static readonly string BluetoothDeviceFileName = "cluster_bluetooth_devices.txt";
+
         public static void WriteScans(IList<ScanModel> models)
         {
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(ScanFileName))
@@ -148,9 +150,50 @@ namespace FYPDataGenerator
 
         public static Tuple<List<WifiDeviceModel>, List<BluetoothDeviceModel>> ReadClusterDevices()
         {
-            string JsonString = File.ReadAllText(ClusterFileName);
-            ScanModel model = JsonConvert.DeserializeObject<ScanModel>(JsonString);
-            return new Tuple<List<WifiDeviceModel>, List<BluetoothDeviceModel>>(model.WifiDevices, model.BluetoothDevices);
+            List<WifiDeviceModel> wifiDevices = new List<WifiDeviceModel>();
+
+            string[] Lines = File.ReadAllLines(WifiDevicesFileName);
+
+            foreach (string line in Lines)
+            {
+                string[] data = line.Split("\t");
+
+                WifiDeviceModel bt = new WifiDeviceModel()
+                {
+                    BSSID = data[0],
+                    SSID = data[1],
+                    Capabilities = data[2],
+                    VenueName = data[3],
+                    OperatorFriendlyName = data[4],
+                    Level = int.Parse(data[5]),
+                    DateTime = DateTime.Parse(data[6])
+                };
+
+                wifiDevices.Add(bt);
+            }
+
+            Lines = File.ReadAllLines(BluetoothDeviceFileName);
+
+            List<BluetoothDeviceModel> bluetoothDevices = new List<BluetoothDeviceModel>();
+
+            foreach (string line in Lines)
+            {
+                string[] data = line.Split("\t");
+
+                BluetoothDeviceModel bluetoothDeviceModel = new BluetoothDeviceModel()
+                {
+                    Name = data[0],
+                    Type = data[1],
+                    RSSI = int.Parse(data[2]),
+                    PowerLevel = int.Parse(data[3]),
+                    Address = data[4],
+                    DateTime = DateTime.Parse(data[5])
+                };
+
+                bluetoothDevices.Add(bluetoothDeviceModel);
+            }
+
+            return new Tuple<List<WifiDeviceModel>, List<BluetoothDeviceModel>>(wifiDevices, bluetoothDevices);
         }
     }
 }

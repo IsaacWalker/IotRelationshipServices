@@ -54,11 +54,12 @@ namespace Web.Iot.ScanService.MongoDB
 
             foreach(ScanModel scan in Request.Scans)
             {
+                var coords = new GeoJson2DCoordinates(scan.Kinematics.Latitude, scan.Kinematics.Longitude);
+                scan.Kinematics.Location = GeoJson.Point<GeoJson2DCoordinates>(coords);
+
                 /// Was a local configuraiton used in this scan?
                 if (scan.Configuration != null && scan.Configuration.Count != 0)
                 {
-                    var coords = new GeoJson2DCoordinates(scan.Kinematics.Latitude, scan.Kinematics.Longitude);
-                    scan.Kinematics.Location = GeoJson.Point<GeoJson2DCoordinates>(coords);
                     // if so, then register that configuration and set the global Id to it
                     scan.GlobalConfigurationId = await m_settingServiceClient.RegisterConfigurationAsync(scan.Configuration);
                 }
