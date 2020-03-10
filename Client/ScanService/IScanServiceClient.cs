@@ -37,6 +37,6 @@ namespace Web.Iot.Client.ScanService
         /// </summary>
         /// <param name="deviceId"></param>
         /// <returns></returns>
-        public Task<PersonalDataModel<List<ScanSAData>>> GetScanPersonalData(int deviceId);
+        public Task<PersonalDataModel<ScanSubjectAccessData>> GetScanPersonalData(int deviceId);
     }
 }

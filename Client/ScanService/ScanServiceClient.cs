@@ -85,7 +85,7 @@ namespace Web.Iot.Client.ScanService
             }
         }
 
-        public async Task<PersonalDataModel<List<ScanSAData>>> GetScanPersonalData(int deviceId)
+        public async Task<PersonalDataModel<ScanSubjectAccessData>> GetScanPersonalData(int deviceId)
         {
             UriBuilder builder = new UriBuilder(m_getPersonalDataUrl);
             builder.Query = string.Format("{0}={1}", nameof(deviceId), deviceId);
@@ -96,7 +96,7 @@ namespace Web.Iot.Client.ScanService
 
                 if(response.IsSuccessStatusCode)
                 {
-                    return JsonConvert.DeserializeObject<PersonalDataModel<List<ScanSAData>>>(await response.Content.ReadAsStringAsync());
+                    return JsonConvert.DeserializeObject<PersonalDataModel<ScanSubjectAccessData>>(await response.Content.ReadAsStringAsync());
                 }
             }
 

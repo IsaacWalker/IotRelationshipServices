@@ -79,6 +79,20 @@ namespace Web.Iot.ScanService.Controllers
             return Ok(response.Count);
         }
 
+        [Route("api/[controller]/sar")]
+        public async Task<IActionResult> GetPersonalData([FromQuery] int deviceId)
+        {
+            var response = await m_processor.Run(new GetScanSubjectAccessRequest(deviceId));
+
+            if (response.Success)
+            {
+                return Ok(response);
+            }
+
+            return BadRequest();
+
+        }
+
 
         [HttpGet]
         [Route("")]

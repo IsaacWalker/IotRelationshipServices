@@ -8,7 +8,8 @@ namespace Web.Iot.ScanService.MongoDB
 {
     public interface IScanProcessor :
         IProcessor<LogScanRequest, LogScanResponse>,
-        IProcessor<GetScanCountRequest, GetScanCountResponse>
+        IProcessor<GetScanCountRequest, GetScanCountResponse>,
+        IProcessor<GetScanSubjectAccessRequest, GetScanSubjectAccessResponse>
     {
     }
 }

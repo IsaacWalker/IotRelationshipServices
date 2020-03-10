@@ -13,6 +13,8 @@ using Web.Iot.Shared.Message;
 using Web.Iot.Client.SettingService;
 using Web.Iot.Models.MongoDB;
 using MongoDB.Driver.GeoJsonObjectModel;
+using Web.Iot.Models.GDPR;
+using System.Collections.Generic;
 
 namespace Web.Iot.ScanService.MongoDB
 {
@@ -96,5 +98,47 @@ namespace Web.Iot.ScanService.MongoDB
 
             return Response;        
         }
+
+        public Task<GetScanSubjectAccessResponse> Run(GetScanSubjectAccessRequest Request)
+        {
+            try
+            {
+                var scans = m_scanCollection.AsQueryable()
+                .Where(S => S.DeviceId == Request.DeviceId)
+                .ToList();
+
+                int wifiDeviceCount = scans.Sum(S => S.WifiDevices.Count());
+                int bluetoothDeviceCount = scans.Sum(S => S.BluetoothDevices.Count());
+                int scanCount = scans.Count();
+
+                var dataModel = new PersonalDataModel<ScanSubjectAccessData>()
+                {
+                    Data = new ScanSubjectAccessData()
+                    {
+                        BluetoothScanCount = bluetoothDeviceCount,
+                        ScanCount = scanCount,
+                        WifiScansCount = wifiDeviceCount
+                    },
+                    Categories = s_scanSubjectCategories,
+                    PersonalDataName = "Scan Data",
+                    DateOfCollection = DateTime.Now.Date - TimeSpan.FromDays(12),
+                    DateOfDeletion = DateTime.Now.Date + TimeSpan.FromDays(12)
+
+                };
+
+                var response = new GetScanSubjectAccessResponse(dataModel, true);
+
+                return Task.FromResult(response);
+            }
+            catch (Exception _)
+            {
+                return Task.FromResult(new GetScanSubjectAccessResponse(default, false));
+            }
+        }
+
+        private static readonly IList<string> s_scanSubjectCategories = new List<string>()
+        {
+            "Personally Identifiable Information"
+        };
     }
 }
