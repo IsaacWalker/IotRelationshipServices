@@ -79,18 +79,29 @@ namespace Web.Iot.ScanService.Controllers
             return Ok(response.Count);
         }
 
-        [Route("api/[controller]/sar")]
-        public async Task<IActionResult> GetPersonalData([FromQuery] int deviceId)
+
+        [Route("api/[controller]/subjectData")]
+        public async Task<IActionResult> GetSubjectData([FromQuery] int deviceId)
         {
             var response = await m_processor.Run(new GetScanSubjectAccessRequest(deviceId));
 
             if (response.Success)
             {
-                return Ok(response);
+                return Ok(response.DataModel);
             }
 
             return BadRequest();
 
+        }
+
+
+        [HttpDelete]
+        [Route("api/[controller]/subjectData")]
+        public async Task<IActionResult> DeleteSubjectData([FromQuery] int deviceId)
+        {
+            var response = await m_processor.Run(new EraseSubjectDataRequest(deviceId));
+
+            return response.Success ? Ok() : BadRequest() as IActionResult;
         }
 
 

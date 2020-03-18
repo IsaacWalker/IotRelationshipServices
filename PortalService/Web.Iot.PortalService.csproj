@@ -7,7 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\scripts\settingTypeCheck.ts" />
+    <Compile Remove="wwwroot\scripts\**" />
+    <Content Remove="wwwroot\scripts\**" />
+    <EmbeddedResource Remove="wwwroot\scripts\**" />
+    <None Remove="wwwroot\scripts\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,11 +28,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Client\Web.Iot.Client.csproj" />
     <ProjectReference Include="..\Shared\Web.Iot.Shared.csproj" />
-    <ProjectReference Include="..\Web.Iot.Models\Web.Iot.Models.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <TypeScriptCompile Include="wwwroot\scripts\settingTypeCheck.ts" />
+    <ProjectReference Include="..\Models\Web.Iot.Models.csproj" />
   </ItemGroup>
 
 </Project>

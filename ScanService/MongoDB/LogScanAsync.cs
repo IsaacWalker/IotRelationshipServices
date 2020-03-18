@@ -103,7 +103,8 @@ namespace Web.Iot.ScanService.MongoDB
         {
             try
             {
-                var scans = m_scanCollection.AsQueryable()
+                var scans = m_scanCollection
+                .AsQueryable()
                 .Where(S => S.DeviceId == Request.DeviceId)
                 .ToList();
 
@@ -111,16 +112,16 @@ namespace Web.Iot.ScanService.MongoDB
                 int bluetoothDeviceCount = scans.Sum(S => S.BluetoothDevices.Count());
                 int scanCount = scans.Count();
 
-                var dataModel = new PersonalDataModel<ScanSubjectAccessData>()
+                var dataModel = new SubjectDataModel()
                 {
-                    Data = new ScanSubjectAccessData()
+                    Data = new Dictionary<string, string>()
                     {
-                        BluetoothScanCount = bluetoothDeviceCount,
-                        ScanCount = scanCount,
-                        WifiScansCount = wifiDeviceCount
+                        {nameof(wifiDeviceCount), wifiDeviceCount.ToString() },
+                        {nameof(bluetoothDeviceCount), bluetoothDeviceCount.ToString() },
+                        {nameof(scanCount), scanCount.ToString() }
                     },
                     Categories = s_scanSubjectCategories,
-                    PersonalDataName = "Scan Data",
+                    Name = "Scan Data",
                     DateOfCollection = DateTime.Now.Date - TimeSpan.FromDays(12),
                     DateOfDeletion = DateTime.Now.Date + TimeSpan.FromDays(12)
 
@@ -134,6 +135,20 @@ namespace Web.Iot.ScanService.MongoDB
             {
                 return Task.FromResult(new GetScanSubjectAccessResponse(default, false));
             }
+        }
+
+        public async Task<EraseSubjectDataResponse> Run(EraseSubjectDataRequest Request)
+        {
+            try
+            {
+                var result = await m_scanCollection.DeleteManyAsync(S => S.DeviceId == Request.DeviceId);
+                return new EraseSubjectDataResponse(true);
+            }
+            catch(Exception _)
+            {
+                return new EraseSubjectDataResponse(false);
+            }
+
         }
 
         private static readonly IList<string> s_scanSubjectCategories = new List<string>()

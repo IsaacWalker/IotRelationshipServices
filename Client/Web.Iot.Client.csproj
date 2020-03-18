@@ -12,8 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Models\Web.Iot.Models.csproj" />
     <ProjectReference Include="..\Shared\Web.Iot.Shared.csproj" />
-    <ProjectReference Include="..\Web.Iot.Models\Web.Iot.Models.csproj" />
+    <ProjectReference Include="..\Models\Web.Iot.Models.csproj" />
   </ItemGroup>
 
 </Project>

@@ -9,10 +9,10 @@ namespace Web.Iot.ScanService.MongoDB
 {
     public class GetScanSubjectAccessResponse : Response
     {
-        public readonly PersonalDataModel<ScanSubjectAccessData> DataModel;
+        public readonly SubjectDataModel DataModel;
 
 
-        public GetScanSubjectAccessResponse(PersonalDataModel<ScanSubjectAccessData> dataModel, bool Success) : base(Success)
+        public GetScanSubjectAccessResponse(SubjectDataModel dataModel, bool Success) : base(Success)
         {
             DataModel = dataModel;
         }

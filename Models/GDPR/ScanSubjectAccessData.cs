@@ -7,7 +7,7 @@ namespace Web.Iot.Models.GDPR
     /// <summary>
     /// Subject access request for the scan data
     /// </summary>
-    public class ScanSubjectAccessData
+    public class ScanSubjectAccessData 
     {
         /// <summary>
         /// Wifi Scan Count

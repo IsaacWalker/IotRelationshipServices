@@ -35,7 +35,7 @@ namespace Web.Iot.Client.DeviceService
         /// <summary>
         /// Gets the personal data
         /// </summary>
-        protected readonly Uri m_getPersonalDataUrl;
+        protected readonly Uri m_subjectDataUrl;
 
 
         /// <summary>
@@ -47,7 +47,25 @@ namespace Web.Iot.Client.DeviceService
         {
             m_getDeviceCountUrl = new Uri(m_baseURI.AbsoluteUri + "api/device/count");
             m_deviceUrl = new Uri(m_baseURI.AbsoluteUri + "api/device");
-            m_getPersonalDataUrl = new Uri(m_getPersonalDataUrl.AbsoluteUri + "api/device/sar");
+            m_subjectDataUrl = new Uri(m_baseURI.AbsoluteUri + "api/device/subjectData");
+        }
+
+
+        /// <summary>
+        /// Deletes the subject data for an Erasure Request
+        /// </summary>
+        /// <param name="deviceId"></param>
+        /// <returns></returns>
+        public async Task<bool> EraseSubjectData(int deviceId)
+        {
+            UriBuilder builder = new UriBuilder(m_subjectDataUrl);
+            builder.Query = string.Format("{0}={1}", nameof(deviceId), deviceId);
+
+            using (var client = m_httpClientFactory.CreateClient())
+            {
+                var response = await client.DeleteAsync(builder.Uri);
+                return response.IsSuccessStatusCode;
+            }
         }
 
 
@@ -77,9 +95,9 @@ namespace Web.Iot.Client.DeviceService
         /// </summary>
         /// <param name="deviceId"></param>
         /// <returns></returns>
-        public async Task<PersonalDataModel<DeviceModel>> GetDevicePersonalData(int deviceId)
+        public async Task<SubjectDataModel> GetDeviceSubjectData(int deviceId)
         {
-            UriBuilder builder = new UriBuilder(m_getPersonalDataUrl);
+            UriBuilder builder = new UriBuilder(m_subjectDataUrl);
             builder.Query = string.Format("{0}={1}", nameof(deviceId), deviceId);
 
             using(var client = m_httpClientFactory.CreateClient())
@@ -88,7 +106,7 @@ namespace Web.Iot.Client.DeviceService
 
                 if(response.IsSuccessStatusCode)
                 {
-                    var personalDataModel = JsonConvert.DeserializeObject<PersonalDataModel<DeviceModel>>(await response.Content.ReadAsStringAsync());
+                    var personalDataModel = JsonConvert.DeserializeObject<SubjectDataModel>(await response.Content.ReadAsStringAsync());
                     return personalDataModel;
                 }
             }

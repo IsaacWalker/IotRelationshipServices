@@ -16,7 +16,8 @@ namespace Web.Iot.DeviceService.Processor
         IProcessor<CreateDeviceRequest, CreateDeviceResponse>,
         IProcessor<GetDeviceRequest, GetDeviceResponse>,
         IProcessor<GetDeviceCountRequest, GetDeviceCountResponse>,
-        IProcessor<GetDeviceSARequest, GetDeviceSAResponse>
+        IProcessor<GetDeviceSARequest, GetDeviceSAResponse>,
+        IProcessor<EraseSubjectDataRequest, EraseSubjectDataResponse>
     {
     }
 }

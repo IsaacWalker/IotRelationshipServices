@@ -35,6 +35,14 @@ namespace Web.Iot.Client.DeviceService
         /// </summary>
         /// <param name="deviceId"></param>
         /// <returns></returns>
-        public Task<PersonalDataModel<DeviceModel>> GetDevicePersonalData(int deviceId);
-    }
+        public Task<SubjectDataModel> GetDeviceSubjectData(int deviceId);
+
+
+        /// <summary>
+        /// Erases the data of a subject for the device service
+        /// </summary>
+        /// <param name="deviceId"></param>
+        /// <returns></returns>
+        public Task<bool> EraseSubjectData(int deviceId);
+    } 
 }

@@ -130,5 +130,19 @@ namespace Web.Iot.DeviceService.Processor
             
             return new GetDeviceSAResponse(default, false);
         }
+
+        public async Task<EraseSubjectDataResponse> Run(EraseSubjectDataRequest Request)
+        {
+            using(var scope = m_serviceProvider.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetService<DeviceContext>();
+
+                var device = await context.Devices.FindAsync(Request.DeviceId);
+                var remove = context.Devices.Remove(device);
+                await context.SaveChangesAsync();
+
+                return new EraseSubjectDataResponse(remove.State == Microsoft.EntityFrameworkCore.EntityState.Deleted);
+            }
+        }
     }
 }

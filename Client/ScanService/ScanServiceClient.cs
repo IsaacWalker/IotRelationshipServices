@@ -30,7 +30,8 @@ namespace Web.Iot.Client.ScanService
         protected readonly Uri m_scanUrl;
 
 
-        protected readonly Uri m_getPersonalDataUrl;
+        protected readonly Uri m_subjectlDataUrl;
+
 
 
         /// <summary>
@@ -42,7 +43,7 @@ namespace Web.Iot.Client.ScanService
         {
             m_getScanCountUri = new Uri(m_baseURI.AbsoluteUri + "api/scan/count");
             m_scanUrl = new Uri(m_baseURI.AbsoluteUri + "api/scan");
-            m_getPersonalDataUrl = new Uri(m_baseURI.AbsoluteUri + "api/scan/sar");
+            m_subjectlDataUrl = new Uri(m_baseURI.AbsoluteUri + "api/scan/subjectData");
         }
 
 
@@ -85,9 +86,9 @@ namespace Web.Iot.Client.ScanService
             }
         }
 
-        public async Task<PersonalDataModel<ScanSubjectAccessData>> GetScanPersonalData(int deviceId)
+        public async Task<SubjectDataModel> GetScanSubjectData(int deviceId)
         {
-            UriBuilder builder = new UriBuilder(m_getPersonalDataUrl);
+            UriBuilder builder = new UriBuilder(m_subjectlDataUrl);
             builder.Query = string.Format("{0}={1}", nameof(deviceId), deviceId);
 
             using (var client = m_httpClientFactory.CreateClient())
@@ -96,7 +97,8 @@ namespace Web.Iot.Client.ScanService
 
                 if(response.IsSuccessStatusCode)
                 {
-                    return JsonConvert.DeserializeObject<PersonalDataModel<ScanSubjectAccessData>>(await response.Content.ReadAsStringAsync());
+                    string data = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<SubjectDataModel>(data);
                 }
             }
 
@@ -125,5 +127,19 @@ namespace Web.Iot.Client.ScanService
             
         }
 
+
+
+        public async Task<bool> EraseSubjectData(int deviceId)
+        {
+            UriBuilder builder = new UriBuilder(m_subjectlDataUrl);
+            builder.Query = string.Format("{0}={1}", nameof(deviceId), deviceId);
+
+            using (var client = m_httpClientFactory.CreateClient())
+            {
+                var response = await client.DeleteAsync(builder.Uri);
+
+                return response.IsSuccessStatusCode;
+            }
+        }
     }
 }

@@ -37,6 +37,14 @@ namespace Web.Iot.Client.ScanService
         /// </summary>
         /// <param name="deviceId"></param>
         /// <returns></returns>
-        public Task<PersonalDataModel<ScanSubjectAccessData>> GetScanPersonalData(int deviceId);
+        public Task<SubjectDataModel> GetScanSubjectData(int deviceId);
+
+
+        /// <summary>
+        /// Erases the data of a subject in the scan service
+        /// </summary>
+        /// <param name="deviceId"></param>
+        /// <returns></returns>
+        public Task<bool> EraseSubjectData(int deviceId);
     }
 }

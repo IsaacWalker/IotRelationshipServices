@@ -7,13 +7,12 @@ namespace Web.Iot.Models.GDPR
     /// <summary>
     /// A model of personal data in a GDPR request
     /// </summary>
-    public class PersonalDataModel <T>
-        where T : new()
+    public class SubjectDataModel
     {
         /// <summary>
         /// The Name of the personal data
         /// </summary>
-        public string PersonalDataName { get; set; }
+        public string Name { get; set; }
 
 
         /// <summary>
@@ -35,8 +34,8 @@ namespace Web.Iot.Models.GDPR
 
 
         /// <summary>
-        /// The personal data associated
+        /// Data
         /// </summary>
-        public T Data { get; set; }
+        public IDictionary<string,string> Data { get; set; }
     }
 }

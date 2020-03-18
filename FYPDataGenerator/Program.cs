@@ -38,11 +38,12 @@ namespace FYPDataGenerator
             var serviceProvider = new ServiceCollection().AddHttpClient().BuildServiceProvider();
             var httpClientFactory = serviceProvider.GetService<IHttpClientFactory>();
 
-            
+            /// Creating clients
             IDeviceServiceClient deviceServiceClient = new DeviceServiceClient(httpClientFactory);
             IScanServiceClient scanServiceClient = new ScanServiceClient(httpClientFactory);
             ISettingServiceClient settingServiceClient = new SettingServiceClient(httpClientFactory);
 
+            // Read in test data
              IList<DeviceModel> TestDevices = FileParser.ReadTestDevices();         
              IList<ScanBatchModel> scanBatchModels = ScanServiceClient.CreateScanBatchModels(FileParser.ReadScanModel().GetRange(0, 10000),5).ToList();
             DeviceModel device = new DeviceModel() { Id = 1 };

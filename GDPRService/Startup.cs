@@ -9,8 +9,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Web.Iot.Client.DeviceService;
+using Web.Iot.Client.ScanService;
 
-namespace Web.Iot.GDPR
+namespace Web.Iot.GDPRService
 {
     public class Startup
     {
@@ -24,7 +26,17 @@ namespace Web.Iot.GDPR
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddHttpClient();
+            services.AddSingleton<IScanServiceClient, ScanServiceClient>();
+            services.AddSingleton<IDeviceServiceClient, DeviceServiceClient>();
+
+            services.Configure<IISServerOptions>(options =>
+            {
+                options.AutomaticAuthentication = false;
+            });
+
+
+            services.AddMvc().AddMvcOptions(options => options.EnableEndpointRouting = false);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,15 +46,13 @@ namespace Web.Iot.GDPR
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
+            else
             {
-                endpoints.MapControllers();
-            });
+                app.UseHsts();
+            }
+
+
+            app.UseMvc();
         }
     }
 }

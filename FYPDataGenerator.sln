@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FYPDataGenerator", "FYPDataGenerator\FYPDataGenerator.csproj", "{31894469-5CD5-4CB3-8E23-EB222D6E2A6E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Iot.Models", "Web.Iot.Models\Web.Iot.Models.csproj", "{902796A3-8C7B-40B6-980A-62B592E96CF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Iot.Models", "Models\Web.Iot.Models.csproj", "{902796A3-8C7B-40B6-980A-62B592E96CF7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Iot.Shared", "Shared\Web.Iot.Shared.csproj", "{AC07CA2D-7A51-4A9E-BFC3-71126085EE4C}"
 EndProject

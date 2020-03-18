@@ -1,27 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Web.Iot.Models.Device;
 
 namespace Web.Iot.Models.GDPR
 {
     public class SubjectAccessRequestModel
     {
         /// <summary>
-        /// Id of the device
+        /// Peronal data relationg to the device service
         /// </summary>
-        public int DeviceId { get; set; }
+        public SubjectDataModel DeviceSubjectData { get; set; }
 
 
         /// <summary>
-        /// Hardware address of the wifi
+        /// Personal Data relating to the scan service
         /// </summary>
-        public string WifiMAC { get; set; }
-
-
-        /// <summary>
-        /// Bluetooth hardware address
-        /// </summary>
-        public string BluetoothMAC { get; set; }
+        public SubjectDataModel ScanSubjectData { get; set; }
 
 
         /// <summary>

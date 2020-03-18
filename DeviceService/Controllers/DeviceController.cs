@@ -111,25 +111,25 @@ namespace Web.Iot.DeviceService.Controllers
 
 
         [HttpGet]
-        [Route("api/[controller]/sar")]
-        public async Task<IActionResult> GetPersonalData(int deviceId)
+        [Route("api/[controller]/subjectData")]
+        public async Task<IActionResult> GetSubjectlData(int deviceId)
         {
             var response = await m_processor.Run(new GetDeviceSARequest(deviceId));
 
             if(response.Success)
             {
-                var deviceModel = new DeviceModel()
-                {
-                    BluetoothName = response.DeviceModel.BluetoothName,
-                    Id = deviceId,
-                    MacAddress = response.DeviceModel.MacAddress,
-                    Manufacturer = response.DeviceModel.Manufacturer
-                };
+                var device = response.DeviceModel;
 
-                PersonalDataModel<DeviceModel> dataModel = new PersonalDataModel<DeviceModel>()
+                SubjectDataModel dataModel = new SubjectDataModel()
                 {
-                    PersonalDataName = "Device Data",
-                    Data = deviceModel,
+                    Name = "Device Data",
+                    Data = new Dictionary<string,string>()
+                    {
+                        {nameof(device.BluetoothName), device.BluetoothName },
+                        {nameof(device.MacAddress), device.MacAddress },
+                        {nameof(device.Manufacturer), device.Manufacturer },
+                        {nameof(device.Model), device.Model }
+                    },
                     DateOfCollection = response.DeviceModel.DateOfCreation,
                     DateOfDeletion = response.DeviceModel.DateOfCreation + TimeSpan.FromDays(30.0),
                     Categories = s_devicePersonalDataCategories
@@ -140,6 +140,16 @@ namespace Web.Iot.DeviceService.Controllers
 
             return NotFound();
         }
+
+
+        [HttpDelete]
+        [Route("api/[controller]/subjectData")]
+        public async Task<IActionResult> DeleteSubjectData(int deviceId)
+        {
+            var response = await m_processor.Run(new EraseSubjectDataRequest(deviceId));
+            return response.Success ? Ok() : BadRequest() as IActionResult;
+        }
+
 
         [HttpGet]
         [Route("")]

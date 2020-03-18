@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Web.Iot.GDPR
+namespace Web.Iot.GDPRService
 {
     public class Program
     {
