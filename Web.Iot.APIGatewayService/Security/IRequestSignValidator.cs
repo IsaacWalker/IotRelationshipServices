@@ -20,6 +20,13 @@ namespace Web.Iot.APIGatewayService.Security
         /// The Jwt Token used
         /// </summary>
         public readonly string Token;
+
+
+        public SignValidatorMessage(string route, string token)
+        {
+            Route = route;
+            Token = token;
+        }
     }
 
 
