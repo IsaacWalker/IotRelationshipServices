@@ -56,7 +56,7 @@ namespace Web.Iot.Client.DeviceService
         /// </summary>
         /// <param name="deviceId"></param>
         /// <returns></returns>
-        public async Task<bool> EraseSubjectData(int deviceId)
+        public async Task<bool> EraseSubjectData(Guid deviceId)
         {
             UriBuilder builder = new UriBuilder(m_subjectDataUrl);
             builder.Query = string.Format("{0}={1}", nameof(deviceId), deviceId);
@@ -95,7 +95,7 @@ namespace Web.Iot.Client.DeviceService
         /// </summary>
         /// <param name="deviceId"></param>
         /// <returns></returns>
-        public async Task<SubjectDataModel> GetDeviceSubjectData(int deviceId)
+        public async Task<SubjectDataModel> GetDeviceSubjectData(Guid deviceId)
         {
             UriBuilder builder = new UriBuilder(m_subjectDataUrl);
             builder.Query = string.Format("{0}={1}", nameof(deviceId), deviceId);
@@ -119,21 +119,15 @@ namespace Web.Iot.Client.DeviceService
         /// Registers a device
         /// </summary>
         /// <returns></returns>
-        public async Task<int> RegisterDeviceAsync(DeviceModel device)
+        public async Task<bool> RegisterDeviceAsync(DeviceModel device)
         {
             using(HttpClient client = m_httpClientFactory.CreateClient())
             {
                 HttpContent content = new StringContent(JsonConvert.SerializeObject(device));
                 content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
                 var response = await client.PostAsync(m_deviceUrl,content);
-                bool parse_success = int.TryParse(await response.Content.ReadAsStringAsync(), out int result);
 
-                if(response.IsSuccessStatusCode && parse_success)
-                {
-                    return result;
-                }
-
-                return -1;
+                return response.IsSuccessStatusCode;             
             }
         }
     }

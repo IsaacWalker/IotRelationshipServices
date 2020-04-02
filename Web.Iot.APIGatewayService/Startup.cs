@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +12,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+using Web.Iot.APIGatewayService.Security;
+using Web.Iot.APIGatewayService.Security.SafetyNetCheck;
+using Web.Iot.Client.DeviceService;
 
 namespace Web.Iot.APIGatewayService
 {
@@ -25,7 +31,34 @@ namespace Web.Iot.APIGatewayService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddHttpClient();
+            services.AddSingleton<IDeviceServiceClient, DeviceServiceClient>();
+            services.AddSingleton<IDeviceAttestation, DeviceAttestationService>();
+            services.AddSingleton<INonceStore, NonceStore>();
+            services.AddSingleton<IJwtTokenService, TokenGenerator>();
+            services.AddSingleton<IRequestSignValidator, RequestSignValidator>();
+
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII
+                    .GetBytes(Configuration.GetValue<string>("JwtSettings:Secret"))),
+                    ValidAudience = Configuration.GetValue<string>("JwtSettings:Audience"),
+                    ValidIssuer = Configuration.GetValue<string>("JwtSettings:Issuer"),
+                    ValidateIssuerSigningKey = false,
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = false
+                };             
+            });
+
+            services.AddMvc(options => options.EnableEndpointRouting = false);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,16 +69,11 @@ namespace Web.Iot.APIGatewayService
                 app.UseDeveloperExceptionPage();
             }
 
+
+            app.UseAuthentication();
+
             app.UseHttpsRedirection();
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseMvc();
         }
     }
 }

@@ -5,6 +5,7 @@
 ****************************************************/
 
 
+using System;
 using System.Threading.Tasks;
 using Web.Iot.Models.Device;
 using Web.Iot.Models.GDPR;
@@ -27,7 +28,7 @@ namespace Web.Iot.Client.DeviceService
         /// Registers a Device
         /// </summary>
         /// <returns></returns>
-        public Task<int> RegisterDeviceAsync(DeviceModel device);
+        public Task<bool> RegisterDeviceAsync(DeviceModel device);
 
 
         /// <summary>
@@ -35,7 +36,7 @@ namespace Web.Iot.Client.DeviceService
         /// </summary>
         /// <param name="deviceId"></param>
         /// <returns></returns>
-        public Task<SubjectDataModel> GetDeviceSubjectData(int deviceId);
+        public Task<SubjectDataModel> GetDeviceSubjectData(Guid deviceId);
 
 
         /// <summary>
@@ -43,6 +44,6 @@ namespace Web.Iot.Client.DeviceService
         /// </summary>
         /// <param name="deviceId"></param>
         /// <returns></returns>
-        public Task<bool> EraseSubjectData(int deviceId);
+        public Task<bool> EraseSubjectData(Guid deviceId);
     } 
 }

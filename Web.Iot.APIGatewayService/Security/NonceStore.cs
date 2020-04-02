@@ -40,4 +40,13 @@ namespace Web.Iot.APIGatewayService.Security
             return present;
         }
     }
+
+
+    public class NonceModel
+    { 
+        public Guid N { get; set; }
+
+        public string A { get; set; }
+    }
+
 }

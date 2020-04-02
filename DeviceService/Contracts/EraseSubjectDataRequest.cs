@@ -8,9 +8,9 @@ namespace Web.Iot.DeviceService.Contracts
 {
     public class EraseSubjectDataRequest : Request
     {
-        public int DeviceId { get; private set; }
+        public Guid DeviceId { get; private set; }
 
-        public EraseSubjectDataRequest(int deviceId)
+        public EraseSubjectDataRequest(Guid deviceId)
         {
             DeviceId = deviceId;
         }

@@ -9,10 +9,10 @@ namespace Web.Iot.DeviceService.Contracts
 {
     public class GetDeviceSARequest : Request
     {
-        public readonly int DeviceId;
+        public readonly Guid DeviceId;
 
 
-        public GetDeviceSARequest(int deviceId)
+        public GetDeviceSARequest(Guid deviceId)
         {
             DeviceId = deviceId;
         }

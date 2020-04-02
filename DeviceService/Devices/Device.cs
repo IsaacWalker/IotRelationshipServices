@@ -11,12 +11,6 @@ namespace Web.Iot.DeviceService.Devices
     public class Device
     {
         /// <summary>
-        /// Id of the Phone, used for pseudonimization
-        /// </summary>
-        public int Id { get; set; }
-
-
-        /// <summary>
         /// The Media Access Control for devices NIC (WiFi)
         /// </summary>
         public string MacAddress { get; set; }

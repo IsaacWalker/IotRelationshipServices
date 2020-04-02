@@ -12,12 +12,6 @@ namespace Web.Iot.Models.Device
     public class DeviceModel
     {
         /// <summary>
-        /// Id 
-        /// </summary>
-        public int Id { get; set; }
-
-
-        /// <summary>
         /// Mac Address (for Wifi)
         /// </summary>
         public string MacAddress { get; set; }

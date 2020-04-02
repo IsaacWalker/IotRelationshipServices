@@ -17,5 +17,8 @@ namespace Web.Iot.APIGatewayService.Security
 
 
         public static readonly string DeviceModel = nameof(DeviceModel);
+
+
+        public static readonly string BluetootHardwareAddress = nameof(BluetootHardwareAddress);
     }
 }

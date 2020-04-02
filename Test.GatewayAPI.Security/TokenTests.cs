@@ -12,11 +12,11 @@ namespace Test.GatewayAPI.Security
         [TestMethod]
         public void Test_ValidToken()
         {
-            IJwtTokenService tokenService = new TokenGenerator();
+            IJwtTokenService tokenService = new TokenGenerator(null);
             DeviceModel device = CreateDeviceModel();
 
 
-            TokenParams tokenParams = new TokenParams(Guid.NewGuid().ToString(), "ISSUER", "AUDIENCE");
+            TokenParams tokenParams = new TokenParams("TOKEN", "Issuer", "Audience");
             var token = tokenService.Generate(device, tokenParams);
 
             Assert.IsTrue(tokenService.Validate(token, tokenParams));
@@ -26,7 +26,7 @@ namespace Test.GatewayAPI.Security
         [TestMethod]
         public void Test_InvalidToken()
         {
-            IJwtTokenService tokenService = new TokenGenerator();
+            IJwtTokenService tokenService = new TokenGenerator(null);
 
             TokenParams tokenParams = new TokenParams(Guid.NewGuid().ToString(), "ISSUER", "AUDIENCE");
             var token = tokenService.GenerateFakeToken();
@@ -40,8 +40,9 @@ namespace Test.GatewayAPI.Security
             DeviceModel device = new DeviceModel()
             {
                 MacAddress = Guid.NewGuid().ToString(),
-                Manufacturer = "Sony",
-                Model = "Xperia"
+                Manufacturer = "HMD Global",
+                Model = "Nokia 7.2",
+                BluetoothName = "Nokia 7.2"
             };
 
             return device;

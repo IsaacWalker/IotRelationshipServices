@@ -28,7 +28,7 @@ namespace Web.Iot.DeviceService.Devices
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Device>()
-                .HasKey(D => D.Id);
+                .HasKey(D => D.MacAddress);
         }
     }
 }

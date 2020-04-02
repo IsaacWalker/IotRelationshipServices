@@ -2,27 +2,34 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Web.Iot.APIGatewayService.Security;
+using Web.Iot.Client.DeviceService;
 
 namespace Web.Iot.APIGatewayService.Controllers
 {
+    [Authorize]
     [ApiController]
     public class ForwardController : ControllerBase
     {
-        private readonly IHttpContextAccessor m_httpContext;
+        private readonly IDeviceServiceClient m_deviceServiceClient;
 
 
-        private readonly IRequestSignValidator m_signValidator;
-
-
-        public ForwardController(IHttpContextAccessor accessor, IRequestSignValidator signValidator)
+        public ForwardController(
+            IDeviceServiceClient deviceClient)
         {
-            m_httpContext = accessor;
-            m_signValidator = signValidator;
+            m_deviceServiceClient = deviceClient;
         }
 
+        [HttpGet]
+        [Route("get")]
+        public IActionResult Get()
+        {
+            var claims = User.Claims.ToDictionary(C => C.Type, C => C.Value);
+            return Ok(claims);
+        }
         // Device Service
          
 
@@ -32,15 +39,5 @@ namespace Web.Iot.APIGatewayService.Controllers
 
         //
 
-        private bool IsValidSignature()
-        {
-            string requestSignature = m_httpContext.HttpContext.Request.Headers["IR-SIGN"];
-
-            SignValidatorMessage message = new SignValidatorMessage(
-                m_httpContext.HttpContext.Request.Path.Value,
-                m_httpContext.HttpContext.Request.Headers["Authorization"]);
-
-            return true;
-        }
     }
 }

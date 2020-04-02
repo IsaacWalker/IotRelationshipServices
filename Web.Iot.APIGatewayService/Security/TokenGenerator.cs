@@ -6,12 +6,25 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Web.Iot.Client.DeviceService;
 using Web.Iot.Models.Device;
+using Web.Iot.Shared.Cache;
 
 namespace Web.Iot.APIGatewayService.Security
 {
     public class TokenGenerator : IJwtTokenService
     {
+        private readonly IDeviceServiceClient m_deviceServiceClient;
+
+
+        private readonly ISet<string> m_deviceCache;
+
+
+        public TokenGenerator(IDeviceServiceClient deviceServiceClient)
+        {
+            m_deviceServiceClient = deviceServiceClient;
+            m_deviceCache = new HashSet<string>();
+        }
 
         public string Generate(DeviceModel device, TokenParams tokenParams)
         {
@@ -29,11 +42,14 @@ namespace Web.Iot.APIGatewayService.Security
                 {
                     new Claim(ClaimTypes.DeviceModel, device.Model),
                     new Claim(ClaimTypes.Manufacturer, device.Manufacturer),
-                    new Claim(ClaimTypes.WifiHardwareAddress, device.MacAddress)
+                    new Claim(ClaimTypes.WifiHardwareAddress, device.MacAddress),
+                    new Claim(ClaimTypes.BluetootHardwareAddress, device.BluetoothName)
                 })
             };
 
             var token = handler.CreateToken(descriptor);
+
+            RegisterIfNotPresent(device).Wait();
             return handler.WriteToken(token);
         }
 
@@ -73,6 +89,17 @@ namespace Web.Iot.APIGatewayService.Security
                 return false;
             }
             return true;
+        }
+
+
+        private async Task RegisterIfNotPresent(DeviceModel deviceModel)
+        {
+            if(!m_deviceCache.Contains(deviceModel.MacAddress))
+            {
+               // var registerResult = await m_deviceServiceClient.RegisterDeviceAsync(deviceModel);
+            }
+
+            m_deviceCache.Add(deviceModel.MacAddress);
         }
     }
 }

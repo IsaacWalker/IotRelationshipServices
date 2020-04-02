@@ -4,6 +4,7 @@
     Isaac Walker
 ****************************************************/
 
+using System;
 using Web.Iot.Shared.Message;
 
 namespace Web.Iot.DeviceService.Contracts
@@ -16,10 +17,10 @@ namespace Web.Iot.DeviceService.Contracts
         /// <summary>
         /// Id of the device
         /// </summary>
-        public readonly int Id;
+        public readonly Guid Id;
 
 
-        public GetDeviceRequest(int id)
+        public GetDeviceRequest(Guid id)
         {
             Id = id;
         }

@@ -62,16 +62,16 @@ namespace Web.Iot.DeviceService.Controllers
                 return BadRequest();
             }
 
-            m_logger.LogDebug(LogEventId.CreateDeviceEnd, string.Format("Ending request to create device success with Id {0}", response.Id));
+            m_logger.LogDebug(LogEventId.CreateDeviceEnd, string.Format("Ending request to create device success with Id {0}", deviceModel.MacAddress));
 
-            return Ok(response.Id);
+            return Ok();
                 
         }
 
 
         [HttpGet]
         [Route("api/[controller]")]
-        public async Task<IActionResult> Get([FromQuery] int id)
+        public async Task<IActionResult> Get([FromQuery] Guid id)
         {
             m_logger.LogDebug(LogEventId.GetDeviceStart, string.Format("Starting request to get device with id {0}", id));
 
@@ -112,7 +112,7 @@ namespace Web.Iot.DeviceService.Controllers
 
         [HttpGet]
         [Route("api/[controller]/subjectData")]
-        public async Task<IActionResult> GetSubjectlData(int deviceId)
+        public async Task<IActionResult> GetSubjectlData(Guid deviceId)
         {
             var response = await m_processor.Run(new GetDeviceSARequest(deviceId));
 
@@ -144,7 +144,7 @@ namespace Web.Iot.DeviceService.Controllers
 
         [HttpDelete]
         [Route("api/[controller]/subjectData")]
-        public async Task<IActionResult> DeleteSubjectData(int deviceId)
+        public async Task<IActionResult> DeleteSubjectData(Guid deviceId)
         {
             var response = await m_processor.Run(new EraseSubjectDataRequest(deviceId));
             return response.Success ? Ok() : BadRequest() as IActionResult;

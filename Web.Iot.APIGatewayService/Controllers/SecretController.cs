@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Web.Iot.APIGatewayService.Security;
+using Web.Iot.APIGatewayService.Security.SafetyNetCheck;
+using Web.Iot.Client.DeviceService;
 using Web.Iot.Models.Secret;
 
 namespace Web.Iot.APIGatewayService.Controllers
@@ -39,6 +41,7 @@ namespace Web.Iot.APIGatewayService.Controllers
             m_nonceStore = nonceStore;
             m_attestationService = deviceAttestation;
             m_configuration = configuration;
+            attestSecret = configuration.GetValue<string>("JwtSettings:Secret");
             jwtSecret = configuration.GetValue<string>("JwtSettings:Secret");
             JwtAudience = configuration.GetValue<string>("JwtSettings:Audience");
             JwtIssuer = configuration.GetValue<string>("JwtSettings:Issuer");
@@ -53,7 +56,12 @@ namespace Web.Iot.APIGatewayService.Controllers
         [Route("secret/nonce")]
         public IActionResult GetNonce()
         {
-            return Ok(m_nonceStore.CreateNewAsync());
+            return Ok(
+                new NonceModel
+                {
+                    N = m_nonceStore.CreateNewAsync(),
+                    A = jwtSecret
+                }); 
         }
 
 
@@ -62,18 +70,18 @@ namespace Web.Iot.APIGatewayService.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [HttpGet]
-        [Route("secret/token")]
+        [HttpPost]
+        [Route("secret/tokenAttempt")]
         public async Task<IActionResult> GetToken([FromBody] TokenRequestModel model)
         {
             Guid nonce = model.Nonce;
             if(m_nonceStore.Exists(nonce))
             {
                 var deviceModel = model.DeviceModel;
+                
+
                 if (await m_attestationService.IsValidAttestation(model.AttestationCypher, attestSecret, nonce))
                 {
-                    // Everything is valid
-
                     // Creating the token
                     TokenParams tokenParams = new TokenParams(jwtSecret, JwtIssuer, JwtAudience);
                     var token = m_tokenService.Generate(deviceModel, tokenParams);
